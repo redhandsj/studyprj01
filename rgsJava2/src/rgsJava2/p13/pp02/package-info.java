@@ -8,6 +8,5 @@
  */
 /**
  * @author RedHands
- *
  */
 package rgsJava2.p13.pp02;

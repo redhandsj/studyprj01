@@ -1,40 +1,27 @@
 /**
  *
  */
-package rgsJava2.p13.pp02.list13_01;
+package rgsJava2.p13.list13_01.monster;
 
 /**
- * キャラクタ
- * @author RedHands
- *
+ * モンスター
+ * @author h-dodo
  */
-public abstract class Character implements Life {
+public abstract class Monster {
 	//=======================================================================
 	// variable
 	//=======================================================================
 	/**
-	 * キャラクターの名前
-	 */
-	private String name;
-	/**
 	 * Hit Point
 	 */
 	private int hp;
+	/**
+	 * モンスター個別認識
+	 */
+	private char suffix;
 	//=======================================================================
 	// getter/setter
 	//=======================================================================
-	/**
-	 * @return name
-	 */
-	public String getName() {
-		return name;
-	}
-	/**
-	 * @param name セットする name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 	/**
 	 * @return hp
 	 */
@@ -47,22 +34,25 @@ public abstract class Character implements Life {
 	public void setHp(int hp) {
 		this.hp = hp;
 	}
-	//=======================================================================
-	// Method
-	//=======================================================================
 	/**
-	 * 実行
+	 * @return suffix
 	 */
-	public void run(){
-		System.out.println(this.name + "は逃げ出した");
+	public char getSuffix() {
+		return suffix;
+	}
+	/**
+	 * @param suffix セットする suffix
+	 */
+	public void setSuffix(char suffix) {
+		this.suffix = suffix;
 	}
 	//=======================================================================
 	// Method
 	//=======================================================================
 	/**
-	 * マタンゴの攻撃
-	 * @param m 攻撃固体
+	 * 逃亡
 	 */
-	public abstract void attack(Matango m);
-
+	public void run(){
+		System.out.println("モンスターは逃げ出した。");
+	}
 }
