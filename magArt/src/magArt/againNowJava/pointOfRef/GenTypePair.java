@@ -5,7 +5,6 @@ package magArt.againNowJava.pointOfRef;
 
 /**
  * 総称型によるPairクラス
- * @author h-dodo
  *
  */
 public class GenTypePair<L, R> {
