@@ -8,7 +8,6 @@ import java.util.Optional;
 
 /**
  * 午前か午後の判断をする
- *
  */
 class Clock {
 	private Calendar calendar;

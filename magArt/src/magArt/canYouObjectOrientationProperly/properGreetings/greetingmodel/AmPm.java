@@ -12,11 +12,6 @@ class AmPm {
 		this.clock = new Clock();
 	}
 	String message(){
-		if("am".equals(this.clock.ampm())){
-			return "おはようございます";
-		}else if("pm".equals(this.clock.ampm())){
-			return "こんにちわ";
-		}
-		return "";
+		return MessageType.valueOf(clock.ampm()).message();
 	}
 }
