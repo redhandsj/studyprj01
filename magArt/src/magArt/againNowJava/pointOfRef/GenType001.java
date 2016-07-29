@@ -8,7 +8,7 @@ package magArt.againNowJava.pointOfRef;
  * @author h-dodo
  *
  */
-public class GenType001<T> {
+class GenType001<T> {
 	/**
 	 * 総称型変数
 	 */

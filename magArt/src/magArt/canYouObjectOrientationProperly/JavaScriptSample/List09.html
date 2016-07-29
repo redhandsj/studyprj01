@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="./jquery-3.1.0.min.js"></script>
+  <script src="./handlebars-v4.0.5.js"></script>
+  <script>
+    $(function(){
+		var templates = {
+			viewer: Handlebars.compile($("#viewer_template").html()),
+			editor: Handlebars.compile($("#editor_template").html())
+		};
+		var value = "クリックして編集";
+		var target = $("#target")
+			.html(templates.viewer({value: value}))
+			.on("click","p", function(ev){
+				$(ev.delegateTarget).html(templates.editor({value: value}));
+			})
+			.on("click","button", function(ev){
+				value = $(ev.delegateTarget).find("input").val();
+				$(ev.delegateTarget).html(templates.viewer({value: value}));
+			});
+    });
+  </script>
+  <title>Insert title here</title>
+</head>
+<body>
+  <script id="viewer_template" type="text/x-handlebars-template">
+    <p>{{value}}</p>
+  </script>
+  <script id="editor_template" type="text/x-handlebars-template">
+    <input type="text" value="{{value}}"></input>
+    <button>Save</button>
+  </script>
+  <div id="target">
+  </div>
+</body>
+</html>

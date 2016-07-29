@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="./jquery-3.1.0.min.js"></script>
+  <script src="./handlebars-v4.0.5.js"></script>
+  <script>
+	function InPlaceEditor($root, templates){
+		this.$root = $root;
+		this.templates = templates;
+		this.update_value("クリックして編集")
+			.on("click","button",function(ev){
+				this.update_value($(ev.delegateTarget).find("input").val());
+			}.bind(this))
+			.on("click","p",function(ev){
+				this.open_editor();
+			}.bind(this));
+	}
+	InPlaceEditor.prototype = {
+		update_value: function(value){
+			this.value = value;
+			return this.$root.html(this.templates.viewer(this));
+		},
+		open_editor: function(){
+			return this.$root.html(this.templates.editor(this));
+		}
+	};
+
+	$(function(){
+		var templates = {
+			viewer: Handlebars.compile($("#viewer_template").html()),
+			editor: Handlebars.compile($("#editor_template").html())
+		};
+		var target = new InPlaceEditor($("#target"),templates);
+    });
+  </script>
+  <title>Insert title here</title>
+</head>
+<body>
+  <script id="viewer_template" type="text/x-handlebars-template">
+    <p>{{value}}</p>
+  </script>
+  <script id="editor_template" type="text/x-handlebars-template">
+    <input type="text" value="{{value}}"></input>
+    <button>Save</button>
+  </script>
+  <div id="target">
+  </div>
+</body>
+</html>

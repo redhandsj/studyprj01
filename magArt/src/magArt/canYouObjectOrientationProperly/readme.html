@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>canYouObjectOrientationProperly documents</title>
+</head>
+<body>
+
+<HR>
+<!-------------------------------------------------------------------------->
+<h2> オブジェクト指向の学び方・教え方 </h2>
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクト指向はなぜ難しい？ </h3>
+<ul>
+<li> 基礎工学技術の勉強の必要性
+<li> 学習範囲が広い
+<li> 手続き型言語からの発想転換
+</ul>
+
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクト指向への地図 </h3>
+<ul>
+<li> 全プログラムはあるアルゴリズムとデータから成る
+<li> アルゴリズム→「こと」、データ→「もの」
+<li> 現実世界の「もの」に対応した高度な抽象的データ型の定義
+<li> データと処理を１つのプログラム単位とする（クラス）
+</ul>
+
+<!-------------------------------------------------------------------------->
+<HR><h3> アーキテクチャが鍵 </h3>
+<ul>
+<li> データを中心にそれを処理するメソッドを作成
+<li> クラス間の関係を継承・集約により定義
+<li> データ中心の指向は、万能ではなく、機能の断片化を呼ぶ → 制御クラスなどの設置
+</ul>
+
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクト指向分析を学ぶ </h3>
+<ul>
+<li> 上流工程からオブジェクト指向を適用すべき
+<li> UMLを用いて表す
+<li> 鍵は「抽象化」構造・機能・振舞の視点が大事。
+<li>
+</ul>
+
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクト指向を使いこなす </h3>
+<ul>
+<li> これまでのソフトウェアの技術も取り込んでいる事を理解すべき
+</ul>
+
+<HR>
+<!-------------------------------------------------------------------------->
+<h2> 組み込みからクラウドまで </h2>
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクト指向の現在：組込系 </h3>
+<ul>
+<li> 種別の異なる部品を多態性で表現
+<li> 派生開発に採用
+<li> 大規模な派生開発にも耐えられる手法
+</ul>
+
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクト指向の現在：業務系 </h3>
+<ul>
+<li> オブジェクト指向は当然の前提である
+<li> UMLからSysMLは派生
+<li> より深層を知るには必須
+</ul>
+
+<HR>
+<!-------------------------------------------------------------------------->
+<h2> JavaScript でオブジェクト指向 </h2>
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクトとアイデンティティ </h3>
+<ul>
+<li> 基本値とアイデンティティ
+<!--  リスト1 -->
+<script type="text/javascript">
+// 基本値（同値性判定）
+var p1 = p2 = 1;
+var p3 = p1 / p2;
+document.writeln("<br>p1 == p2：" + (p1 == p2)); // true
+document.writeln("<br>p2 == p3：" + (p2 == p3)); // true
+// オブジェクト（同一性）
+var o1 = o2 = new Number(1);
+var o3 =new Number(o1 / o2);
+document.writeln("<br>o1 == o2：" + (o1 == o2)); // true
+document.writeln("<br>o2 == o3：" + (o2 == o3)); // false
+document.writeln("<br>o2.valueOf() == o3.valueOf()：" + (o2.valueOf() == o3.valueOf())); // true
+</script>
+
+
+<li> オブジェクトのプロパティ
+<!--  リスト2 -->
+<script type="text/javascript">
+var obj = new Object();
+obj.a = 1;
+obj.b = 2;
+document.writeln("<br>obj.a：" + obj.a); // 1
+</script>
+
+<li> オブジェクト初期化子
+<!--  リスト3 : サンプルコード：オブジェクト初期化子 -->
+<script type="text/javascript">
+var obj = {
+		a: 1,
+		b: 2
+	};
+document.writeln("<br>obj.a：" + obj.a); // 1
+</script>
+</ul>
+
+<!-------------------------------------------------------------------------->
+<HR><h3> 関数とメソッド </h3>
+<ul>
+<li> 関数宣言と関数呼び出し
+<!--  リスト4  -->
+<script type="text/javascript">
+var a = 1;
+function func(b){ return a + b; }
+document.writeln("<br>func(10)：" + func(10)); // 11
+</script>
+
+<li> 関数式とメソッド
+<!--  リスト5  -->
+<script type="text/javascript">
+var obj = {
+	a : 1,
+	func : function func(b){ return this.a + b; }
+};
+document.writeln("<br>obj.func(10)：" + obj.func(10)); // 11
+</script>
+
+<li> this参照の束縛
+<!--  リスト5  -->
+<script type="text/javascript">
+var obj = {
+	a : 1,
+	func : function func(b){ return this.a + b; }
+};
+var func = obj.func.bind({a:2});
+document.writeln("<br>func(10)：" + func(10)); // 12
+</script>
+</ul>
+
+<!-------------------------------------------------------------------------->
+<HR><h3> コンストラクタとプロトタイプ </h3>
+<ul>
+<li> 独自インスタンスの生成
+<!--  リスト7  -->
+<script type="text/javascript">
+// コンストラクタ
+function My(a){ this.a = a; }
+// プロトタイプ
+My.prototype = { method : function(){ return this.a; } };
+// 生成
+var my1 = new My(1), my2 = new My(2);
+document.writeln("<br>my1.method()：" + my1.method()); // 1
+document.write("<br>my1.method()==my2.method()：");
+document.writeln(my1.method()==my2.method()); // true
+</script>
+<li> Objectプロトタイプ
+<!--  リスト8  -->
+<script type="text/javascript">
+var obj = {};
+document.write("<br>obj instanceof Object：");
+document.writeln(obj instanceof Object); // true
+document.write("<br>obj.prototype instanceof Object：");
+document.writeln(obj.prototype instanceof Object); // false
+</script>
+</ul>
+
+
+<!-------------------------------------------------------------------------->
+<HR><h3> オブジェクト指向の実践</h3>
+<ul>
+<li>リスト９とリスト１０を実装
+<li>「backbone.js」など（http://www.cyokodog.net/blog/backbone-js/）
+</ul>
+
+
+
+
+
+
+</body>
+</html>
