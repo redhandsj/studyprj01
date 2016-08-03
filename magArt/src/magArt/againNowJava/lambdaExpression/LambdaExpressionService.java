@@ -6,11 +6,13 @@ package magArt.againNowJava.lambdaExpression;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 /**
@@ -152,14 +154,222 @@ public class LambdaExpressionService {
 
 	//=======================================================================
 	/**
-	 * List12 ストリームの生成
+	 * List12 ストリームの生成（Stream<T>）
 	 */
 	private void list12(){
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 		System.out.println("-----"+ste[1].getMethodName()+"------");
 
+		List<Integer> list = Arrays.asList(5,4,2,10,7,3,9,8,6,1);
+		// List<T> からストリームに変換
+		Stream<Integer> stream1 = list.stream();
+		// 数値の羅列からストリームを生成
+		Stream<Integer> stream2 = Stream.of(1,2,3,4,5);
 
+		stream1.forEach(x -> System.out.println("stream1：" + x));
+		stream2.forEach(x -> System.out.println("stream2：" + x));
 	}
+
+	//=======================================================================
+	/**
+	 * List13 ストリームの生成（IntStream）
+	 */
+	private void list13(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		// 配列からストリームに変換
+		IntStream stream3 = Arrays.stream(new int[]{1,2,3});
+		// 数値の範囲を指定してストリーム生成
+		IntStream stream4 = IntStream.range(0, 100);
+
+		stream3.forEach(x -> System.out.println("stream3：" + x));
+		stream4.forEach(x -> System.out.println("stream4：" + x));
+	}
+
+	//=======================================================================
+	/**
+	 * List14 中間操作
+	 */
+	private void list14(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		List<Integer> list = Arrays.asList(5,4,2,10,7,3,9,8,6,1);
+		// 中間操作（この時点では、フィルタリングできてない）
+		Stream<Integer> intStream = list.stream().filter(x -> x % 2 == 0);
+		// 終端操作（この時点でフィルタリングされる）
+		intStream.forEach(x -> System.out.println("intStream：" + x));
+	}
+
+	//=======================================================================
+	/**
+	 * List15 filterの利用
+	 */
+	private void list15(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+		// データ絞り込み
+		list.stream()
+			.filter(x -> x < 5)
+			.filter(x -> x % 2 == 0)
+			.forEach(x -> System.out.println("list：" + x));
+	}
+
+	//=======================================================================
+	/**
+	 * List16 mapの利用
+	 */
+	private void list16(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		List<Integer> list = Arrays.asList(1,2,3,4,5);
+		// データ加工
+		list.stream()
+			.map(x -> x * x)
+			.forEach(x -> System.out.println("list：" + x));
+	}
+
+	//=======================================================================
+	/**
+	 * List17 distinctの利用
+	 */
+	private void list17(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		List<Integer> list = Arrays.asList(1,1,2,3,3,3,4,4,6);
+		// 重複削除
+		list.stream()
+			.distinct()
+			.forEach(x -> System.out.println("list：" + x));
+	}
+
+	//=======================================================================
+	/**
+	 * List18 peekの利用
+	 */
+	private void list18(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		List<Integer> list = Arrays.asList(1,3,5);
+		// フィルター確認
+		list.stream()
+			.peek(x -> System.out.printf("before filter: %d\n", x))
+			.filter(x -> x < 3)
+			.peek(x -> System.out.printf("after filter: %d\n", x))
+			.collect(Collectors.toList());
+	}
+
+	//=======================================================================
+	/**
+	 * List20 サンプルコード用の社員クラス
+	 */
+	private List<Employee> list20(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		List<Employee> employees = new ArrayList<>();
+		employees.add(new Employee("スミス","部長","開発部",54));
+		employees.add(new Employee("ジョンソン","平社員","営業部",29));
+		employees.add(new Employee("ウィリアムズ","課長","開発部",41));
+		employees.add(new Employee("ブラウン","主任","開発部",34));
+		employees.add(new Employee("ジョーンズ","部長","人事部",52));
+		employees.add(new Employee("ミラー","平社員","マーケティング部",24));
+		return employees;
+	}
+
+	//=======================================================================
+	/**
+	 * List21 forEachの利用
+	 */
+	private void list21(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		this.list20().stream()
+			.filter(e -> "部長".equals(e.role))
+			.forEach(x -> System.out.println("employees：" + x.name));
+	}
+
+	//=======================================================================
+	/**
+	 * List22 Collectの利用(Collectors.toList)
+	 */
+	private void list22(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		// List<T>インスタンスに変換
+		this.list20().stream().map(e -> e.name)	.collect(Collectors.toList());
+	}
+
+	//=======================================================================
+	/**
+	 * List23 Collectの利用(Collectors.joining)
+	 */
+	private void list23(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		// 結果をカンマで結合する
+		System.out.println(this.list20().stream().map(e -> e.name).collect(Collectors.toList()));
+	}
+
+	//=======================================================================
+	/**
+	 * List24 Collectの利用(Collectors.groupingBy)
+	 */
+	private void list24(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		// 部署ごとにグルーピング
+		this.list20().stream()
+			.collect(Collectors.groupingBy(e -> e.dept))
+			.forEach((dept,es) -> {
+				System.out.println(dept);
+				es.forEach(e -> System.out.printf(" - %s\n", e.name));
+			});
+	}
+
+	//=======================================================================
+	/**
+	 * List25 Collectの利用(Collectors.summarizing)
+	 */
+	private void list25(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		// 集計結果を取得する
+		IntSummaryStatistics summary = this.list20().stream().collect(Collectors.summarizingInt(e -> e.age));
+		System.out.printf("社員数  ：%d\n",summary.getCount());
+		System.out.printf("最低年齢：%d\n",summary.getMin());
+		System.out.printf("最高年齢：%d\n",summary.getMax());
+		System.out.printf("合計年齢：%d\n",summary.getSum());
+		System.out.printf("平均年齢：%f\n",summary.getAverage());
+	}
+
+	//=======================================================================
+	/**
+	 * List26 anyMatch / allMatch の利用例
+	 */
+	private void list26(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		if(this.list20().stream().anyMatch(e -> "営業部".equals(e.dept))){
+			System.out.println("社員の中に営業部の人が少なくとも１人います");
+		}
+		if(this.list20().stream().allMatch(e -> e.age > 22)){
+			System.out.println("社員は全員２２歳以上です");
+		}
+	}
+
 
 	//=======================================================================
 	/**
@@ -176,7 +386,55 @@ public class LambdaExpressionService {
 		// Stream API
 		this.list10();
 		this.list11();
-
+		this.list12();
+		this.list13();
+		this.list14();
+		this.list15();
+		this.list16();
+		this.list17();
+		this.list18();
+		// 終端操作
+		this.list21();
+		this.list22();
+		this.list23();
+		this.list24();
+		this.list25();
+		this.list26();
 	}
+}
 
+
+/**
+ * List19 社員クラス
+ */
+class Employee {
+	/**
+	 * 名前
+	 */
+	String name;
+	/**
+	 * 役職
+	 */
+	String role;
+	/**
+	 * 部署
+	 */
+	String dept;
+	/**
+	 * 年齢
+	 */
+	Integer age;
+	/**
+	 * コンストラクタ
+	 * @param name 名前
+	 * @param role 役職
+	 * @param dept 部署
+	 * @param age 年齢
+	 */
+	Employee(final String name,final String role,final String dept,final Integer age){
+		this.name = name;
+		this.role = role;
+		this.dept = dept;
+		this.age = age;
+	}
 }
