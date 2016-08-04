@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>スッキリわかるJava入門_第2版 documents</title>
+<!-- ------------------------------------------------------------------------------- -->
+<style type="text/css">
+<!--
+/* --- 全体の背景・テキスト --- */
+body {
+margin: 0;
+padding: 0;
+background-color: #000000; /* ページの背景色 */
+color: #00C000; /* 全体の文字色 */
+font-size: 80%; /* 全体の文字サイズ */
+}
+/* --- 全体のリンクテキスト --- */
+a:link { color: #0000ff; }
+a:visited { color: #800080; }
+a:hover { color: #ff0000; }
+a:active { color: #ff0000; }
+/* --- コンテナ --- */
+#container {
+width: 100%; /* ページの幅 */
+margin: 0 auto; /* センタリング */
+background-color: #000000; /* メインカラムの背景色 */
+border-left: 1px #c0c0c0 solid; /* 左の境界線 */
+border-right: 1px #c0c0c0 solid; /* 右の境界線 */
+}
+/* --- ヘッダ --- */
+#header {
+width: 100%;
+padding: 20px 0 40px 0;
+background-color: #808000; /* ヘッダの背景色 */
+}
+
+/* --- ナビゲーション --- */
+#nav {
+float: left;
+width: 20%; /* サイドバーの幅 */
+padding: 20px 0 40px 0;
+border-right: 1px #00C000 solid; /* 右の境界線 */
+}
+
+/* --- メインカラム --- */
+#content {
+float: left;
+width: 75%; /* メインカラムの幅 */
+padding: 20px 0 450px 0;
+}
+
+/* --- フッタ --- */
+#footer {
+clear: left; /* フロートのクリア */
+width: 100%;
+padding: 20px 0 40px 0;
+background-color: #808000; /* フッタの背景色 */
+}
+-->
+</style>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+<!-- ヘッダ開始 -->
+<div id="header">
+すっきりわかるJava入門 第２版 documents
+</div>
+<!-- ヘッダ終了 -->
+<!-- ナビゲーション開始 -->
+<div id="nav">
+第Ⅰ部　ようこそJavaの世界へ
+<ul>
+<li><a href="#tab001" onclick="ChangeTab('tab001'); return false;">第0章　Javaをはじめよう</a>
+<li><a href="#tab002" onclick="ChangeTab('tab002'); return false;">第1章　プログラムの書き方</a>
+<li>第2章　式と演算子
+<li>第3章　条件分岐と繰り返し
+<li>第4章　配列
+<li>第5章　メソッド
+<li>第6章　複数クラスを用いた開発
+</ul>
+第Ⅱ部　すっきり納得オブジェクト指向
+<ul>
+<li>第7章　オブジェクト指向をはじめよう
+<li>第8章　インスタンスとクラス
+<li>第9章　さまざまなクラス機構
+<li>第10章　カプセル化
+<li>第11章　継承
+<li>第12章　高度な継承
+<li>第13章　多態性
+</ul>
+第Ⅲ部　もっと便利にAPI活用術
+<ul>
+<li>第14章　Javaを支える標準クラス
+<li>第15章　例外
+<li>第16章　まだまだ広がるJavaの世界
+</ul>
+</div>
+<!-- ナビゲーション終了 -->
+<!-- メインカラム開始 -->
+<div id="content">
+<div id="tab001">
+第0章　Javaをはじめよう
+</div>
+<div id="tab002">
+第1章　プログラムの書き方
+</div>
+
+
+</div>
+<!-- メインカラム終了 -->
+<!-- フッタ開始 -->
+<div id="footer">
+［フッタ］
+</div>
+<!-- フッタ終了 -->
+</div>
+<!-- コンテナ終了 -->
+<!-- ------------------------------------------------------------------------------- -->
+<script type="text/javascript">
+function ChangeTab(tabname) {
+   // 全部消す
+   document.getElementById('tab001').style.display = 'none';
+   document.getElementById('tab002').style.display = 'none';
+   // 指定箇所のみ表示
+   document.getElementById(tabname).style.display = 'block';
+}
+// デフォルトのタブを選択
+ChangeTab('tab001');
+</script>
+<!-- ------------------------------------------------------------------------------- -->
+</body>
+</html>
