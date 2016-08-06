@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+
+/* --- 全体の背景・テキスト --- */
+body {
+margin: 0;
+padding: 0;
+background-color: #000000; /* ページの背景色 */
+color: #00C000; /* 全体の文字色 */
+font-size: 80%; /* 全体の文字サイズ */
+}
+/* --- 全体のリンクテキスト --- */
+a:link { color: #0000ff; }
+a:visited { color: #800080; }
+a:hover { color: #ff0000; }
+a:active { color: #ff0000; }
+/* --- コンテナ --- */
+#container {
+width: 100%; /* ページの幅 */
+margin: 0 auto; /* センタリング */
+background-color: #000000; /* メインカラムの背景色 */
+border-left: 1px #c0c0c0 solid; /* 左の境界線 */
+border-right: 1px #c0c0c0 solid; /* 右の境界線 */
+}
+/* --- ヘッダ --- */
+#header {
+width: 100%;
+padding: 1px 0 1px 0;
+background-color: #808000; /* ヘッダの背景色 */
+}
+
+/* --- ナビゲーション --- */
+#nav {
+float: left;
+width: 20%; /* サイドバーの幅 */
+padding: 20px 0 40px 0;
+border-right: 1px #00C000 solid; /* 右の境界線 */
+}
+
+/* --- メインカラム --- */
+#content {
+float: left;
+width: 79%; /* メインカラムの幅 */
+padding: 0px 0 450px 0;
+}
+
+/* --- フッタ --- */
+#footer {
+clear: left; /* フロートのクリア */
+width: 100%;
+padding: 20px 0 40px 0;
+background-color: #808000; /* フッタの背景色 */
+}
+/* --- タイトル（大分類） --- */
+h1 {
+    position: relative;
+    padding: .25em 0 .5em .75em;
+    border-left: 6px solid #ccc;
+}
+h1::before {
+    position: absolute;
+    left: -6px;
+    bottom: 0;
+    content: '';
+    width: 6px;
+    height: 50%;
+    background-color: #3498db;
+}
+h1::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid #ccc;
+}
+/* --- タイトル（中分類） --- */
+h2 {
+    padding: .25em 0 .5em .75em;
+    border-left: 6px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+/* --- タイトル（小分類） --- */
+h3 {
+    position: relative;
+    padding: 0 .5em .5em 1.7em;
+    border-bottom: 1px solid #ccc;
+}
+h3::after {
+    position: absolute;
+    top: .4em;
+    left: .4em;
+    z-index: 2;
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

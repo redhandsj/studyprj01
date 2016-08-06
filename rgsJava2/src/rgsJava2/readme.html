@@ -4,60 +4,7 @@
 <meta charset="UTF-8">
 <title>スッキリわかるJava入門_第2版 documents</title>
 <!-- ------------------------------------------------------------------------------- -->
-<style type="text/css">
-<!--
-/* --- 全体の背景・テキスト --- */
-body {
-margin: 0;
-padding: 0;
-background-color: #000000; /* ページの背景色 */
-color: #00C000; /* 全体の文字色 */
-font-size: 80%; /* 全体の文字サイズ */
-}
-/* --- 全体のリンクテキスト --- */
-a:link { color: #0000ff; }
-a:visited { color: #800080; }
-a:hover { color: #ff0000; }
-a:active { color: #ff0000; }
-/* --- コンテナ --- */
-#container {
-width: 100%; /* ページの幅 */
-margin: 0 auto; /* センタリング */
-background-color: #000000; /* メインカラムの背景色 */
-border-left: 1px #c0c0c0 solid; /* 左の境界線 */
-border-right: 1px #c0c0c0 solid; /* 右の境界線 */
-}
-/* --- ヘッダ --- */
-#header {
-width: 100%;
-padding: 20px 0 40px 0;
-background-color: #808000; /* ヘッダの背景色 */
-}
-
-/* --- ナビゲーション --- */
-#nav {
-float: left;
-width: 20%; /* サイドバーの幅 */
-padding: 20px 0 40px 0;
-border-right: 1px #00C000 solid; /* 右の境界線 */
-}
-
-/* --- メインカラム --- */
-#content {
-float: left;
-width: 79%; /* メインカラムの幅 */
-padding: 20px 0 450px 0;
-}
-
-/* --- フッタ --- */
-#footer {
-clear: left; /* フロートのクリア */
-width: 100%;
-padding: 20px 0 40px 0;
-background-color: #808000; /* フッタの背景色 */
-}
--->
-</style>
+<link rel="stylesheet" href="../css/rgsJava2.css">
 <!-- ------------------------------------------------------------------------------- -->
 </head>
 <body>
@@ -65,56 +12,121 @@ background-color: #808000; /* フッタの背景色 */
 <div id="container">
 <!-- ヘッダ開始 -->
 <div id="header">
-すっきりわかるJava入門 第２版 documents
+<h1>すっきりわかるJava入門 第２版 documents</h1>
 </div>
 <!-- ヘッダ終了 -->
 <!-- ナビゲーション開始 -->
 <div id="nav">
 第Ⅰ部　ようこそJavaの世界へ
 <ul>
-<li><a href="#tab001" onclick="ChangeTab('tab001'); return false;">第0章　Javaをはじめよう</a>
-<li><a href="#tab002" onclick="ChangeTab('tab002'); return false;">第1章　プログラムの書き方</a>
-<li>第2章　式と演算子
-<li>第3章　条件分岐と繰り返し
-<li>第4章　配列
-<li>第5章　メソッド
-<li>第6章　複数クラスを用いた開発
+<li><a href="#tab001" onclick="ChangeTab('tab000'); return false;">第0章　Javaをはじめよう</a>
+<li><a href="#tab002" onclick="ChangeTab('tab001'); return false;">第1章　プログラムの書き方</a>
+<li><a href="#tab002" onclick="ChangeTab('tab002'); return false;">第2章　式と演算子</a>
+<li><a href="#tab002" onclick="ChangeTab('tab003'); return false;">第3章　条件分岐と繰り返し</a>
+<li><a href="#tab002" onclick="ChangeTab('tab004'); return false;">第4章　配列</a>
+<li><a href="#tab002" onclick="ChangeTab('tab005'); return false;">第5章　メソッド</a>
+<li><a href="#tab002" onclick="ChangeTab('tab006'); return false;">第6章　複数クラスを用いた開発</a>
 </ul>
 第Ⅱ部　すっきり納得オブジェクト指向
 <ul>
-<li>第7章　オブジェクト指向をはじめよう
-<li>第8章　インスタンスとクラス
-<li>第9章　さまざまなクラス機構
-<li>第10章　カプセル化
-<li>第11章　継承
-<li>第12章　高度な継承
-<li>第13章　多態性
+<li><a href="#tab002" onclick="ChangeTab('tab007'); return false;">第7章　オブジェクト指向をはじめよう</a>
+<li><a href="#tab002" onclick="ChangeTab('tab008'); return false;">第8章　インスタンスとクラス</a>
+<li><a href="#tab002" onclick="ChangeTab('tab009'); return false;">第9章　さまざまなクラス機構</a>
+<li><a href="#tab002" onclick="ChangeTab('tab010'); return false;">第10章　カプセル化</a>
+<li><a href="#tab002" onclick="ChangeTab('tab011'); return false;">第11章　継承</a>
+<li><a href="#tab002" onclick="ChangeTab('tab012'); return false;">第12章　高度な継承</a>
+<li><a href="#tab002" onclick="ChangeTab('tab013'); return false;">第13章　多態性</a>
 </ul>
 第Ⅲ部　もっと便利にAPI活用術
 <ul>
-<li>第14章　Javaを支える標準クラス
-<li>第15章　例外
-<li>第16章　まだまだ広がるJavaの世界
+<li><a href="#tab002" onclick="ChangeTab('tab014'); return false;">第14章　Javaを支える標準クラス</a>
+<li><a href="#tab002" onclick="ChangeTab('tab015'); return false;">第15章　例外</a>
+<li><a href="#tab002" onclick="ChangeTab('tab016'); return false;">第16章　まだまだ広がるJavaの世界</a>
 </ul>
 </div>
 <!-- ナビゲーション終了 -->
 <!-- メインカラム開始 -->
 <div id="content">
-<!-- ------------------------------------------------------------------------------- -->
-<div id="tab001">
+<!--------------------------------------------------------------------------->
+<!-- 第Ⅰ部　ようこそJavaの世界へ  -->
+<!--------------------------------------------------------------------------->
+<div id="tab000">
 <h1>第0章　Javaをはじめよう</h1>
-<HR><h2> 総称型 </h2>
+<h2> ようこそJavaの世界へ </h2>
 <ul>
-<li> リスト01～13 を参照
+<li>
 </ul>
-
+<h2> はじめてのプログラミング </h2>
 </div>
-<!-- ------------------------------------------------------------------------------- -->
+<!--------------------------------------------------------------------------->
+<div id="tab001">
+<h1> 第1章　プログラムの書き方 </h1>
+</div>
+<!--------------------------------------------------------------------------->
 <div id="tab002">
-第1章　プログラムの書き方
+<h1> 第2章　式と演算子 </h1>
 </div>
-
-
+<!--------------------------------------------------------------------------->
+<div id="tab003">
+<h1> 第3章　条件分岐と繰り返し </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab004">
+<h1> 第4章　配列 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab005">
+<h1> 第5章　メソッド </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab006">
+<h1> 第6章　複数クラスを用いた開発 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<!-- 第Ⅱ部　すっきり納得オブジェクト指向  -->
+<!--------------------------------------------------------------------------->
+<div id="tab007">
+<h1> 第7章　オブジェクト指向をはじめよう </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab008">
+<h1> 第8章　インスタンスとクラス </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab009">
+<h1> 第9章　さまざまなクラス機構 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab010">
+<h1> 第10章　カプセル化 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab011">
+<h1> 第11章　継承 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab012">
+<h1> 第12章　高度な継承 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab013">
+<h1> 第13章　多態性 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<!-- 第Ⅲ部　もっと便利にAPI活用術  -->
+<!--------------------------------------------------------------------------->
+<div id="tab014">
+<h1> 第14章　Javaを支える標準クラス </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab015">
+<h1> 第15章　例外 </h1>
+</div>
+<!--------------------------------------------------------------------------->
+<div id="tab016">
+<h1> 第16章　まだまだ広がるJavaの世界 </h1>
+</div>
+<!--------------------------------------------------------------------------->
 </div>
 <!-- メインカラム終了 -->
 <!-- フッタ開始 -->
@@ -128,13 +140,28 @@ background-color: #808000; /* フッタの背景色 */
 <script type="text/javascript">
 function ChangeTab(tabname) {
    // 全部消す
+   document.getElementById('tab000').style.display = 'none';
    document.getElementById('tab001').style.display = 'none';
    document.getElementById('tab002').style.display = 'none';
+   document.getElementById('tab003').style.display = 'none';
+   document.getElementById('tab004').style.display = 'none';
+   document.getElementById('tab005').style.display = 'none';
+   document.getElementById('tab006').style.display = 'none';
+   document.getElementById('tab007').style.display = 'none';
+   document.getElementById('tab008').style.display = 'none';
+   document.getElementById('tab009').style.display = 'none';
+   document.getElementById('tab010').style.display = 'none';
+   document.getElementById('tab011').style.display = 'none';
+   document.getElementById('tab012').style.display = 'none';
+   document.getElementById('tab013').style.display = 'none';
+   document.getElementById('tab014').style.display = 'none';
+   document.getElementById('tab015').style.display = 'none';
+   document.getElementById('tab016').style.display = 'none';
    // 指定箇所のみ表示
    document.getElementById(tabname).style.display = 'block';
 }
 // デフォルトのタブを選択
-ChangeTab('tab001');
+ChangeTab('tab000');
 </script>
 <!-- ------------------------------------------------------------------------------- -->
 </body>
