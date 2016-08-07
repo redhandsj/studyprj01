@@ -41,6 +41,7 @@ border-right: 1px #00C000 solid; /* 右の境界線 */
 float: left;
 width: 79%; /* メインカラムの幅 */
 padding: 0px 0 450px 0;
+border-left: 1px #00C000 solid; /* 右の境界線 */
 }
 
 /* --- フッタ --- */
@@ -98,3 +99,42 @@ h3::after {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+/* --- 重要箇所 --- */
+#important {
+color: #C0C000; /* 全体の文字色 */
+font-size: 100%; /* 全体の文字サイズ */
+}
+/* --- テーブル --- */
+table.type07 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.0; /* 行の高さ */
+    border: 1px solid #ccc;
+}
+table.type07 thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #04162e;
+}
+table.type07 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #C0C000;
+}
+table.type07 tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #404000;
+}
+table.type07 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+
