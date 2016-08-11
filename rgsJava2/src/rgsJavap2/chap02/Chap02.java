@@ -2,7 +2,7 @@ package rgsJavap2.chap02;
 
 
 /**
- * 第1章　文字列の操作
+ * 第2章　日付と時間の取り扱い
  */
 public class Chap02 {
 
@@ -15,8 +15,8 @@ public class Chap02 {
 		List02Service servicel = new List02Service();
 		servicel.procs();
 		// 練習問題
-//		Practice01Service servicep = new Practice01Service();
-//		servicep.procs();
+		Practice02Service servicep = new Practice02Service();
+		servicep.procs();
 	}
 
 }
