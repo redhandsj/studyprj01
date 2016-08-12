@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>未整頓情報 documents</title>
+<!-- ------------------------------------------------------------------------------- -->
+<link rel="stylesheet" href="../css/magArt.css">
+<link rel="contents" href=".pages/tab000.html"/>
+<!-- syntaxhighlighter_3.0.83 -->
+<script type="text/javascript" src="../libs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+<script type="text/javascript" src="../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="../libs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+<!-- ヘッダ開始 -->
+<div id="header">
+<h1>未整頓情報 documents</h1>
+</div>
+<!-- ヘッダ終了 -->
+<!-- ナビゲーション開始 -->
+<div id="nav">
+<ul>
+<li><a href="#tab000" onclick="ChangeTab('tab000'); return false;">STSが起動しない場合の対処</a>
+<li><a href="#tab000" onclick="ChangeTab('tab001'); return false;"> syntaxhighlighterメモ</a>
+</ul>
+</div>
+<!-- ナビゲーション終了 -->
+<!-- メインカラム開始 -->
+<div id="content">
+<!--------------------------------------------------------------------------->
+<!-- Spring関連  -->
+<!--------------------------------------------------------------------------->
+<div id="tab000">
+<h1>STSが起動しない場合の対処</h1>
+<ul>
+<li>Eclipseが起動しない「Java was started but returned exit code=13」で「http://blog.clock-up.jp/entry/2015/01/17/eclipse-exit-code-13」を参照
+<li>「-vm」は「-vmargs」の前に記載しないとダメ
+<li>うまく動いたSTS.ini
+<pre>
+-startup
+plugins/org.eclipse.equinox.launcher_1.3.200.v20160318-1642.jar
+--launcher.library
+plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.400.v20160518-1444
+-product
+org.springsource.sts.ide
+--launcher.defaultAction
+openFile
+-vm
+G:\tools\java\jdk1.8.0_45\bin\javaw.exe
+-vmargs
+-Dosgi.requiredJavaVersion=1.8
+-Xms1024m
+-Xverify:none
+-Dorg.eclipse.swt.browser.IEVersion=10001
+-Xmx1200m
+</pre>
+</ul>
+</div><!-- <div id="tab000"> -->
+<!--------------------------------------------------------------------------->
+<div id="tab001">
+<h1>syntaxhighlighter_3.0.83 メモ</h1>
+<ul>
+<li>syntaxhighlighter_3.0.83 のテスト
+<pre class="brush: js;">
+function helloSyntaxHighlighter()
+{
+	return "hi!";
+}
+</pre>
+<li>syntaxhighlighter → http://www.netyasun.com/syntaxhighlighter/
+</ul>
+</div><!-- <div id="tab001"> -->
+<!--------------------------------------------------------------------------->
+</div><!-- <div id="content"> -->
+<!-- メインカラム終了 -->
+<!-- フッタ開始 -->
+<div id="footer">
+［フッタ］
+</div>
+<!-- フッタ終了 -->
+</div>
+<!-- コンテナ終了 -->
+<!-- ------------------------------------------------------------------------------- -->
+<script type="text/javascript">
+function ChangeTab(tabname) {
+   // 全部消す
+   document.getElementById('tab000').style.display = 'none';
+   document.getElementById('tab001').style.display = 'none';
+   // 指定箇所のみ表示
+   document.getElementById(tabname).style.display = 'block';
+}
+// デフォルトのタブを選択
+ChangeTab('tab000');
+</script>
+<!-- ------------------------------------------------------------------------------- -->
+</body>
+</html>
