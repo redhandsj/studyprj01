@@ -7,6 +7,8 @@ padding: 0;
 background-color: #000000; /* ページの背景色 */
 color: #00C000; /* 全体の文字色 */
 font-size: 80%; /* 全体の文字サイズ */
+height:100%;
+line-height: 150%; /* 行の高さ */
 }
 /* --- 全体のリンクテキスト --- */
 a:link { color: #0000ff; }
@@ -16,6 +18,7 @@ a:active { color: #ff0000; }
 /* --- コンテナ --- */
 #container {
 width: 100%; /* ページの幅 */
+height: 100%;
 margin: 0 auto; /* センタリング */
 background-color: #000000; /* メインカラムの背景色 */
 border-left: 1px #c0c0c0 solid; /* 左の境界線 */
@@ -150,4 +153,8 @@ padding:5px;
 margin:10px;
 background-color:#e7ebff;
 }
-
+/* --- シームレスなフレーム --- */
+iframe {
+border: none;
+width:  100%; /* フレームの幅 */
+}

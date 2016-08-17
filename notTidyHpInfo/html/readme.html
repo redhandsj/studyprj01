@@ -5,7 +5,6 @@
 <title>未整頓情報 documents</title>
 <!-- ------------------------------------------------------------------------------- -->
 <link rel="stylesheet" href="../css/magArt.css">
-<link rel="contents" href=".pages/tab000.html"/>
 <!-- syntaxhighlighter_3.0.83 -->
 <script type="text/javascript" src="../libs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
 <script type="text/javascript" src="../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
@@ -26,54 +25,40 @@
 <ul>
 <li><a href="#tab000" onclick="ChangeTab('tab000'); return false;">STSが起動しない場合の対処</a>
 <li><a href="#tab000" onclick="ChangeTab('tab001'); return false;"> syntaxhighlighterメモ</a>
+<li><a href="#tab000" onclick="ChangeTab('tab002'); return false;">複数のコンテキストパスについて</a>
+<li><a href="#tab000" onclick="ChangeTab('tab003'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab004'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab005'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab006'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab007'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab008'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab009'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab010'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab011'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab012'); return false;">　</a>
+<li><a href="#tab000" onclick="ChangeTab('tab013'); return false;">　</a>
 </ul>
 </div>
 <!-- ナビゲーション終了 -->
 <!-- メインカラム開始 -->
 <div id="content">
 <!--------------------------------------------------------------------------->
-<!-- Spring関連  -->
+<!-- 大分類  -->
 <!--------------------------------------------------------------------------->
-<div id="tab000">
-<h1>STSが起動しない場合の対処</h1>
-<ul>
-<li>Eclipseが起動しない「Java was started but returned exit code=13」で「http://blog.clock-up.jp/entry/2015/01/17/eclipse-exit-code-13」を参照
-<li>「-vm」は「-vmargs」の前に記載しないとダメ
-<li>うまく動いたSTS.ini
-<pre>
--startup
-plugins/org.eclipse.equinox.launcher_1.3.200.v20160318-1642.jar
---launcher.library
-plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.400.v20160518-1444
--product
-org.springsource.sts.ide
---launcher.defaultAction
-openFile
--vm
-G:\tools\java\jdk1.8.0_45\bin\javaw.exe
--vmargs
--Dosgi.requiredJavaVersion=1.8
--Xms1024m
--Xverify:none
--Dorg.eclipse.swt.browser.IEVersion=10001
--Xmx1200m
-</pre>
-</ul>
-</div><!-- <div id="tab000"> -->
-<!--------------------------------------------------------------------------->
-<div id="tab001">
-<h1>syntaxhighlighter_3.0.83 メモ</h1>
-<ul>
-<li>syntaxhighlighter_3.0.83 のテスト
-<pre class="brush: js;">
-function helloSyntaxHighlighter()
-{
-	return "hi!";
-}
-</pre>
-<li>syntaxhighlighter → http://www.netyasun.com/syntaxhighlighter/
-</ul>
-</div><!-- <div id="tab001"> -->
+<div id="tab000"><iframe src="./pages/tab000.html" height="999px"></iframe></div>
+<div id="tab001"><iframe src="./pages/tab001.html" height="999px"></iframe></div>
+<div id="tab002"><iframe src="./pages/tab002.html" height="999px"></iframe></div>
+<div id="tab003"><iframe src="./pages/tab003.html" height="999px"></iframe></div>
+<div id="tab004"><iframe src="./pages/tab004.html" height="999px"></iframe></div>
+<div id="tab005"><iframe src="./pages/tab005.html" height="999px"></iframe></div>
+<div id="tab006"><iframe src="./pages/tab006.html" height="999px"></iframe></div>
+<div id="tab007"><iframe src="./pages/tab007.html" height="999px"></iframe></div>
+<div id="tab008"><iframe src="./pages/tab008.html" height="999px"></iframe></div>
+<div id="tab009"><iframe src="./pages/tab009.html" height="999px"></iframe></div>
+<div id="tab010"><iframe src="./pages/tab010.html" height="999px"></iframe></div>
+<div id="tab011"><iframe src="./pages/tab011.html" height="999px"></iframe></div>
+<div id="tab012"><iframe src="./pages/tab012.html" height="999px"></iframe></div>
+<div id="tab013"><iframe src="./pages/tab013.html" height="999px"></iframe></div>
 <!--------------------------------------------------------------------------->
 </div><!-- <div id="content"> -->
 <!-- メインカラム終了 -->
@@ -90,11 +75,23 @@ function ChangeTab(tabname) {
    // 全部消す
    document.getElementById('tab000').style.display = 'none';
    document.getElementById('tab001').style.display = 'none';
+   document.getElementById('tab002').style.display = 'none';
+   document.getElementById('tab003').style.display = 'none';
+   document.getElementById('tab004').style.display = 'none';
+   document.getElementById('tab005').style.display = 'none';
+   document.getElementById('tab006').style.display = 'none';
+   document.getElementById('tab007').style.display = 'none';
+   document.getElementById('tab008').style.display = 'none';
+   document.getElementById('tab009').style.display = 'none';
+   document.getElementById('tab010').style.display = 'none';
+   document.getElementById('tab011').style.display = 'none';
+   document.getElementById('tab012').style.display = 'none';
+   document.getElementById('tab013').style.display = 'none';
    // 指定箇所のみ表示
    document.getElementById(tabname).style.display = 'block';
 }
 // デフォルトのタブを選択
-ChangeTab('tab000');
+ChangeTab('tab002');
 </script>
 <!-- ------------------------------------------------------------------------------- -->
 </body>

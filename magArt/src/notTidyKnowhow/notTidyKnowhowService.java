@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Enumeration;
 import java.util.UUID;
+import java.util.Vector;
 
 
 /**
@@ -117,6 +119,64 @@ public class notTidyKnowhowService {
 	}
 	//=======================================================================
 	/**
+	 * List4 文字列のreplace
+	 */
+	private void list04(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+	    // 発注機関名区切
+//	    String[] ws = hattyuuKikan.split("　");
+//	    String hattyuuKikanString = "";
+//		for(String w : ws){
+//			hattyuuKikanString += space + space + w + newLine;
+//		}
+
+		// 空白
+	    final String space = "%20";
+
+	    String before = "あ　い　う　え　お";
+		System.out.println("before：" + before);
+		before = before.replaceAll("　", space);
+		System.out.println("after：" + before);
+
+
+	}
+	//=======================================================================
+	/**
+	 * List5 Vector
+	 */
+	private void list05(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		Vector<Integer> vec = new Vector<Integer>(); //デフォルトでは要素の格納可能数は10です
+        // Vector<Integer> vec = new Vector<Integer>(128); //指定可能
+
+        // 要素を追加すると必要に応じて自動拡張
+        System.out.println(vec.capacity());
+        System.out.println(vec.size());
+        System.out.println(vec.isEmpty());
+
+        // 要素の追加および取得
+        for(int i=0; i<20; ++i) vec.add(i);
+        System.out.println(vec);
+        System.out.println(vec.get(8));
+
+        // 要素を追加すると必要に応じて自動拡張
+        System.out.println(vec.capacity());
+        System.out.println(vec.size());
+        System.out.println(vec.isEmpty());
+
+        // Enumerationを利用した走査
+        Enumeration<Integer> e = vec.elements();
+        while(e.hasMoreElements()) {
+            Integer val = e.nextElement();
+            System.out.println(val);
+        }
+
+	}
+	//=======================================================================
+	/**
 	 * 各処理
 	 */
 	void procs(){
@@ -125,6 +185,10 @@ public class notTidyKnowhowService {
 		// ランダム文字列
 		//this.list02();
 		// ディレクトリ作成
-		this.list03();
+		//this.list03();
+		// 文字列のrepalce
+		//this.list04();
+		// Vector
+		this.list05();
 	}
 }
