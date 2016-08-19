@@ -1,0 +1,747 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*----------------------
+	デフォルトスタイル
+-----------------------*/
+body,p,h1,h2,h3,h4,h5,h6,
+span,small,strong,
+div,ul,li,
+figure,img,
+header,footer,nav,section{
+    margin:0;
+    padding:0;
+	border:none;
+	outline:none;
+	font-size:1rem;
+	font-weight:normal;
+}
+
+header,footer,nav,section{display:block;}
+
+html{
+	font:13px/1.3 "ヒラギノ角ゴ Pro W3";
+	-webkit-text-size-adjust:none;}
+
+li{list-style:none;}
+
+/*----------------------
+	基本レイアウト
+-----------------------*/
+body{
+	background:#E8DDCB;
+	color:#033649;
+}
+
+/* リンク色変更はここ */
+a{
+	color:#036564;
+	text-decoration:none;
+}
+
+/* 縦ライン */
+#all{
+	border-left:solid 3px #031634;
+	width:98.5%;
+	overflow:hidden;
+}
+
+
+/*----------------------------------------
+ 全ページ共有ここから
+----------------------------------------*/
+/* ヘッダ部分
+--------------------*/
+#head h1{
+	background:url(img/head_bg.gif) repeat-x left -2px;
+	text-align:left;
+	text-indent:1em;
+    position:relative;
+	line-height:1;
+}
+
+/* 水平ライン */
+#head h1:before{
+    content:"";
+    width:100%;
+    height:2px;
+	margin-top:-1px;
+    display:block;
+	border-top:2px solid #031634;
+    position:absolute;
+	top:50%;
+    z-index:1;
+}
+
+#head h1 span{
+	background:url(img/head_bg.gif) repeat-x left center;
+    padding:0 5px;
+	color:#031634;
+	font-size:30px;
+    position:relative;
+    z-index:5;
+}
+
+/* サイト説明 */
+#head_txt{
+	background:url(img/line.gif) repeat-x left bottom;
+	width:97%;
+	margin:auto;
+	padding:0 .7em 1.25em .53em;
+	line-height:1.1;
+	text-align:right;
+}
+
+
+/* メイン
+--------------------*/
+#container{
+	width:298px;
+	margin:.25em auto 0;
+	padding:0.5em .25em 0 .25em;
+}
+
+
+/* フッター部分
+--------------------*/
+/* 広告 */
+.ad{
+	margin-top:5%;
+	padding:2% 0;
+	border:solid #031634;
+	border-width:1px 0;
+}
+
+.ad img{
+	background:#E5E5E5;
+	max-width:98%;
+	height:auto;
+	margin:0 auto;
+	display:block;
+	text-align:center;
+}
+
+/* 下層メニュー */
+#under_links ul{
+	overflow:hidden;
+}
+
+#under_links ul li{
+	width:33%;
+	padding:2% 0;
+	text-align:center;
+	float:left;
+}
+
+#under_links ul li a{
+	display:block;
+	padding:4% 0;
+	text-align:center;
+	border-right:solid 1px;}
+
+#under_links ul li:last-child a{
+	border-right-color:#E8DDCB;
+}
+
+/* コピーライト */
+#copy{
+	background:#CDB380;
+	padding:2% 0;
+	text-align:center;
+}
+
+
+/*----------------------------------------
+ INDEXページここから
+----------------------------------------*/
+
+/* head画像
+--------------------*/
+.head_img{
+	margin:1em auto;
+	text-align:center;
+}
+
+.head_img span{
+	line-height:0;
+	position:relative;
+
+	/* 【角丸】-四角にする場合は下記3行を削除してください- */
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+.head_img span img{
+	max-width:100%;
+	height:auto;
+
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+/* head画像の影 */
+.head_img span:before, .head_img span:after{
+	background: rgba(0, 0, 0, 0.7);
+	content: "";
+	width:40%;
+	height:40%;
+	
+	position:absolute;
+	left:1em;
+	top:-95%;
+	z-index: -1;
+	
+	-webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+	
+	-webkit-transform: rotate(-5deg);
+	-moz-transform: rotate(-5deg);
+	-o-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+ 
+.head_img span:after{
+	right:1em;
+	left:auto;
+	
+	-webkit-transform: rotate(5deg);
+	-moz-transform: rotate(5deg);
+	-o-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+
+/* H2　タイトル
+--------------------*/
+#container div h2{
+	margin-bottom:.25em;
+	text-indent:1em;
+	text-align:left;
+	line-height:1;
+    position:relative;
+}
+
+/* タイトルライン */
+#container div h2:before{
+    content:"";
+    width:100%;
+    height:4px;
+    display:block;
+	border-top:4px double #033649;
+    position:absolute;
+	top:50%;
+    z-index:1;
+}
+
+#container div h2 span{
+	background:#E8DDCB;
+    padding:0 .3em;
+	color:#033649;
+	font-size:24px;
+    position:relative;
+    z-index:5;
+}
+
+/* 更新履歴部分
+--------------------*/
+#new{
+	margin:1em 0;}
+
+#new ul li{
+	display:table;
+	overflow:hidden;
+	font-size:11px;
+	line-height:2.5;
+}
+
+#new ul li a:before{
+    content:" ★ ";
+	padding-right:.25em;
+	display:table-cell;
+	color:#C6E5D9;
+	font-size:10px;
+}
+
+/* メニュー部分
+--------------------*/
+#menu ul{
+	margin:0 auto .5em;
+	display:table;}
+
+#menu ul li{
+	width:49.2%;
+	display:table-cell;
+	float:left;
+	text-align:center;
+	border:solid 1px #E8DDCB;
+	position:relative;
+}
+
+#menu ul li:nth-child(odd){
+	border-color:#E8DDCB #033649 #033649 #E8DDCB;}
+
+#menu ul li:nth-child(even){
+	border-bottom-color:#033649;}
+
+#menu ul li:last-child,
+#menu ul li:nth-last-child(2){
+	border-bottom-color:#E8DDCB;}
+
+#menu ul li a{
+	padding:.8em 1em .8em .25em;
+	display:block;
+	text-align:left;}
+
+/* 【メニュータブの右向き三角 css3のみ】
+	画像を使用する際はaのクラスを「r_a_img」変更し、
+	画像を17ｘ17で用意してください。ここから */
+#menu ul li a.r_a_css span:after{
+    content:"";
+	width:15px;
+	height:14px;
+	margin-top:-8px;
+	padding-bottom:1px;
+	display:block;
+	text-indent:2px;
+	color:#D68189;
+	font-size:12px;
+	border:solid 1px #CDB380;
+	position:absolute;
+	right:.3em;
+	top:50%;
+
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+#menu ul li a.r_a_css span:before{
+    content:"";
+	width:0;
+	height:0;
+	margin-top:-5px;
+	display:block;
+	line-height:0;
+	position:absolute;
+	right:-.1em;
+	top:50%;
+
+	border-top:solid 5px transparent;
+	border-right:solid 8px transparent;
+	border-left:solid 8px #036564;
+	border-bottom:solid 5px transparent;
+}
+/* 【メニュータブの右向き三角 css3のみ】ここまで */
+
+/* 【メニュータブの右向き三角 画像版】
+	css3を使用する際はaのクラスを
+	「r_a_css」に変更してください。ここから */
+#menu ul li a.r_a_img span:after{
+	background:url(img/r_arrow.gif) no-repeat right center;
+	content:"";
+	width:17px;
+	height:17px;
+	margin-top:-9px;
+	display:block;
+	position:absolute;
+	right:.3em;
+	top:50%;
+}
+/* 【メニュータブの右向き三角 画像版】ここまで */
+
+
+/* おすすめ部分
+--------------------*/
+#recommend h3{
+	text-indent:1em;
+	color:#036564;
+	z-index:5;
+	position:relative;
+}
+
+#recommend ul{
+	background:#CDB380;
+	margin-top:-4px;
+	padding:5px 10px;
+	border:solid 1px #036564;
+	position:relative;
+
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+/* おすすめ枠の影 */
+#recommend ul:before, #recommend ul:after{
+	background: rgba(0, 0, 0, 0.7);
+	content: "";
+	width:40%;
+	height:40%;
+	
+	position:absolute;
+	left:.8em;
+	top:48%;
+	z-index: -1;
+	
+	-webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
+	-moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+	
+	-webkit-transform: rotate(-5deg);
+	-moz-transform: rotate(-5deg);
+	-o-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+ 
+#recommend ul:after{
+	right:.8em;
+	left:auto;
+	
+	-webkit-transform: rotate(5deg);
+	-moz-transform: rotate(5deg);
+	-o-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+
+/* おすすめ枠のリストの中身 */
+#recommend ul li{
+	border-bottom:solid 1px #E8DDCB;
+}
+
+#recommend ul li a{
+	padding:3% 0;
+	display:block;
+	overflow:hidden;
+}
+
+/* 【おすすめ枠のリストの中身の画像-角丸・ボーダー有り】ここから */
+#recommend ul li a span.c_c_b{
+	background:#F4EAD5;
+	max-width:32%;
+	min-height:50%;
+	max-height:100%;
+	padding:2px 1px;
+	display:block;
+	overflow:hidden;
+	text-align:center;
+	border:solid 1px #E8DDCB;
+	position:relative;
+	float:left;
+
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+#recommend ul li a span.c_c_b img{
+	display:table-cell;
+	text-align: center;
+	vertical-align: middle;
+
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+/* 【おすすめ枠のリストの中身の画像-角丸・ボーダー有り】ここまで */
+
+/* 【おすすめ枠のリストの中身の画像-角四角・ボーダー無し】ここから */
+#recommend ul li a span.c_s_n{
+	background:#F4EAD5;
+	max-width:33.8%;
+	min-height:50%;
+	max-height:100%;
+	display:block;
+	overflow:hidden;
+	text-align:center;
+	position:relative;
+	float:left;
+}
+
+#recommend ul li a span.c_s_n img{
+	display:table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+/* 【おすすめ枠のリストの中身の画像-角四角・ボーダー無し】ここまで */
+
+#recommend ul li a p{
+	width:63%;
+	color:#036564;
+	font-size:11px;
+	letter-spacing:-.1em;
+	float:right;
+}
+
+#recommend ul li a p:after{
+	background:#036564;
+	width:30%;
+	margin-left:70%;
+    content:" More ";
+	display:block;
+	text-align:center;
+	color:#FFF;
+	font-size:12px;
+	letter-spacing:0;
+}
+
+#recommend ul li:last-child{
+	border-bottom:none;
+}
+
+
+/*----------------------------------------
+	カテゴリ記事一覧ページここから
+----------------------------------------*/
+#category{
+	margin:1em 0;
+}
+
+#category ul{
+	margin-top:.5em;
+}
+
+#category ul li{
+	margin-bottom:1px;
+	overflow:hidden;
+	border:solid 1px #CDB380;
+	position:relative;
+}
+
+#category ul li:nth-child(odd){
+	background:#CDB380;
+}
+
+#category ul li:nth-child(even){
+	background:#FFF;
+}
+
+#category ul li a{
+	padding-top:.5em;
+	padding-right:1.7em;
+	padding-bottom:.5em;
+	padding-left:.5em;
+	color:#033649;
+
+	display:block;
+	position:relative;
+	z-index:2;
+}
+
+#category ul li a span.li_img{
+	max-width:25%;
+	max-height:22%;
+	margin-right:5px;
+	margin-bottom:.5em;
+	display:block;
+	overflow:hidden;
+	line-height:0;
+	border:solid 1px #E8DDCB;
+	position:relative;
+	float:left;
+}
+
+#category ul li a span.li_img figure img{
+	display:block;
+}
+
+#category ul li a p span{
+	background:#036564;
+	padding:.2em 2em;
+	line-height:1.8;
+	color:#FFF;
+}
+
+#category ul li a p span:first-child{
+	margin-left:5p;
+}
+
+/* 矢印 */
+#category ul li span.arrow{
+	width:0;
+	height:0;
+	margin-top:-10px;
+	display:block;
+	line-height:0;
+	position:absolute;
+	right:.9em;
+	top:50%;
+	z-index:0;
+
+	border-right:0px solid #036564;
+	border-top:10px solid #036564;
+	border-left:10px solid transparent;
+	border-bottom:10px solid #036564;
+ }
+
+#category ul li span.arrow:after{
+	content:"";
+	width:0;
+	height:0;
+	margin:-10px 0 0 0;
+	display:block;
+	line-height:0;
+	position:absolute;
+	right:-19.5px;
+	top:50%;
+	z-index:0;
+
+	border-right:10px solid transparent;
+	border-top:10px solid transparent;
+	border-left:10px solid #036564;
+	border-bottom:10px solid transparent;
+ }
+
+
+/*----------------------------------------
+	一記事ページここから
+----------------------------------------*/
+#detail{
+	margin:1em 0;}
+
+.detail_txt a.profile_img{
+	margin:1em auto;
+}
+
+a.profile_img figure{
+	max-width:320px;
+	margin:.5em auto;
+	display:block;
+	text-align:center;
+	line-height:1.8;
+	position:relative;
+
+	/* 【角丸】-四角にする場合は下記3行を削除してください- */
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+a.profile_img figure img{
+	max-width:100%;
+	height:auto;
+
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+/* 画像の影 */
+a.profile_img figure:before,
+a.profile_img figure:after{
+	background: rgba(0, 0, 0, 0.7);
+	content: "";
+	width:40%;
+	height:40%;
+	
+	position:absolute;
+	left:.8em;
+	top:20%;
+	z-index:-1;
+	
+	-webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
+	-moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+	
+	-webkit-transform: rotate(-5deg);
+	-moz-transform: rotate(-5deg);
+	-o-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+ 
+a.profile_img figure:after{
+	right:.8em;
+	left:auto;
+	
+	-webkit-transform: rotate(5deg);
+	-moz-transform: rotate(5deg);
+	-o-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+
+.show_site,
+.show_site_i{
+	margin:1em 0 0 0;
+	padding:.8em 1.8em .8em 1em;
+	display:block;
+	text-align:right;
+
+	border:solid #CDB380;
+	border-width:1px 0;
+	position:relative;
+}
+
+/* 【詳細を見るリンクの右向き三角 css3のみ】
+	画像を使用する際はaのクラスを「show_site」変更し、
+	画像を17ｘ17で用意してください。ここから */
+a.show_site span:after{
+    content:"";
+	width:15px;
+	height:14px;
+	margin-top:-8px;
+	padding-bottom:1px;
+	display:block;
+	text-indent:2px;
+	color:#D68189;
+	font-size:12px;
+	border:solid 1px #C6A49A;
+	position:absolute;
+	right:0;
+	top:50%;
+
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+a.show_site span:before{
+    content:"";
+	width:0;
+	height:0;
+	margin-top:-5px;
+	display:block;
+	line-height:0;
+	position:absolute;
+	right:-4px;
+	top:50%;
+
+	border-top:solid 5px transparent;
+	border-right:solid 8px transparent;
+	border-left:solid 8px #036564;
+	border-bottom:solid 5px transparent;
+}
+/* 【詳細を見るリンクの右向き三角 css3のみ】ここまで */
+
+/* 【詳細を見るリンクの右向き三角 画像版】
+	css3を使用する際はaのクラスを
+	「show_site_i」に変更してください。ここから */
+a.show_site_i span:after{
+	background:url(img/r_arrow.gif) no-repeat right center;
+	content:"";
+	width:17px;
+	height:17px;
+	margin-top:-9px;
+	display:block;
+
+	position:absolute;
+	right:0;
+	top:50%;
+}
+/* 【詳細を見るリンクの右向き三角 画像版】ここまで */

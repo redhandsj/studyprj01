@@ -173,8 +173,21 @@ public class notTidyKnowhowService {
             Integer val = e.nextElement();
             System.out.println(val);
         }
+	}
+	//=======================================================================
+	/**
+	 * List6 java.sql.Date
+	 */
+	private void list06(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		java.sql.Date sqlNow = new java.sql.Date(System.currentTimeMillis());
+		System.out.println("sqlNow：" + sqlNow.toString());
 
 	}
+
+
 	//=======================================================================
 	/**
 	 * 各処理
@@ -189,6 +202,8 @@ public class notTidyKnowhowService {
 		// 文字列のrepalce
 		//this.list04();
 		// Vector
-		this.list05();
+		//this.list05();
+		// Vector
+		this.list06();
 	}
 }

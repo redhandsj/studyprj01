@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta name="description" content="サイトの説明文を入れてください。">
+<meta name="keyword" content="キーワード1,キーワード2,キーワード3">
+<title>サイト名と重要キーワードを入れてください。</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.easing.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('a[href*=#]').click(function() {
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length && target;
+			if (target.length) {
+				var sclpos = 30;
+				var scldurat = 1200;
+				var targetOffset = target.offset().top - sclpos;
+				$('html,body')
+					.animate({scrollTop: targetOffset}, {duration: scldurat, easing: "easeOutExpo"});
+				return false;
+			}
+		}
+	});
+});
+</script>
+<script type="text/javascript" src="js/jquery.biggerlink.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.tablist li').biggerlink();
+	});
+</script>
+</head>
+
+<body id="top">
+<!-- ヘッダここから -->
+<header class="header">
+	<div class="h_l">
+	<h1><a href="index.html">サイト名を入れてください。</a></h1>
+	</div>
+	
+	<p id="back"><a href="index.html">Back</a></p>
+</header>
+<!-- /ヘッダここまで -->
+
+<!-- Newsここから -->
+<div class="clearfix">
+<h2 class="subt">カテゴリ名</h2>
+</div>
+<!-- リストここから -->
+<ul class="tablist">
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif" width="73" height="66" alt="" class="radius"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- 画像なし記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr3">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストトカテゴリ１テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストトカテゴリ１テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストトカテゴリ１テキストテキストテキストテキストテキスト</p>
+			</div>
+		</div>
+	</li>
+	<!-- /画像なし記事ここまで -->
+	
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキストトカテゴリ１テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif" width="73" height="66" alt="" class="radius"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- １記事ここから -->
+	<li class="lastline">
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif" width="73" height="66" alt="" class="radius"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+</ul>
+<!-- /リストここまで -->
+<!-- /Newsここまで -->
+
+<!-- 広告ここから -->
+<p class="ad"><a href="" target="_blank"><img src="img/banner.gif" width="234" height="60" alt="広告のタイトルや説明を入れてください"></a></p>
+<!-- /広告ここまで -->
+
+<!-- フッタここから -->
+<footer>
+<div id="footer">
+<ul class="clearfix">
+	<li><a href="post.html">About</a></li>
+	<li><a href="mailto:xxx@xxx.xxx?subject=件名を入れる場合はここ&body=本文を入れる場合はここ">Contact</a></li>
+	<li><a href="">PC版</a></li>
+	<li class="last"><a href="#top">↑PageTop</a></li>
+</ul>
+<p id="cr">Copyright&copy; <a href="ご自身のサイトURL">サイト名</a>, All rights reserved.<br>
+<!-- ***削除禁止*** -->
+Designed by <a href="http://www.bannerbridge.net/">バナーブリッジ</a>
+<!-- ***削除禁止*** -->
+</p>
+</div>
+</footer>
+<!-- /フッタここまで -->
+
+</body>
+</html>

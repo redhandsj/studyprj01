@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta name="description" content="サイトの説明文を入れてください。">
+<meta name="keyword" content="キーワード1,キーワード2,キーワード3">
+<title>サイト名と重要キーワードを入れてください。</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="js/jquery.bxSlider.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#slider').bxSlider({
+			auto: true,
+			speed: 800,
+			pause: 5000
+		});
+	});
+</script>
+<script type="text/javascript" src="js/jquery.easing.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('a[href*=#]').click(function() {
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length && target;
+			if (target.length) {
+				var sclpos = 30;
+				var scldurat = 1200;
+				var targetOffset = target.offset().top - sclpos;
+				$('html,body')
+					.animate({scrollTop: targetOffset}, {duration: scldurat, easing: "easeOutExpo"});
+				return false;
+			}
+		}
+	});
+});
+</script>
+<script type="text/javascript" src="js/jquery.biggerlink.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.tablist li').biggerlink();
+	});
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('#cate2btn').click(function(){
+			$(this).removeClass('cl').removeClass('rl').addClass('on');
+			$('#cate1btn').removeClass('on').removeClass('rl');
+			$('#cate3btn').removeClass('on').removeClass('cl').addClass('rl').removeClass('ll');
+			$('#cate4btn').removeClass('on').addClass('ll');
+			$('#cate2').fadeIn('fast');
+			$('#cate1').fadeOut('fast');
+			$('#cate3').fadeOut('fast');
+			$('#cate4').fadeOut('fast');
+		});
+		
+		$('#cate3btn').click(function(){
+			$(this).removeClass('cl').removeClass('rl').addClass('on');
+			$('#cate1btn').removeClass('on').addClass('rl');
+			$('#cate2btn').removeClass('on').removeClass('rl').removeClass('cl').addClass('ll');
+			$('#cate4btn').removeClass('on').removeClass('ll');
+			$('#cate3').fadeIn('fast');
+			$('#cate1').fadeOut('fast');
+			$('#cate2').fadeOut('fast');
+			$('#cate4').fadeOut('fast');
+		});
+		
+		$('#cate4btn').click(function(){
+			$(this).addClass('on');
+			$('#cate1btn').removeClass('on').addClass('rl');
+			$('#cate2btn').removeClass('on').removeClass('ll').removeClass('rl').addClass('cl');
+			$('#cate3btn').removeClass('on').removeClass('cl').removeClass('rl').addClass('ll');
+			$('#cate4').fadeIn('fast');
+			$('#cate1').fadeOut('fast');
+			$('#cate2').fadeOut('fast');
+			$('#cate3').fadeOut('fast');
+		});
+		
+		$('#cate1btn').click(function(){
+			$(this).removeClass('rl').addClass('on');
+			$('#cate2btn').removeClass('on').removeClass('cl').removeClass('ll').addClass('rl');
+			$('#cate3btn').removeClass('on').removeClass('rl').removeClass('ll').addClass('cl');
+			$('#cate4btn').removeClass('on').addClass('ll');
+			$('#cate1').fadeIn('fast');
+			$('#cate2').fadeOut('fast');
+			$('#cate3').fadeOut('fast');
+			$('#cate4').fadeOut('fast');
+		});
+	});
+</script>
+</head>
+
+<body id="top">
+<!-- ヘッダここから -->
+<header class="header">
+	<div class="h_l">
+	<h1><a href="index.html">サイト名を入れてください。</a></h1>
+	</div>
+</header>
+<!-- /ヘッダここまで -->
+
+<p id="intro">重要キーワードを考慮しながらサイトの説明文を入力してください。説明文を入力してください。説明文を入力してください。説明文を入力してください。説明文を入力してください。説明文を入力してください。</p>
+
+<p class="cent"><img src="img/image1.jpg" width="300" height="142" alt="" class="radius"></p>
+
+<!-- Newsここから -->
+<div id="newswrapper">
+	<div class="clearfix">
+	<h2 class="topt">News</h2>
+	<p class="ichi"><a href="news.html">News一覧</a> →</p>
+	</div>
+	<div id="newsbox">
+		<ul id="slider">
+			<li><a href="">新着情報を掲載できます。</a></li>
+			<li><a href="">お知らせを掲載できます。</a></li>
+			<li><a href="">Newsを掲載できます。</a></li>
+			<li><a href="">更新情報を掲載できます。</a></li>
+		</ul>
+	</div>
+</div>
+<!-- /Newsここまで -->
+
+<!-- カテゴリここから -->
+
+<!-- タブここから -->
+<div id="tab">
+	<div class="tabbox">
+	<ul class="clearfix">
+		<li id="cate1btn" class="on"><div><span>カテゴリ１</span></div></li>
+		<li id="cate2btn" class="rl"><div><span>カテゴリ２</span></div></li>
+		<li id="cate3btn" class="cl"><div><span>カテゴリ３</span></div></li>
+		<li id="cate4btn" class="ll"><div><span>カテゴリ４</span></div></li>
+	</ul></span>
+	</div>
+</div>
+<!-- /タブここまで -->
+
+<!-- リストここから -->
+<div id="cate1" class="tablist">
+<ul>
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif" width="73" height="66" alt="" class="radius"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif" width="73" height="66" alt="" class="radius"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- 最後の記事ここから -->
+	<li class="lastline">
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif" width="73" height="66" alt="" class="radius"></p>
+		</div>
+	</li>
+	<!-- /最後の記事ここまで -->	
+</ul>
+<p class="listlist"><a href="list.html">一覧</a> →</p>
+</div>
+<!-- /リストここまで -->
+
+<!-- リストここから -->
+<div id="cate2" class="tablist not">
+<ul>
+	<!-- 画像なし記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr3">
+				<p class="listt"><a href="post.html">カテゴリ２タイトルタイトルタイトル</a></p>
+				<p class="listtxt">カテゴリ２テキストテキストテキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+		</div>
+	</li>
+	<!-- 画像なし記事ここまで -->
+	
+	<!-- 画像なし記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr3">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+		</div>
+	</li>
+	<!-- /画像なし記事ここまで -->
+	
+	<!-- 最後の記事ここから -->
+	<li class="lastline">
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif" width="73" height="66" alt="" class="radius"></p>
+		</div>
+	</li>
+	<!-- /最後の記事ここまで -->	
+</ul>
+<p class="listlist"><a href="list.html">一覧</a> →</p>
+</div>
+<!-- /リストここまで -->
+
+<!-- リストここから -->
+<div id="cate3" class="tablist not">
+<ul>
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- 最後の記事ここから -->
+	<li class="lastline">
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif"></p>
+		</div>
+	</li>
+	<!-- /最後の記事ここまで -->	
+</ul>
+<p class="listlist"><a href="list.html">一覧</a> →</p>
+</div>
+<!-- /リストここまで -->
+
+<!-- リストここから -->
+<div id="cate4" class="tablist not">
+<ul>
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- １記事ここから -->
+	<li>
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif"></p>
+		</div>
+	</li>
+	<!-- /１記事ここまで -->
+	
+	<!-- 最後の記事ここから -->
+	<li class="lastline">
+		<div class="clearfix">
+			<div class="listr">
+			<div class="listr2">
+				<p class="listt"><a href="post.html">カテゴリ１タイトルタイトルカテゴリ１ル</a></p>
+				<p class="listtxt">カテゴリ１テキストカテゴリ１テキストテキストテキスト<br>
+				テキストテキストテキストテキストテキストテキストテキスト</p>
+			</div>
+			</div>
+			<p class="listimg"><img src="img/image2.gif"></p>
+		</div>
+	</li>
+	<!-- /最後の記事ここまで -->	
+</ul>
+<p class="listlist"><a href="list.html">一覧</a> →</p>
+</div>
+<!-- /リストここまで -->
+
+
+<!-- /カテゴリここまで -->
+
+<!-- 広告ここから -->
+<p class="ad"><a href="" target="_blank"><img src="img/banner.gif" width="234" height="60" alt="広告のタイトルや説明を入れてください"></a></p>
+<!-- /広告ここまで -->
+
+<p id="outro">補足文章など。自由に入力してください。自由に入力してください。自由に入力してください。自由に入力してください。</p>
+
+<!-- フッタここから -->
+<footer>
+<div id="footer">
+<ul class="clearfix">
+	<li><a href="post.html">About</a></li>
+	<li><a href="mailto:xxx@xxx.xxx?subject=件名を入れる場合はここ&body=本文を入れる場合はここ">Contact</a></li>
+	<li><a href="">PC版</a></li>
+	<li class="last"><a href="#top">↑PageTop</a></li>
+</ul>
+<p id="cr">Copyright&copy; <a href="ご自身のサイトURL">サイト名</a>, All rights reserved.<br>
+<!-- ***削除禁止*** -->
+Designed by <a href="http://www.bannerbridge.net/">バナーブリッジ</a>
+<!-- ***削除禁止*** -->
+</p>
+</div>
+</footer>
+<!-- /フッタここまで -->
+
+</body>
+</html>
