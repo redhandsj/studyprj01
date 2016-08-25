@@ -104,18 +104,24 @@ public class notTidyKnowhowService {
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 		System.out.println("-----"+ste[1].getMethodName()+"------");
 
+		String testpath = "G:/tmps/test";
+		if (!testpath.endsWith(File.separator)) {
+			testpath += File.separator;
+		}
+
 		//File newdir = new File("G:\\tmps\\test\\" + UUID.randomUUID().toString());
-		try {
-			File newdir = new File(new URI("file:/G:/tmps/test/" + UUID.randomUUID().toString()));
+//		try {
+			//File newdir = new File(new URI("file:/G:/tmps/test/" + UUID.randomUUID().toString()));
+			File newdir = new File(testpath + UUID.randomUUID().toString());
 			newdir.mkdir();
 			System.out.println("パス【toString()】：" + newdir.toString());
 			System.out.println("パス【toURI()】：" + newdir.toURI());
 			System.out.println("パス【toPath()】：" + newdir.toPath());
 			System.out.println("作成成功？：" + newdir.isDirectory());
-		} catch (URISyntaxException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+//		} catch (URISyntaxException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		}
 	}
 	//=======================================================================
 	/**
@@ -198,12 +204,12 @@ public class notTidyKnowhowService {
 		// ランダム文字列
 		//this.list02();
 		// ディレクトリ作成
-		//this.list03();
+		this.list03();
 		// 文字列のrepalce
 		//this.list04();
 		// Vector
 		//this.list05();
 		// Vector
-		this.list06();
+		//this.list06();
 	}
 }
