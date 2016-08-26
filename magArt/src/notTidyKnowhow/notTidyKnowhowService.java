@@ -144,8 +144,6 @@ public class notTidyKnowhowService {
 		System.out.println("before：" + before);
 		before = before.replaceAll("　", space);
 		System.out.println("after：" + before);
-
-
 	}
 	//=======================================================================
 	/**
@@ -192,6 +190,53 @@ public class notTidyKnowhowService {
 		System.out.println("sqlNow：" + sqlNow.toString());
 
 	}
+	//=======================================================================
+	/**
+	 * List7 文字列の判定
+	 */
+	private void list07(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+	    // 発注機関名区切
+//	    String[] ws = hattyuuKikan.split("　");
+//	    String hattyuuKikanString = "";
+//		for(String w : ws){
+//			hattyuuKikanString += space + space + w + newLine;
+//		}
+		final String PDF_SAISIGEN_K	= "saisei_k";
+		final String PDF_SAISIGEN_K17	= "saisei_tsuika_k";
+
+	    String f1 = "saisei_tsuika_k.txt";
+	    String f2 = "saisei_k.txt";
+	    String f3 = "aaaaaaa.txt";
+
+	    if(f1 != null && f1.startsWith(PDF_SAISIGEN_K17)){
+		    System.out.println("PDF_SAISIGEN_K17 f1 一致");
+	    }
+	    if(f2 != null && f2.startsWith(PDF_SAISIGEN_K17)){
+		    System.out.println("PDF_SAISIGEN_K17 f1 一致");
+	    }
+
+
+	    if(f1 != null && f1.startsWith(PDF_SAISIGEN_K)){
+		    System.out.println("PDF_SAISIGEN_K17 f2 一致");
+	    }
+	    if(f2 != null && f2.startsWith(PDF_SAISIGEN_K)){
+		    System.out.println("PDF_SAISIGEN_K f2 一致");
+	    }
+
+	    if((f1 != null && f1.startsWith(PDF_SAISIGEN_K17)) || (f1 != null && f1.startsWith(PDF_SAISIGEN_K))){
+		    System.out.println("f1 どちらかが 一致");
+	    }
+	    if((f2 != null && f2.startsWith(PDF_SAISIGEN_K17)) || (f2 != null && f2.startsWith(PDF_SAISIGEN_K))){
+		    System.out.println("f2 どちらかが 一致");
+	    }
+	    if((f3 != null && f3.startsWith(PDF_SAISIGEN_K17)) || (f3 != null && f3.startsWith(PDF_SAISIGEN_K))){
+		    System.out.println("f3 どちらかが 一致");
+	    }
+
+
+	}
 
 
 	//=======================================================================
@@ -204,12 +249,14 @@ public class notTidyKnowhowService {
 		// ランダム文字列
 		//this.list02();
 		// ディレクトリ作成
-		this.list03();
+		//this.list03();
 		// 文字列のrepalce
 		//this.list04();
 		// Vector
 		//this.list05();
 		// Vector
 		//this.list06();
+		// 文字列の判定
+		this.list07();
 	}
 }
