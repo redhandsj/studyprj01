@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>メール起動テスト</title>
+<script type="text/javascript" language="JavaScript">
+
+	// クライアント側でメーラーを起動させる
+
+	function doReload() {
+	    // 改行
+	    var newLine = '%0D%0A';
+	    // 空白
+	    var space = '%20';
+
+		//body = '本文' + '%0D%0A' + hiddenData; // 「'%0D%0A'」を入れて改行
+		// 工事ID
+		var koujiId = '0000000000';
+		// 宛先
+		var notificationAdr = '宛先';
+		// 通知者
+		var hattyuuKikan = '通知者';
+		// リンク先
+		var url = 'aaaaaaaaaaaaaaaaaaaaaa';
+		// 日付
+		var today = '8月26日';
+
+
+	    // 件名
+	    var subject = "【" + koujiId + "】";
+	    // 本文
+	    var body = notificationAdr.replace('/　/g', space) + newLine
+	    		+ hattyuuKikan.replace('/　/g', space) + newLine
+	    		+ url.replace('/　/g', space) + newLine
+	    		+ "発行日" + today  + "" + newLine;
+
+		// 「'?cc='」部分でCC追加
+		location.href = 'mailto:?subject=' + subject + '&body=' + body;
+	}
+</script>
+</head>
+<body onload="doReload();">
+</body>
+</html>
