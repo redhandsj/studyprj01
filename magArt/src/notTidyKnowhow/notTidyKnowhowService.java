@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Enumeration;
+import java.util.Properties;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -217,7 +218,6 @@ public class notTidyKnowhowService {
 		    System.out.println("PDF_SAISIGEN_K17 f1 一致");
 	    }
 
-
 	    if(f1 != null && f1.startsWith(PDF_SAISIGEN_K)){
 		    System.out.println("PDF_SAISIGEN_K17 f2 一致");
 	    }
@@ -234,10 +234,21 @@ public class notTidyKnowhowService {
 	    if((f3 != null && f3.startsWith(PDF_SAISIGEN_K17)) || (f3 != null && f3.startsWith(PDF_SAISIGEN_K))){
 		    System.out.println("f3 どちらかが 一致");
 	    }
-
-
 	}
+	//=======================================================================
+	/**
+	 * List8 システムプロパティ
+	 */
+	private void list08(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
 
+		// カレントディレクトリのパスを取得します。
+	    //System.out.println("ディレクトリ： " + System.getProperty("user.dir"));
+	    // システムプロパティの一覧を表示します。
+	    Properties props = System.getProperties();
+	    props.list(System.out);
+	}
 
 	//=======================================================================
 	/**
@@ -257,6 +268,8 @@ public class notTidyKnowhowService {
 		// Vector
 		//this.list06();
 		// 文字列の判定
-		this.list07();
+		//this.list07();
+		// システムプロパティ
+		this.list08();
 	}
 }

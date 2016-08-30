@@ -8,7 +8,7 @@ background-color: #000000; /* ページの背景色 */
 color: #00C000; /* 全体の文字色 */
 font-size: 80%; /* 全体の文字サイズ */
 height:100%;
-line-height: 150%; /* 行の高さ */
+line-height: 200%; /* 行の高さ */
 }
 /* --- 全体のリンクテキスト --- */
 a:link { color: #0000ff; }
@@ -34,16 +34,16 @@ background-color: #808000; /* ヘッダの背景色 */
 /* --- ナビゲーション --- */
 #nav {
 float: left;
-width: 20%; /* サイドバーの幅 */
-padding: 20px 0 40px 0;
-border-right: 1px #00C000 solid; /* 右の境界線 */
+width: 18%; /* サイドバーの幅 */
+padding: 0 0 0 0; /* [上][右][下][左] */
+border-right: 0px #00C000 solid; /* 右の境界線 */
 }
 
 /* --- メインカラム --- */
 #content {
 float: left;
-width: 79%; /* メインカラムの幅 */
-padding: 0px 0 450px 0;
+width: 80%; /* メインカラムの幅 */
+padding: 0px 3px 100px 3px; /* [上][右][下][左] */
 border-left: 1px #00C000 solid; /* 右の境界線 */
 }
 
@@ -51,7 +51,7 @@ border-left: 1px #00C000 solid; /* 右の境界線 */
 #footer {
 clear: left; /* フロートのクリア */
 width: 100%;
-padding: 20px 0 40px 0;
+padding: 20px 0 40px 0; /* [上][右][下][左] */
 background-color: #808000; /* フッタの背景色 */
 }
 /* --- タイトル（大分類） --- */
@@ -158,3 +158,18 @@ iframe {
 border: none;
 width:  100%; /* フレームの幅 */
 }
+/* --- リスト位置 --- */
+ul {
+ /*list-style: none;*/
+ margin-left: 0.5em;
+ padding-left: 1em;
+ text-indent: 0em;
+}
+/* --- 強調 --- */
+.bigfont_underline {
+    font-size: 200%;
+    color: #008000;
+    background: linear-gradient(transparent 80%, #808000 50%);
+}
+
+

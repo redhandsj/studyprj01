@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <title>未整頓情報 documents</title>
 <!-- ------------------------------------------------------------------------------- -->
-<link rel="stylesheet" href="../css/magArt.css">
+<link rel="stylesheet" href="../../css/magArt.css">
 <!-- syntaxhighlighter_3.0.83 -->
-<script type="text/javascript" src="../libs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
-<script type="text/javascript" src="../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
-<link type="text/css" rel="stylesheet" href="../libs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+<script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="../../libs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
 <script type="text/javascript">SyntaxHighlighter.all();</script>
 <!-- ------------------------------------------------------------------------------- -->
 </head>
@@ -18,12 +18,10 @@
 <!-- ヘッダ開始 -->
 <div id="header">
 <h1>未整頓情報 documents</h1>
-<h4>
 <a href="#category000" onclick="ChangeCategory('category000'); return false;">knowhow集</a>　
 <a href="#category001" onclick="ChangeCategory('category001'); return false;">知識編</a>　
 <a href="#category002" onclick="ChangeCategory('category002'); return false;">資格編</a>　
 <a href="#category003" onclick="ChangeCategory('category003'); return false;">実践構築編</a>　
-</h4>
 </div>
 <!-- ヘッダ終了 -->
 <!-- ナビゲーション開始 -->
@@ -33,12 +31,13 @@
 <li><a href="#c000tab000" onclick="ChangeTab('c000tab000'); return false;">STSが起動しない場合の対処</a>
 <li><a href="#c000tab001" onclick="ChangeTab('c000tab001'); return false;">syntaxhighlighterメモ</a>
 <li><a href="#c000tab002" onclick="ChangeTab('c000tab002'); return false;">複数のコンテキストパスについて</a>
+<li><a href="#c000tab003" onclick="ChangeTab('c000tab003'); return false;">7za.exe</a>
 </ul>
 </div><!-- <div id="category000"> -->
 <div id="category001">
 <ul>
 <li><a href="#c001tab000" onclick="ChangeTab('c001tab000'); return false;">アーキテクチャ</a>
-<li><a href="#c001tab001" onclick="ChangeTab('c001tab001'); return false;">　</a>
+<li><a href="#c001tab001" onclick="ChangeTab('c001tab001'); return false;">業務フロー</a>
 <li><a href="#c001tab002" onclick="ChangeTab('c001tab002'); return false;">　</a>
 </ul>
 </div><!-- <div id="category001"> -->
@@ -64,33 +63,34 @@
 <!-- カテゴリ単位  -->
 <!--------------------------------------------------------------------------->
 <div id="category000">
-<div id="c000tab000"><iframe src="./pages/c000tab000.html" height="999px"></iframe></div>
-<div id="c000tab001"><iframe src="./pages/c000tab001.html" height="999px"></iframe></div>
-<div id="c000tab002"><iframe src="./pages/c000tab002.html" height="999px"></iframe></div>
+<div id="c000tab000"><iframe src="./pages/c000tab000.html" height="1999px"></iframe></div>
+<div id="c000tab001"><iframe src="./pages/c000tab001.html" height="1999px"></iframe></div>
+<div id="c000tab002"><iframe src="./pages/c000tab002.html" height="1999px"></iframe></div>
+<div id="c000tab003"><iframe src="./pages/c000tab003.html" height="1999px"></iframe></div>
 </div><!-- <div id="category000"> -->
 <!--------------------------------------------------------------------------->
 <!-- カテゴリ単位  -->
 <!--------------------------------------------------------------------------->
 <div id="category001">
-<div id="c001tab000"><iframe src="./pages/c001tab000.html" height="999px"></iframe></div>
-<div id="c001tab001"><iframe src="./pages/c001tab001.html" height="999px"></iframe></div>
-<div id="c001tab002"><iframe src="./pages/c001tab002.html" height="999px"></iframe></div>
+<div id="c001tab000"><iframe src="./pages/c001tab000.html" height="6999px"></iframe></div>
+<div id="c001tab001"><iframe src="./pages/c001tab001.html" height="1999px"></iframe></div>
+<div id="c001tab002"><iframe src="./pages/c001tab002.html" height="1999px"></iframe></div>
 </div><!-- <div id="category001"> -->
 <!--------------------------------------------------------------------------->
 <!-- カテゴリ単位  -->
 <!--------------------------------------------------------------------------->
 <div id="category002">
-<div id="c002tab000"><iframe src="./pages/c002tab000.html" height="999px"></iframe></div>
-<div id="c002tab001"><iframe src="./pages/c002tab001.html" height="999px"></iframe></div>
-<div id="c002tab002"><iframe src="./pages/c002tab002.html" height="999px"></iframe></div>
+<div id="c002tab000"><iframe src="./pages/c002tab000.html" height="1999px"></iframe></div>
+<div id="c002tab001"><iframe src="./pages/c002tab001.html" height="1999px"></iframe></div>
+<div id="c002tab002"><iframe src="./pages/c002tab002.html" height="1999px"></iframe></div>
 </div><!-- <div id="category002"> -->
 <!--------------------------------------------------------------------------->
 <!-- カテゴリ単位  -->
 <!--------------------------------------------------------------------------->
 <div id="category003">
-<div id="c003tab000"><iframe src="./pages/c003tab000.html" height="999px"></iframe></div>
-<div id="c003tab001"><iframe src="./pages/c003tab001.html" height="999px"></iframe></div>
-<div id="c003tab002"><iframe src="./pages/c003tab002.html" height="999px"></iframe></div>
+<div id="c003tab000"><iframe src="./pages/c003tab000.html" height="1999px"></iframe></div>
+<div id="c003tab001"><iframe src="./pages/c003tab001.html" height="1999px"></iframe></div>
+<div id="c003tab002"><iframe src="./pages/c003tab002.html" height="1999px"></iframe></div>
 </div><!-- <div id="category003"> -->
 <!--------------------------------------------------------------------------->
 </div><!-- <div id="content"> -->
@@ -110,6 +110,7 @@ function ChangeTab(tabname) {
 	   document.getElementById('c000tab000').style.display = 'none';
 	   document.getElementById('c000tab001').style.display = 'none';
 	   document.getElementById('c000tab002').style.display = 'none';
+	   document.getElementById('c000tab003').style.display = 'none';
 	   // カテゴリ単位
 	   document.getElementById('c001tab000').style.display = 'none';
 	   document.getElementById('c001tab001').style.display = 'none';
