@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>テーブル表示の為のテスト</title>
+<style type="text/css">
+<!--
+/*table{
+	border-collapse: collapse;
+}*/
+
+td{
+	border: solid 1px;
+}
+-->
+</style>
+</head>
+<body>
+<table border=1>
+ <tr><th></th><th>列-A</th><th>列-B</th></tr>
+ <tr><td>行-1</td><td>A-1</td><td>B-1</td></tr>
+ <tr><td>行-2</td><td>A-2</td><td>B-2</td></tr>
+ <tr><td>行-3</td><td>A-3</td><td>B-3</td></tr>
+</table>
+
+<hr><!-- ================================================== -->
+<!-- テーブルのタイトル -->
+<table BORDER="1">
+ <caption>【県庁所在地】</caption>
+ <tr><th>県名</th><th>県庁所在地</th></tr>
+ <tr><td>宮城</td><td>仙台</td></tr>
+ <tr><td>愛媛</td><td>松山</td></tr>
+ <tr><td>沖縄</td><td>那覇</td></tr>
+</table>
+
+<hr><!-- ================================================== -->
+<!-- テーブルの垂直結合 -->
+<table border="3">
+<tr>
+<td rowspan="2">垂直方向の結合</td>
+<td>データセル1</td>
+</tr>
+<tr>
+<td>データセル2</td>
+</tr>
+<tr>
+<td>データセル3</td>
+</tr>
+</table>
+
+<hr><!-- ================================================== -->
+<!-- テーブルの水平結合 -->
+<table border="3">
+<tr>
+<td colspan="3">水平方向の結合</td>
+</tr>
+<tr>
+<td>データセル1</td>
+<td>データセル2</td>
+<td>データセル3</td>
+</tr>
+</table>
+
+<hr><!-- ================================================== -->
+<!-- テーブルの特定の枠線を消す -->
+<table>
+<tr>
+	<td style="border-right-style: hidden;">ほ</td>
+	<td>げ</td>
+	<td>ほ</td>
+</tr>
+<tr>
+	<td>u</td>
+	<td style="border-left-style: hidden;">a</td>
+	<td>n</td>
+</tr>
+<tr>
+	<td>テ</td>
+	<td style="border-top-style: hidden;">ス</td>
+	<td>ト</td>
+</tr>
+<tr>
+	<td>K</td>
+	<td style="border-bottom-style: hidden;">Y</td>
+	<td>M</td>
+</tr>
+</table>
+
+
+<hr><!-- ================================================== -->
+<!-- テーブルを横に並べる -->
+
+<TABLE BORDER="0">
+<TR>
+<TD>
+<table border="1">
+<tr>
+<td>テーブル1</td>
+</tr>
+</table>
+</TD>
+
+<TD>　</TD>
+<TD>　</TD>
+<TD>　</TD>
+
+<TD>
+<table border="1">
+<tr>
+<td>テーブル2</td>
+</tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+
+
+</body>
+</html>
