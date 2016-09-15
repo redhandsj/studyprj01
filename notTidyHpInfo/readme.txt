@@ -1,2 +1,23 @@
 ★プロジェクト管理における課題管理の位置づけ
 http://www.linzylinzy.com/issue_management.html
+
+★要件定義ラボ
+http://xn--zdkza790s3glz27b6lm.com/
+
+
+★eclipse ワークスペース 復旧方法
+
+* Eclipseを起動した時に、
+ 「workspace in use or cannot be created choose a different one」というダイアログが表示されて、
+  Workspaceを違うところにさせられるエラーがでる
+
+ ※ まずは、別でEclipseを立ち上げていると、この現象があるので、そのことを確認する。
+　　⇒確認して、別でEclipseを立ち上げていたら、それを閉じる。
+　　⇒確認して、別でEclipseが立ち上げていなかったら、下記を試してみるといいかも。
+
+
+解決方法
+
+1. 「(自分の設定したパス)\workspace\.metadata」下まで移動する
+2. 「.lock」というファイルがあるので、削除
+

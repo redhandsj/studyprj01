@@ -4,14 +4,30 @@
 <meta charset="UTF-8">
 <title>メール起動テスト</title>
 <script type="text/javascript" language="JavaScript">
+	/*
+	 * 特殊文字変換
+	 * str 変換対象
+	 * return 変換語の文字列
+	*/
+	function convertSpecialCharacter(str) {
+    	str = str.replace(/%/g, '%25');		// % ※最初に変換する必要あり
+    	str = str.replace(/　/g,'%20');	// 全角スペース → 半角スペース
+    	str = str.replace(/ /g, '%20');	// 半角スペース
+    	str = str.replace(/\"/g, '%22');	// ダブルクォーテーション
+    	str = str.replace(/,/g, '%2C');		// カンマ
+    	str = str.replace(/&/g, '%26');		// &
+    	str = str.replace(/=/g, '%3D');		// =
+    	str = str.replace(/\?/g, '%3F');	// ?
+		return str;
+	}
 
 	// クライアント側でメーラーを起動させる
+	// 既存メーラー設定（Windows10）
+	//   → Windowsメニュー → 設定 → システム → 既存アプリ → メール
 
 	function doReload() {
 	    // 改行
 	    var newLine = '%0D%0A';
-	    // 空白
-	    var space = '%20';
 
 		//body = '本文' + '%0D%0A' + hiddenData; // 「'%0D%0A'」を入れて改行
 		// 工事ID
@@ -23,16 +39,15 @@
 		// リンク先
 		var url = 'aaaaaaaaaaaaaaaaaaaaaa';
 		// 日付
-		var today = '8月26日';
+		var today = '=?,%?　=%　?& =';
 
-
-	    // 件名
+		// 件名
 	    var subject = "【" + koujiId + "】";
 	    // 本文
-	    var body = notificationAdr.replace('/　/g', space) + newLine
-	    		+ hattyuuKikan.replace('/　/g', space) + newLine
-	    		+ url.replace('/　/g', space) + newLine
-	    		+ "発行日" + today  + "" + newLine;
+	    var body = convertSpecialCharacter(notificationAdr) + newLine
+	    		+ convertSpecialCharacter(hattyuuKikan) + newLine
+	    		+ convertSpecialCharacter(url) + newLine
+	    		+ convertSpecialCharacter(today) + newLine;
 
 		// 「'?cc='」部分でCC追加
 		location.href = 'mailto:?subject=' + subject + '&body=' + body;
