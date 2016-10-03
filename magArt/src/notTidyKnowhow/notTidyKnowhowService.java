@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.UUID;
@@ -249,6 +252,26 @@ public class notTidyKnowhowService {
 	    Properties props = System.getProperties();
 	    props.list(System.out);
 	}
+	//=======================================================================
+	/**
+	 * List9 文字列から日付フォーマット変換
+	 */
+	private void list09(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		 // 変換対象の日付文字列
+        String dateStr = "2016-09-15 16:03:40";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        // Date型変換
+        try {
+			Date formatDate = sdf.parse(dateStr);
+	        System.out.println("formatDate：" + formatDate.toString());
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	}
 
 	//=======================================================================
 	/**
@@ -270,6 +293,8 @@ public class notTidyKnowhowService {
 		// 文字列の判定
 		//this.list07();
 		// システムプロパティ
-		this.list08();
+		//this.list08();
+		// 文字列から日付フォーマット変換
+		this.list09();
 	}
 }
