@@ -8,8 +8,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -255,6 +257,7 @@ public class notTidyKnowhowService {
 	//=======================================================================
 	/**
 	 * List9 文字列から日付フォーマット変換
+	 * @memo 途中
 	 */
 	private void list09(){
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
@@ -271,6 +274,119 @@ public class notTidyKnowhowService {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+	}
+	//=======================================================================
+	/**
+	 * List10 翌月の月末計算
+	 */
+	private void list10(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy年MM月dd日");
+
+		final String strDate = "2016/08/04";
+
+	    int yyyy = Integer.parseInt(strDate.substring(0,4));
+	    int MM = Integer.parseInt(strDate.substring(5,7));
+	    int dd = Integer.parseInt(strDate.substring(8,10));
+	    Calendar cal = Calendar.getInstance();
+	    // カレンダーに日付をセット
+	    cal.set(yyyy,MM-1,dd);
+	    // 月を翌月にする
+	    cal.add(Calendar.MONTH, 1);
+
+		// 末日を取得
+		String ymd = String.valueOf(cal.get(Calendar.YEAR)) + "/"
+				+ String.valueOf(cal.get(Calendar.MONTH)+1) + "/"
+				+ String.valueOf(cal.getActualMaximum(Calendar.DATE));
+	    System.out.println("ymd : " + ymd);
+	    try {
+			System.out.println("yyyy年MM月dd日 : " + sdf2.format((sdf1.parse(ymd))));
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+	}
+	//=======================================================================
+	/**
+	 * List11 翌月の月末計算２
+	 */
+	private void list11(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy年MM月dd日");
+
+		final Date inDate = new Date();
+
+		//-----------------------------------------------------
+	    Calendar cal = Calendar.getInstance();
+	    // カレンダーに日付をセット
+	    cal.setTime(inDate);
+	    // 月を翌月にする
+	    cal.add(Calendar.MONTH, 1);
+
+		// 末日を取得
+		String ymd = String.valueOf(cal.get(Calendar.YEAR)) + "/"
+				+ String.valueOf(cal.get(Calendar.MONTH)+1) + "/"
+				+ String.valueOf(cal.getActualMaximum(Calendar.DATE));
+		//-----------------------------------------------------
+
+		System.out.println("ymd : " + sdf1.format(cal.getTime()));
+		System.out.println("yyyy年MM月dd日 : " + sdf2.format(cal.getTime()));
+
+	}
+
+	//=======================================================================
+	/**
+	 * List12 日付の比較
+	 */
+	private void list12(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		 try {
+			 // 日付1を「2014/01/02」に設定します
+			 Date date1 = DateFormat.getDateInstance().parse("2016/10/04");
+
+			 // 日付2を「2014/02/03」に設定します
+//			 Date date2 = DateFormat.getDateInstance().parse("2014/02/03");
+
+//			 // 2つの日付を比較し、結果によってメッセージを変えます
+//			 int diff = date1.compareTo(new Date());
+//			 if (diff == 0) {
+//				 System.out.println("日付1と日付2は同じです");
+//			 } else if (diff > 0) {
+//				 System.out.println("日付1は日付2より未来の日付です");
+//			 } else {
+//				 System.out.println("日付1は日付2より過去の日付です");
+//			 }
+
+
+			 // 日時1を「2014/01/02 11:22:33」に設定します
+			 Calendar cal1 = Calendar.getInstance();
+			 cal1.setTime(date1);
+			 cal1.add(Calendar.DAY_OF_MONTH, 1);
+			 // 日時2を「2014/02/03 22:33:44」に設定します
+			 Calendar cal2 = Calendar.getInstance();
+			 cal2.setTime(new Date());
+
+			 // 2つの日時を比較し、結果によってメッセージを変えます
+			 int diffCal = cal1.compareTo(cal2);
+			 if (diffCal == 0) {
+				 System.out.println("日時1と日時2は同じです");
+			 } else if (diffCal > 0) {
+				 System.out.println("日時1は日時2より未来の日時です");
+			 } else {
+				 System.out.println("日時1は日時2より過去の日時です");
+			 }
+		 } catch (ParseException e) {
+			 System.out.println(e);
+		 }
 	}
 
 	//=======================================================================
@@ -295,6 +411,12 @@ public class notTidyKnowhowService {
 		// システムプロパティ
 		//this.list08();
 		// 文字列から日付フォーマット変換
-		this.list09();
+		//this.list09();
+		// 翌月の月末計算１
+		//this.list10();
+		// 翌月の月末計算２
+		//this.list11();
+		// 日付の比較
+		this.list12();
 	}
 }
