@@ -388,6 +388,20 @@ public class notTidyKnowhowService {
 			 System.out.println(e);
 		 }
 	}
+	//=======================================================================
+	/**
+	 * List12 日付の単純なフォーマット
+	 */
+	private void list13(){
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		System.out.println("-----"+ste[1].getMethodName()+"------");
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		System.out.println(sdf.format(new Date()));
+
+		Date date = new Date();
+        System.out.println(date.toString());
+	}
 
 	//=======================================================================
 	/**
@@ -417,6 +431,8 @@ public class notTidyKnowhowService {
 		// 翌月の月末計算２
 		//this.list11();
 		// 日付の比較
-		this.list12();
+		//this.list12();
+		// 日付単純なフォーマット
+		this.list13();
 	}
 }
