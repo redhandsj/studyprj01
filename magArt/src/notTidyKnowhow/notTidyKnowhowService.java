@@ -396,7 +396,7 @@ public class notTidyKnowhowService {
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 		System.out.println("-----"+ste[1].getMethodName()+"------");
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		System.out.println(sdf.format(new Date()));
 
 		Date date = new Date();
