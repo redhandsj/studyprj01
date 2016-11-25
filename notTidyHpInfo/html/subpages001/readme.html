@@ -32,6 +32,7 @@
 <li><a href="#c000tab001" onclick="ChangeTab('c000tab001'); return false;">syntaxhighlighterメモ</a>
 <li><a href="#c000tab002" onclick="ChangeTab('c000tab002'); return false;">複数のコンテキストパスについて</a>
 <li><a href="#c000tab003" onclick="ChangeTab('c000tab003'); return false;">7za.exe</a>
+<li><a href="#c000tab004" onclick="ChangeTab('c000tab004'); return false;">Pマークテスト</a>
 </ul>
 </div><!-- <div id="category000"> -->
 <div id="category001">
@@ -50,7 +51,7 @@
 </div><!-- <div id="category002"> -->
 <div id="category003">
 <ul>
-<li><a href="#c003tab000" onclick="ChangeTab('c003tab000'); return false;">　</a>
+<li><a href="#c003tab000" onclick="ChangeTab('c003tab000'); return false;">CentOSインストール</a>
 <li><a href="#c003tab001" onclick="ChangeTab('c003tab001'); return false;">　</a>
 <li><a href="#c003tab002" onclick="ChangeTab('c003tab002'); return false;">　</a>
 </ul>
@@ -67,12 +68,13 @@
 <div id="c000tab001"><iframe src="./pages/c000/c000tab001.html" height="1999px"></iframe></div>
 <div id="c000tab002"><iframe src="./pages/c000/c000tab002.html" height="1999px"></iframe></div>
 <div id="c000tab003"><iframe src="./pages/c000/c000tab003.html" height="1999px"></iframe></div>
+<div id="c000tab004"><iframe src="./pages/c000/c000tab004.html" height="1999px"></iframe></div>
 </div><!-- <div id="category000"> -->
 <!--------------------------------------------------------------------------->
 <!-- カテゴリ単位  -->
 <!--------------------------------------------------------------------------->
 <div id="category001">
-<div id="c001tab000"><iframe src="./pages/c001/c001tab000.html" height="6999px"></iframe></div>
+<div id="c001tab000"><iframe src="./pages/c001/c001tab000.html" height="1999px"></iframe></div>
 <div id="c001tab001"><iframe src="./pages/c001/c001tab001.html" height="1999px"></iframe></div>
 <div id="c001tab002"><iframe src="./pages/c001/c001tab002.html" height="1999px"></iframe></div>
 </div><!-- <div id="category001"> -->
@@ -85,7 +87,7 @@
 <div id="c002tab002"><iframe src="./pages/c002/c002tab002.html" height="1999px"></iframe></div>
 </div><!-- <div id="category002"> -->
 <!--------------------------------------------------------------------------->
-<!-- カテゴリ単位  -->
+<!-- 実線構築編  -->
 <!--------------------------------------------------------------------------->
 <div id="category003">
 <div id="c003tab000"><iframe src="./pages/c003/c003tab000.html" height="1999px"></iframe></div>
@@ -111,6 +113,7 @@ function ChangeTab(tabname) {
 	   document.getElementById('c000tab001').style.display = 'none';
 	   document.getElementById('c000tab002').style.display = 'none';
 	   document.getElementById('c000tab003').style.display = 'none';
+	   document.getElementById('c000tab004').style.display = 'none';
 	   // カテゴリ単位
 	   document.getElementById('c001tab000').style.display = 'none';
 	   document.getElementById('c001tab001').style.display = 'none';
@@ -138,7 +141,7 @@ function ChangeCategory(categoryname) {
 //デフォルトのカテゴリを選択
 ChangeCategory('category000');
 //デフォルトのタブを選択
-ChangeTab('c000tab000');
+ChangeTab('c003tab000');
 </script>
 <!-- ------------------------------------------------------------------------------- -->
 </body>
