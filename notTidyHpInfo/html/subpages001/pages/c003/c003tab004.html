@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PostgreSQL構築</title>
+<!-- ------------------------------------------------------------------------------- -->
+<SCRIPT src="../../../../js/commonHeaderSetting.js"></SCRIPT>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+<h1>PostgreSQL構築</h1>
+<!--
+<ul>
+<li>全体サイズとしては3000文字が目安
+<li>タイトルは28文字以内
+<li>キーワードプランナーを使用
+</ul>
+<img/>
+<h2>問題提起</h2>
+<h2>解決策提起</h2>
+<h2>解決策根拠</h2>
+ -->
+
+<ul>
+<li> 前提として、CentOS6.5 の構築後の作業
+<li> 参考はこちら
+  <ul>
+  <li>http://www.ideaxidea.com/archives/2013/12/centos6_postgresql_yum.html
+  </ul>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>普通に構築しましょう</h2>
+<ul>
+<li>yumで何がはいるか確認
+<pre class="brush: bash;">
+$ yum list | grep postgresql
+</pre>
+
+<li>公式サイト（http://www.postgresql.org/download/linux/redhat/）に従いインストール
+<pre class="brush: bash;">
+$ sudo rpm -i http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm
+$ sudo yum -y install postgresql93-server postgresql93-contrib
+$ sudo service postgresql-9.3 initdb
+$ sudo chkconfig postgresql-9.3 on
+$ sudo service postgresql-9.3 status
+$ sudo service postgresql-9.3 start
+</pre>
+
+<li>postgresユーザー確認
+<pre class="brush: bash;">
+$ yum list | grep postgresql
+</pre>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>まとめ</h2>
+結論
+
+<!--===============================================================================================================-->
+<h2>CTA</h2>
+広告とか。。。
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>カテゴリサンプル</title>
+<!-- ------------------------------------------------------------------------------- -->
+<SCRIPT src="../../../../js/commonHeaderSetting.js"></SCRIPT>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+<h1>CentOS6.5 Jenkins設定</h1>
+<!--
+<ul>
+<li>全体サイズとしては3000文字が目安
+<li>タイトルは28文字以内
+<li>キーワードプランナーを使用
+</ul>
+<h2>問題提起</h2>
+<h2>解決策提起</h2>
+<h2>解決策根拠</h2>
+ -->
+<ul>
+<li> 前提として、CentOS6.5 の構築後の作業
+<li> 参考はこちら
+  <ul>
+  <li>http://futurismo.biz/archives/1348
+  </ul>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>まず、最短での構築</h2>
+<ul>
+<li>最短インストール
+<pre class="brush: bash;">
+$ sudo yum install java-1.7.0-openjdk
+$ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+$ sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+$ sudo yum -y install jenkins
+</pre>
+
+<li>駄目な場合は、以下の様に直接rpmという方法もある
+<pre class="brush: bash;">
+$ wget http://pkg.jenkins-ci.org/redhat/jenkins-1.515-1.1.noarch.rpm
+$ sudo rpm -ivh jenkins-1.515-1.1.noarch.rpm
+</pre>
+
+<li>起動前に、ポート8080をあける
+<pre class="brush: bash;">
+$ sudo vim /etc/sysconfig/iptables.old
+==========
+※これをCOMMITの上に追加
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+==========
+$ sudo service iptables restart
+</pre>
+
+<li>起動
+<pre class="brush: bash;">
+$ sudo /etc/init.d/jenkins start
+Starting Jenkins                                           [  OK  ]
+</pre>
+
+<li>起動とともにJenkins起動するおまじない
+<pre class="brush: bash;">
+$ sudo /sbin/chkconfig jenkins on
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>Jenkins設定</h2>
+<ul>
+<li>warファイル入れ替え
+  <ul>
+  <li>以下のwarをダウンロードして入れ替え
+  <pre class="brush: bash;">
+  /usr/lib/jenkins/jenkins.war
+  </pre>
+  <li>jenkinsをリスタート
+  <pre class="brush: bash;">
+  $ /etc/init.d/jenkins restart
+  </pre>
+  </ul>
+
+<li>gitからのソース取得
+  <ul>
+  <li>Gitプラグインをインストール
+  <li>秘密鍵作成
+  <pre class="brush: bash;">
+  $ sudo -u jenkins ssh-keygen
+  </pre>
+  <li>公開鍵をgitサーバに配置（Jenkins側の操作）
+  <pre class="brush: bash;">
+  $ cd /var/lib/jenkins/.ssh/
+  # scp -P 22 ./id_rsa.pub a20140418a@192.168.56.105:~/.ssh/authorized_keys
+  </pre>
+  <li>公開鍵をgitサーバに配置（git側の操作）
+  <pre class="brush: bash;">
+  $ cd /home/a20140418a/.ssh/
+  $ chmod 600 authorized_keys
+  </pre>
+  </ul>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>未整頓メモ</h2>
+<ul>
+<li>認証情報
+  <ul>
+  <li>スコープ → グローバル
+  <li>ユーザ名 → jenkins
+  <li>秘密鍵 → Jenkinsマスター上の~/.sshから
+  </ul>
+<li>ジョブ内設定
+  <ul>
+  <li>ソースコード管理
+    <ul>
+    <li>Repository URL → ssh://a20140418a@192.168.56.105/var/lib/git/public_git/test.git
+    <li>Credentials → jenkins(認証情報で設定したもの)
+    </ul>
+  </ul>
+
+<li>gitソースのバックアップファイル
+  <ul>
+  <li>gitサーバをスレーブの１つとする
+  <li>sshで接続
+  </ul>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>まとめ</h2>
+結論
+
+<h2>CTA</h2>
+広告とか。。。
+
+</body>
+</html>

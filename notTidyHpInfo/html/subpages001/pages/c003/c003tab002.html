@@ -8,30 +8,202 @@
 <!-- ------------------------------------------------------------------------------- -->
 </head>
 <body>
-<h1>タイトル</h1>
+<h1>gitサーバ構築</h1>
+<!--
 <ul>
 <li>全体サイズとしては3000文字が目安
 <li>タイトルは28文字以内
 <li>キーワードプランナーを使用
 </ul>
 <h2>問題提起</h2>
-
-
 <h2>解決策提起</h2>
-
 <h2>解決策根拠</h2>
+ -->
+<ul>
+<li> 前提として、CentOS6.5 の構築後の作業
+</ul>
 
-<h2>小見出し</h2>
-本文
+<ul>
+<li>参照ページ
+  <ul>
+  <li>http://www8.atwiki.jp/git_jp/pages/34.html
+  <li>http://concrete5.tomo.ac/developer/git%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E9%96%8B%E7%99%BA%E8%80%85%E6%83%85%E5%A0%B1/git%E3%81%AE%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92cenoos%E3%81%A7%E6%A7%8B%E7%AF%89/
+  </ul>
+</ul>
 
-<h2>小見出し</h2>
-本文
+<!--===============================================================================================================-->
+<h2>構築</h2>
+<ul>
+<li>【前提】http://changineer.info/server/centos_basic/centos_basic_yum
+<li>【参照】http://changineer.info/server/revision/revision_git_server
+</ul>
 
-<h2>小見出し</h2>
-本文
+<!-- ------------------------------------------------------------------------------- -->
+<h3>前提作業</h3>
+<ul>
+<li>RPM forge を使用する設定を行う
+<pre class="brush: bash;">
+# wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.0-1.el5.rf.x86_64.rpm
+# rpm -ihv rpmforge-release-0.5.0-1.el5.rf.x86_64.rpm
+</pre>
+<li>RRPM forge の想定外パッケージのアップデートを避ける為の設定を行う
+<pre class="brush: bash;">
+# vim /etc/yum.repos.d/rpmforge.repo
+--------------------------------------------------------
+【編集diff】
+5,6c5,6
+< baseurl = http://apt.sw.be/redhat/el5/en/$basearch/rpmforge
+< mirrorlist = http://apt.sw.be/redhat/el5/en/mirrors-rpmforge
+---
+> baseurl = http://apt.sw.be/redhat/el6/en/$basearch/rpmforge
+> mirrorlist = http://apt.sw.be/redhat/el6/en/mirrors-rpmforge
+8c8
+< enabled = 1
+---
+> enabled = 0
+</pre>
+<li>/etc/yum.repos.d/rpmforge.repo の中のel5→el6に書き換えます。その上でコマンドを実行します。
+<pre class="brush: bash;">
+# yum clean all
+# yum update
+</pre>
+</ul>
 
+<!-- ------------------------------------------------------------------------------- -->
+<h3>gitのインストール</h3>
+ ※ここからは、http://blog.heavy-metal-explorer.com/git_ssh/ を参照
+<pre class="brush: bash;">
+# time yum -y install git git-daemon git-all
+# cp /etc/xinetd.d/git /etc/xinetd.d/git.org
+# vi /etc/xinetd.d/git
+# diff /etc/xinetd.d/git.org /etc/xinetd.d/git
+==========
+7c7
+<         disable         = yes
+---
+>         disable         = no
+==========
+# chkconfig --list xinetd
+xinetd          0:off   1:off   2:off   3:on    4:on    5:on    6:off
+# chkconfig xinetd on
+# chkconfig --list xinetd
+xinetd          0:off   1:off   2:on    3:on    4:on    5:on    6:off
+# service xinetd restart
+</pre>
+
+<!--===============================================================================================================-->
+<h2>git回りの設定</h2>
+<ul>
+<li>GitWebのインストール
+<pre class="brush: bash;">
+# yum -y install httpd
+# yum -y install gitweb
+# vi /etc/gitweb.conf
+==========
+#our $projectroot = "/var/lib/git";
+our $projectroot = "/var/lib/git"; ←コメントアウトを外して、リモートリポジトリのパスを指定
+==========
+</pre>
+
+<li>ファイアウォールの設定によりポート80を追加
+<pre class="brush: bash;">
+# vi /etc/sysconfig/iptables
+==========
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT ←追加します
+==========
+# service iptables restart
+</pre>
+
+<li>SELinux をOFF
+<pre class="brush: bash;">
+# vi/etc/sysconfig/selinux
+==========
+#SELINUX=enforcing
+SELINUX=disabled
+==========
+</pre>
+
+<li>ホスト名をそろえる
+<pre class="brush: bash;">
+# vim /etc/sysconfig/network
+==========
+HOSTNAME=※１
+==========
+# vim /etc/hosts
+==========
+127.0.0.1 ※１
+==========
+# vim /etc/httpd/conf/httpd.conf
+==========
+ServerName ※１:80
+==========
+</pre>
+
+<li>apacheの自動起動とサービス開始
+<pre class="brush: bash;">
+# chkconfig httpd on
+# service httpd start
+</pre>
+
+<li>リポジトリ作成
+<pre class="brush: bash;">
+# mkdir -p /var/lib/git/public_git/test.git
+# cd /var/lib/git/public_git/test.git
+# git --bare init --shared
+</pre>
+
+
+<li>グループ作成とユーザ追加
+<pre class="brush: bash;">
+# groupadd devel
+# usermod -G devel a20140418a
+# chown -R root:devel .
+</pre>
+
+<li>アクセス
+  <ul>
+  <li>【URL】http://192.168.56.105/git/
+  </ul>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>リポジトリ作成のみ作業</h2>
+<ul>
+<li>リポジトリ作成
+<pre class="brush: bash;">
+# mkdir -p /var/lib/git/public_git/samples20140927.git
+# cd /var/lib/git/public_git/samples20140927.git
+# git --bare init --shared
+# groupadd devel
+# usermod -G devel a20140418a
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>リポジトリへのアクセス（コマンド編）</h2>
+<ul>
+<li>クライアントで作成してpush
+<pre class="brush: bash;">
+$ cd gittest/
+$ git init
+$ vim test1.txt ※適当なファイルを作成
+$ git add .
+$ git commit -m "First Commit"
+$ git log
+$ git remote add origin ssh://a20140418a@192.168.56.105/var/lib/git/public_git/test.git
+$ git push origin master
+</pre>
+<li>サーバからの取り出し
+<pre class="brush: bash;">
+$ git clone ssh://a20140418a@192.168.56.105/var/lib/git/public_git/test.git
+</pre>
+</ul>
+
+
+<!--===============================================================================================================-->
 <h2>まとめ</h2>
 結論
+
 
 <h2>CTA</h2>
 広告とか。。。

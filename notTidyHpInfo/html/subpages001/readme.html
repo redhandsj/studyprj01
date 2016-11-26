@@ -21,7 +21,7 @@
 <a href="#category000" onclick="ChangeCategory('category000'); return false;">knowhow集</a>　
 <a href="#category001" onclick="ChangeCategory('category001'); return false;">知識編</a>　
 <a href="#category002" onclick="ChangeCategory('category002'); return false;">資格編</a>　
-<a href="#category003" onclick="ChangeCategory('category003'); return false;">実践構築編</a>　
+<a href="#category003" onclick="ChangeCategory('category003'); return false;">インフラ編</a>　
 </div>
 <!-- ヘッダ終了 -->
 <!-- ナビゲーション開始 -->
@@ -51,9 +51,16 @@
 </div><!-- <div id="category002"> -->
 <div id="category003">
 <ul>
-<li><a href="#c003tab000" onclick="ChangeTab('c003tab000'); return false;">CentOSインストール</a>
-<li><a href="#c003tab001" onclick="ChangeTab('c003tab001'); return false;">　</a>
-<li><a href="#c003tab002" onclick="ChangeTab('c003tab002'); return false;">　</a>
+<li><a href="#c003tab000" onclick="ChangeTab('c003tab000'); return false;">ローカル環境構築例</a>
+<li><a href="#c003tab001" onclick="ChangeTab('c003tab001'); return false;">CentOSインストール</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab002'); return false;">gitサーバ構築</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab003'); return false;">CentOS6.5 Jenkins設定</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab004'); return false;">PostgreSQL構築</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab005'); return false;">　</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab006'); return false;">　</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab007'); return false;">　</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab008'); return false;">　</a>
+<li><a href="#c003tab002" onclick="ChangeTab('c003tab009'); return false;">　</a>
 </ul>
 </div><!-- <div id="category003"> -->
 </div><!-- <div id="nav"> -->
@@ -91,8 +98,15 @@
 <!--------------------------------------------------------------------------->
 <div id="category003">
 <div id="c003tab000"><iframe src="./pages/c003/c003tab000.html" height="1999px"></iframe></div>
-<div id="c003tab001"><iframe src="./pages/c003/c003tab001.html" height="1999px"></iframe></div>
-<div id="c003tab002"><iframe src="./pages/c003/c003tab002.html" height="1999px"></iframe></div>
+<div id="c003tab001"><iframe src="./pages/c003/c003tab001.html" height="6999px"></iframe></div>
+<div id="c003tab002"><iframe src="./pages/c003/c003tab002.html" height="2999px"></iframe></div>
+<div id="c003tab003"><iframe src="./pages/c003/c003tab003.html" height="1999px"></iframe></div>
+<div id="c003tab004"><iframe src="./pages/c003/c003tab004.html" height="1999px"></iframe></div>
+<div id="c003tab005"><iframe src="./pages/c003/c003tab005.html" height="1999px"></iframe></div>
+<div id="c003tab006"><iframe src="./pages/c003/c003tab006.html" height="1999px"></iframe></div>
+<div id="c003tab007"><iframe src="./pages/c003/c003tab007.html" height="1999px"></iframe></div>
+<div id="c003tab008"><iframe src="./pages/c003/c003tab008.html" height="1999px"></iframe></div>
+<div id="c003tab009"><iframe src="./pages/c003/c003tab009.html" height="1999px"></iframe></div>
 </div><!-- <div id="category003"> -->
 <!--------------------------------------------------------------------------->
 </div><!-- <div id="content"> -->
@@ -126,6 +140,13 @@ function ChangeTab(tabname) {
 	   document.getElementById('c003tab000').style.display = 'none';
 	   document.getElementById('c003tab001').style.display = 'none';
 	   document.getElementById('c003tab002').style.display = 'none';
+	   document.getElementById('c003tab003').style.display = 'none';
+	   document.getElementById('c003tab004').style.display = 'none';
+	   document.getElementById('c003tab005').style.display = 'none';
+	   document.getElementById('c003tab006').style.display = 'none';
+	   document.getElementById('c003tab007').style.display = 'none';
+	   document.getElementById('c003tab008').style.display = 'none';
+	   document.getElementById('c003tab009').style.display = 'none';
 	   // 指定箇所のみ表示
 	   document.getElementById(tabname).style.display = 'block';
 }
@@ -139,7 +160,7 @@ function ChangeCategory(categoryname) {
 	   document.getElementById(categoryname).style.display = 'block';
 }
 //デフォルトのカテゴリを選択
-ChangeCategory('category000');
+ChangeCategory('category003');
 //デフォルトのタブを選択
 ChangeTab('c003tab000');
 </script>

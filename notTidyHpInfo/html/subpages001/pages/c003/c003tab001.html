@@ -8,31 +8,332 @@
 <!-- ------------------------------------------------------------------------------- -->
 </head>
 <body>
-<h1>タイトル</h1>
+<h1>CentOSインストールをやってみよう</h1>
+<!--
 <ul>
 <li>全体サイズとしては3000文字が目安
 <li>タイトルは28文字以内
 <li>キーワードプランナーを使用
 </ul>
 <h2>問題提起</h2>
-
-
 <h2>解決策提起</h2>
-
 <h2>解決策根拠</h2>
+ -->
+<ul>
+<li>実際はvirtualBoxに対してインストールを行っている。
+<li>バージョンは、6.5 とする
+</ul>
 
-<h2>小見出し</h2>
-本文
+<!--===============================================================================================================-->
+<h2>インストール</h2>
 
-<h2>小見出し</h2>
-本文
+<h3>デフォルトインストール</h3>
+基本的には以下の参照URLを見てデフォルトで進める。参考にしたURLは以下のような感じです。
+<ul>
+<li>http://d.hatena.ne.jp/yamap_55/20130111/1357915410
+<li>http://d.hatena.ne.jp/akihito_sado/20120226
+</ul>
 
-<h2>小見出し</h2>
-本文
+<h3>遭遇したエラー</h3>
+以下のようなメッセージに遭遇
+<pre class="brush: bash;">
+NET: Registered protocol family 2
+</pre>
+対応方法は以下のURLを参照するとうまくいく。<br>
+ACPIを有効化、IO ACPIを有効化にチェックを入れるとうまくいった。
+<ul>
+<li>http://m97087yh.seesaa.net/pages/user/m/article?article_id=129774237
+</ul>
 
+<!--===============================================================================================================-->
+<h2>ssh 作成</h2>
+以下のコマンドを実行する
+<pre class="brush: bash;">
+$ yum list installed lgrep sudo
+$ su -
+# visudo
+------
+a   ALL=(ALL)   ALL  ※追加%wheel ALL=(ALL)   ALL   ※コメントを外す
+------
+</pre>
+
+<!--===============================================================================================================-->
+<h2>操作系問題</h2>
+2画面以上で操作されている場合、メイン画面以外ではマウスがまともに動かない様子 - GUIとCUIの切り替え
+<ul>
+<li>http://m97087yh.seesaa.net/pages/user/m/article?article_id=129774237
+</ul>
+(ちょっとメモ)/etc/inittab → 3 に変更で、CUIとなる。
+
+
+<!--===============================================================================================================-->
+<font color="red">
+<h2>Guest Addition問題（※未解決）</h2>
+以下のようなことをやってみたけど、まだまだ未解決。とりあえず、ほうっておく。
+<pre class="brush: bash;">
+$ wget http://ftp.riken.jp/Linux/centos/5.8/centosplus/x86_64/RPMS/kernel-devel-2.6.18-308.el5.centos.plus.x86_64.rpm
+$ wget http://ftp.riken.jp/Linux/centos/5.8/centosplus/x86_64/RPMS/kernel-headers-2.6.18-308.el5.centos.plus.x86_64.rpm
+$ sudo rpm -ivh kernel-devel-2.6.18-308.el5.centos.plus.x86_64.rpm kernel-headers-2.6.18-308.el5.centos.plus.x86_64.rpm
+$ wget ftp://ftp.pbone.net/mirror/vault.centos.org/5.8/os/SRPMS/kernel-2.6.18-308.el5.src.rpm
+</pre>
+</font>
+
+<!--===============================================================================================================-->
+<h2>Addtionsをインストールするために</h2>
+<ol>
+<li>次のソースをダウンロードして「rpm -ivh」</li>
+<pre class="brush: bash;">
+$ wget http://install.linux.ncsu.edu/pub/yum/CLS/RealmLinux/5/base/x86_64/kernel/kernel-devel-2.6.18-308.el5.x86_64.rpm
+$ wget http://install.linux.ncsu.edu/pub/yum/CLS/RealmLinux/5/base/x86_64/kernel/kernel-headers-2.6.18-308.el5.x86_64.rpm
+</pre>
+<li>次の２つを入れる</li>
+<pre class="brush: bash;">
+$ sudo yum install gcc make
+</pre>
+<li>kernel-devel-2.6.18-308.el5（参照（ソースパスを環境変数に設定する）：http://d.hatena.ne.jp/calcul8/20101204/1291457686 ）</li>
+<li>Addtionsをインストール</li>
+<pre class="brush: bash;">
+$ sh ./VBoxLinuxAdditions-x86.run all
+</pre>
+</ol>
+<ul>
+<li>備考
+  <ul>
+  <li>参照
+    <ul>
+    <li>http://rpm.pbone.net/index.php3/stat/4/idpl/17837480/dir//com/kernel-devel-2.6.18-308.el5.x86_64.rpm.html
+    <li>http://ftp.riken.jp/Linux/centos/5.8/centosplus/x86_64/RPMS/kernel-devel-2.6.18-308.el5.centos.plus.x86_64.rpm
+    <pre class="brush: bash;">
+    $ yum --disablerepo=\* --enablerepo=c5-media install gcc-c++ gcc-c++-devel
+    $ yum --disablerepo=\* --enablerepo=c5-media install glibc-devel
+    $ yum --disablerepo=\* --enablerepo=c5-media install kernel-devel
+    $ yum --disablerepo=\* --enablerepo=c5-media install kernel-devel-2.6.18-308.el5
+    </pre>
+    </ul>
+  </ul>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>ネットワーク</h2>
+<ul>
+<li>GUIで普通に設定
+<li><font color="red">CUIで作成すると変になる。。。（調査中）</font>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>仮想マシンをクローンしたものの調整手順</h2>
+<ol>
+<li>[システム]→[管理]→[ネットワーク]
+<li>[ネットワーク設定]→[デバイス]
+<li>ここで『.bak』を削除する
+<li>[eth1]の編集
+<li>[固定のIPアドレス設定]
+<pre class="brush: bash;">
+[アドレス:192.168.56.151]
+[サブネットマスク:255.255.255.0]
+[デフォルトゲートウェイアドレス:192.168.56.1]
+</pre>
+<li>[起動ボタン]押下
+<li>メモ（CUIの場合の設定ファイル)
+<li>vim /etc/sysconfig/network-scripts/ifcfg-eth1
+<pre class="brush: bash;">
+DEVICE=eth1
+BOOTPROTO=static
+BROADCAST=192.168.56.255
+IPADDR=192.168.56.101
+NETMASK=255.255.255.0
+NETWORK=192.168.56.0
+ONBOOT=yes
+
+DEVICE=eth1
+BOOTPROTO=none
+ONBOOT=yes
+HWADDR=08:00:27:8b:f8:32
+TYPE=Ethernet
+NETMASK=255.255.255.0
+IPADDR=192.168.56.151
+GATEWAY=192.168.56.1
+USERCTL=no
+IPV6INIT=no
+PEERDNS=yes
+</pre>
+</ol>
+
+<!--===============================================================================================================-->
+<h2>CentOS6.5 時刻同期</h2>
+<ul>
+<li>インストール
+<pre class="brush: bash;">
+# yum -y install ntp
+</pre>
+<li>手動で同期
+<pre class="brush: bash;">
+# yum -y install ntp
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>CentOS6.5 ネットワーク関連</h2>
+<!-- ------------------------------------------------------------------------------- -->
+<h3>CentOSのバージョン確認</h3>
+<pre class="brush: bash;">
+# yum -y install ntp
+</pre>
+
+<!-- ------------------------------------------------------------------------------- -->
+<h3>VirtualBoxへのインストール後のネットワーク設定でまずは、eth0を有効にする</h3>
+<ul>
+<li>【参照】http://www.linuins.net/modules/pico1/index.php?content_id=75
+<pre class="brush: bash;">
+$ cp /etc/sysconfig/network-scripts/ifcfg-eth0 /etc/sysconfig/network-scripts/ifcfg-eth0.default
+# vim /etc/sysconfig/network-scripts/ifcfg-eth0
+==========
+ONBOOT=no
+     ↓
+ONBOOT=yes
+==========
+$ /etc/rc.d/init.d/network restart
+$ /etc/rc.d/init.d/network status # ステータスを確認
+$ ifconfig
+$ ping -c 4 www.google.com
+</pre>
+</ul>
+
+<!-- ------------------------------------------------------------------------------- -->
+<h3>次に内部ネットワークをeth1で有効にする</h3>
+<pre class="brush: bash;">
+$ vim /etc/sysconfig/network-scripts/ifcfg-eth1
+==========
+DEVICE=eth1
+ONBOOT=yes
+BOOTPROTO=static
+IPADDR=192.168.56.101
+NETMASK=255.255.255.0
+GATEWAY=192.168.56.101
+HWADDR=(※適宜)
+==========
+$ /etc/rc.d/init.d/network restart  ⇒ このままteratermで接続OK
+</pre>
+
+<!-- ------------------------------------------------------------------------------- -->
+<h3>IPv6 を無効にする</h3>
+<pre class="brush: bash;">
+$ sudo vim /etc/sysconfig/network
+==========
+NETWORKING=yes
+NETWORKING_IPV6=no
+==========
+</pre>
+
+<!-- ------------------------------------------------------------------------------- -->
+<h3>ISCPでホストとやりとり。</h3>
+<ul>
+<li>インストールなしのちょうどのやつ
+  <ul>
+  <li>http://sourceforge.jp/projects/sfnet_winscp/downloads/WinSCP/5.5.3/winscp553.zip/
+  </ul>
+</ul>
+
+<!-- ------------------------------------------------------------------------------- -->
+<h3>一般ユーザ作成</h3>
+<ul>
+<li>作業用のa20140418aユーザを作成(さすがにrootのみの作業は。。。)
+  <ul>
+  <li>http://www.server-world.info/query?os=CentOS_6&p=initial_conf
+  </ul>
+  <pre class="brush: bash;">
+  $ useradd a20140418a
+  $ passwd a20140418a
+  </pre>
+<li>作成したユーザでログインしなおす
+<li>su - でいったんrootに戻る
+</ul>
+
+<!-- ------------------------------------------------------------------------------- -->
+<h3>sudo を一般ユーザが使える様にする</h3>
+<pre class="brush: bash;">
+$ su
+$ visudo
+==========
+%wheel ALL=(ALL) ALL
+※コメントを外す
+==========
+$ usermod -G wheel a20140418a
+ ⇒ ログインしなおす
+</pre>
+
+<!-- ------------------------------------------------------------------------------- -->
+<h3>クローンした後に書き換えるところ</h3>
+<ul>
+<li>以下のファイルのMACアドレス・IPアドレスを修正
+<pre class="brush: bash;">
+/etc/sysconfig/network-scripts/ifcfg-eth**
+/etc/udev/rules.d/70-persistent-net.rules
+</pre>
+</ul>
+
+
+
+<!--===============================================================================================================-->
+<h2>【追記トラブル】ネットワークがつながらない</h2>
+<ul>
+<li>ifconfigは正常そう
+<li>SELinuxを無効にしてみたがだめ
+<pre class="brush: bash;">
+$ sudo vi /etc/selinux/config
+</pre>
+<li>ファイアフォールを無効にしてみたが、駄目
+<pre class="brush: bash;">
+$ sudo system-config-firewall-tui
+</pre>
+<li>正解はこれ
+  <ul>
+  <li>setup コマンドでネットワークの設定をしちゃう罠にハマった。
+  ホストオンリーネットワークの設定を確認した時に、192.168.56.1 にネットワークアドレスが設定されていた。
+その流れで eth1 のデフォルトゲートウェイに 192.168.56.1 にしてしまうと、外に出られなくなるようだ。
+<strong class="bigfont_underline">setup コマンドで eth1 のデフォルトゲートウェイを消す</strong>か、
+<strong class="bigfont_underline">/etc/sysconfig/network-scripts/ifcfg-eth1 の GATEWAY の行を削除して
+service network restart </strong>で大丈夫っぽい。
+ちなみに eth0 は dhcp にしてある。
+  </ul>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>残？</h2>
+<ul>
+<li>SELinuxが有効の場合は、NATでインターネットに接続できない。
+<li>DHCPサーバを『192.168.56.100』に設定。
+<li>ファイアウォールを切る
+<li>以下のページを見ている途中で、繋がった。原因が良く分からん。
+  <ul>
+  <li>http://nextindex.s141.xrea.com/virtualbox/centos_network.html
+  </ul>
+<li>ネットワーク設定CentOSメモ
+  <ul>
+  <li>http://kohi3.hatenablog.com/entry/20120703/1341328530
+  <li>設定ファイル一覧
+  <pre class="brush: bash;">
+  /etc/sysconfig/network-scripts/ifcfg-eth0
+  /etc/sysconfig/network
+  /etc/resolv.conf
+  /etc/hosts
+  </pre>
+  <li>再起動
+  <pre class="brush: bash;">
+  # sudo service network restart
+  </pre>
+  </ul>
+</ul>
+
+
+
+
+<!--===============================================================================================================-->
 <h2>まとめ</h2>
 結論
 
+<!--===============================================================================================================-->
 <h2>CTA</h2>
 広告とか。。。
 
