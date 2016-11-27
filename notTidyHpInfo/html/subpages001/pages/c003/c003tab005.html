@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>カテゴリサンプル</title>
+<!-- ------------------------------------------------------------------------------- -->
+<SCRIPT src="../../../../js/commonHeaderSetting.js"></SCRIPT>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+最終更新日付：2016/11/27（日）
+<h1>Oracleの構築と運用</h1>
+
+<!--
+<ul>
+<li>全体サイズとしては3000文字が目安
+<li>タイトルは28文字以内
+<li>キーワードプランナーを使用
+</ul>
+<img/>
+<h2>問題提起</h2>
+<h2>解決策提起</h2>
+<h2>解決策根拠</h2>
+ -->
+<!--===============================================================================================================-->
+<h2>(A5を使用)テーブル領域作成</h2>
+<img border="0" src="../../../../images/subpages001/pages/c003/c003tab005_001.png" />
+<img border="0" src="../../../../images/subpages001/pages/c003/c003tab005_002.png" />
+<img border="0" src="../../../../images/subpages001/pages/c003/c003tab005_003.png" />
+
+<!--===============================================================================================================-->
+<h2>(A5を使用)ユーザ作成</h2>
+<img border="0" src="../../../../images/subpages001/pages/c003/c003tab005_004.png" />
+
+<!--===============================================================================================================-->
+<h2>ORA-04063</h2>
+<ul>
+<li>ORA-04063: ビュー'view_name'にエラーがあります。
+<li>ORA-04063エラーは、アクセスしたオブジェクトが無効である場合に発生します。
+  <ul>
+  <li>http://www.cosol.jp/tech/detail/ot0037_ora04063.shtml
+  </ul>
+<li>ビュー作成後にビューで参照しているテーブルなどにALTER等を行うと現象が出る模様。
+  <ul>
+  <li>テーブルを先に作成し、ビューを後で作成するか、ビューを再作成する必要がある。
+  </ul>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>ビューと表の権限の関係</h2>
+<ul>
+<li>他のスキーマテーブルを参照してビューを作成する場合は、その参照するテーブル自体にロールのSELECT権限が必要
+<pre class="brush: sql;">
+> grant select on (権限を付与するテーブル) to （権限を与えたいユーザ);
+</pre>
+<li>または、ビューを作成する側のユーザに「SELECT ANY TABLE」権限が必要
+</ul>
+
+<!--===============================================================================================================-->
+<h2>エクスポートとインポート</h2>
+<ul>
+<li>エクスポート
+<pre class="brush: sql;">
+> exp (※ユーザ)/(※パスワード)@(※ホスト)/(※DB名) file=(DMPファイルフルパス).dmp owner=対象スキーマ
+</pre>
+<li>インポート
+<pre class="brush: sql;">
+> imp (※ユーザ)/(※パスワード)@(※ホスト)/(※DB名) file=(DMPファイルフルパス).dmp fromuser=(※取得元スキーマ名) touser=(※インポート先スキーマ)
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>データのみの場合の新しいダンプコマンド</h2>
+<pre class="brush: sql;">
+★ダンプスキーマごと（エクスポート）http://dbtuning.seesaa.net/article/142143213.html
+ - ディレクトリを作成する
+ - ディレクトリを登録
+SQL> CREATE DIRECTORY DumpDir as 'c:\temp\dump'; ダンプ用
+SQL> CREATE DIRECTORY LogDir as 'c:\temp\log'; ログ用
+ - 登録したディレクトリの確認
+SQL> SELECT * FROM DBA_DIRECTORIES;
+ - エクスポート
+expdp km_pub/km_pub_pass dumpfile=DumpDir:km_pub.dmp logfile= LogDir:km_pub.log schemas=km_pub
+expdp km_pri_grp01/km_pri_grp01_pass dumpfile=DumpDir:km_pri_grp01.dmp logfile= LogDir:km_pri_grp01.log schemas=km_pri_grp01
+ ※ DB全体
+expdp system/pwd dumpfile=DumpDir:expdp_all.dmp logfile= LogDirectory:expdp_all.log full=y
+
+ - インポート
+impdp km_pub/km_pub_pass dumpfile=DumpDir:km_pub.dmp logfile= LogDir:km_pub.log schemas=km_pub
+expdp km_pri_grp01/km_pri_grp01_pass dumpfile=DumpDir:km_pri_grp01.dmp logfile= LogDir:km_pri_grp01.log schemas=km_pri_grp01
+
+impdp system/pwd dumpfile=DumpDir:exp_data.dmp logfile= LogDir:expdata.log schemas=scott
+</pre>
+
+<!--===============================================================================================================-->
+<h2>全テーブルデータ削除SQL作成</h2>
+<pre class="brush: sql;">
+★全テーブル削除SQL作成
+set linesize 1000
+set heading off
+spool G:\tmps\SQLS\all-drops.sql
+SELECT 'DROP TABLE "KM_PRI_GRP01"."' || table_name || '";' FROM USER_ALL_TABLES;
+SELECT 'DROP VIEW "KM_PRI_GRP01"."' || table_name || '";' FROM USER_ALL_VIEW;
+--SELECT 'DROP TABLE "KM_PUB"."' || table_name || '";' FROM USER_ALL_TABLES;
+spool off
+</pre>
+
+
+<!--===============================================================================================================-->
+<h2>まとめ</h2>
+結論
+<!--===============================================================================================================-->
+<h2>CTA</h2>
+広告とか。。。
+</body>
+</html>

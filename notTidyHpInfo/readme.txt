@@ -2,6 +2,10 @@
 // <START>
 //=====================================================================================================================
 
+★ preタグコメント分の一覧
+http://ubuntu.jump-up.info/jquery/jquery/syntaxhighlighter.html
+
+
 ★ 雑多情報蓄積
 file:///G:/works/repos/git/github/redhandsj/studyprj01/notTidyHpInfo/html/subpages001/readme.html
 
