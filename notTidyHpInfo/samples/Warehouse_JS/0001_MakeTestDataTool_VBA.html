@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>ＥＸＣＥＬのマクロ起動のサンプル</title>
+
+<script language="VBScript">
+Sub Sample2()
+Dim objExcelApp, objExcelBook
+
+'Excel
+Set objExcelApp = CreateObject("Excel.Application")
+
+'ワークブックを開く
+Set objExcelBook = objExcelApp.Workbooks.Open("C:\tmp\sample2.xls", , True)
+objExcelApp.Visible = False
+
+'Excel側マクロ(Macro1)を起動
+objExcelApp.Run "'" & "sample2.xls" & "'!Macro1", "マクロに渡す引数はここ"
+
+'マクロが終了したブックは閉じる
+objExcelBook.Saved = True
+objExcelBook.Close False
+Set objExcelBook = Nothing
+Set objExcelApp = Nothing
+window.close()
+End Sub
+</script>
+</head>
+<body>
+<form name="frm1">
+<span id="txt1"></span>
+<br>
+<input type=button value="テスト" name="btn1" onclick="Sample2()" />
+</form>
+</body>
+</html>

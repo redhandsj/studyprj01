@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+  Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>データ作成ツール</title>
+    <script type="text/javascript" src="MakeTestDataTool_Module.js"></script>
+</head>
+<!--========== 操作画面 ==================================================-->
+<body>
+<!-- 
+★出力先ディレクトリ
+★DB設計書指定
+★テンプレート指定
+★デフォルト値を指定
+★デフォルトデータ行数を設定
+★動作進捗カウンター
+ -->
+    <input type="button" value="Exec" onclick="OnButtonClick();"/><br />
+    <br />
+    <div id="output"></div>
+    <br />
+    <input type="button" value="Excel起動" onclick="withExcel(true,null);"/><br />
+    <br />
+</body>
+</html>
+<!--========== スクリプトソース ==================================================-->
+<script language="javascript" type="text/javascript">
+// テスト用メソッド
+function OnButtonClick() {
+  target = document.getElementById("output");
+  target.innerHTML = "Penguin";
+}
+
+// Excel起動メソッド
+function withExcel(visible, func) {
+  target = document.getElementById("output");
+  target.innerHTML = "withExcel";
+  //wshshell=new ActiveXObject("WScript.Shell") 
+  //wshshell.run("excel test.xls") 
+  var excel = new ActiveXObject("Excel.Application");
+  excel.Visible = visible;
+  excel.DisplayAlerts = false;
+  try {
+//　　　　　//func(excel);
+  } finally {
+    excel.Quit();
+  }
+}
+</script>

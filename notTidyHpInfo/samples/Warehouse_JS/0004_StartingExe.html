@@ -1,0 +1,15 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>WebページからEXEを起動する</title>
+<script language="VBScript">
+Function up_notepad()
+    Set WshShell=CreateObject("WScript.Shell")
+    WshShell.Exec("notepad.exe")
+End Function
+</script>
+</head>
+<body>
+<p><input type="button" value="メモ帳起動" onClick="up_notepad()"></p>
+</body>
+</html>

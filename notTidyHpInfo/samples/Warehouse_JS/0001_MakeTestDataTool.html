@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+  Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>データ作成ツール</title>
+    <script type="text/javascript" src="MakeTestDataTool_Module.js"></script>
+</head>
+<!--========== 操作画面 ==================================================-->
+<body>
+<!-- 
+★出力先ディレクトリ
+★DB設計書指定
+★テンプレート指定
+★デフォルト値を指定
+★デフォルトデータ行数を設定
+★動作進捗カウンター
+ -->
+    <input type="button" value="Exec" onclick="OnButtonClick();"/><br />
+    <br />
+    <div id="output"></div>
+    <br />
+    <input type="button" value="Excel起動" onclick="withExcel(true,null);"/>
+    <br />
+</body>
+</html>
+<!--========== スクリプトソース ==========================================-->
+<script language="javascript" type="text/javascript">
+// テスト用メソッド
+function OnButtonClick() {
+  target = document.getElementById("output");
+  target.innerHTML = "Penguin";
+}
+
+
+// Excel起動メソッド
+function withExcel(visible, func) {
+  target = document.getElementById("output");
+  target.innerHTML = "withExcel";
+
+  var excelApp = WScript.CreateObject("Excel.Application");
+  //var book = excelApp.Workbooks.Open("c:\\work\\Table.xls");
+  //var sheet = book.WorkSheets("Sheet1");
+
+  sleep(3000, function (){ alert("2"); } );
+
+
+  // Excel内を読み込み
+  //var itemName = sheet.Cells(3, 2);
+  //var weaponType = sheet.Cells(3, 3);
+  //var power = sheet.Cells(3, 4);
+  //var deffence = sheet.Cells(3, 5);
+  //var price = sheet.Cells(3, 6);
+
+  //WScript.Echo(itemName, weaponType, power, deffence, price);
+  //book.Close();
+  excelApp.Quit();
+  excelApp = null;
+
+
+  //wshshell=new ActiveXObject("WScript.Shell") 
+  //wshshell.run("excel test.xls") 
+  //var excel = new ActiveXObject("Excel.Application");
+  //excel.Visible = visible;
+  //excel.DisplayAlerts = false;
+  //try {
+//　　　　　//func(excel);
+  //} finally {
+  //  excel.Quit();
+  //}
+}
+
+function sleep(time, callback){
+  setTimeout(callback, time);
+}
+
+</script>
