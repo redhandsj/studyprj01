@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VirtualBox内のCentOS7.2にapacheとMySQLをインストールしてLaravelの開発環境を作成した</title>
+<!-- ------------------------------------------------------------------------------- -->
+<SCRIPT src="../../../../js/commonHeaderSetting.js"></SCRIPT>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+最終更新日付：2016/12/19（月）
+<h1>VirtualBox内のCentOS7.2にapacheとMySQLをインストールしてLaravelの開発環境を作成した</h1>
+<!--
+<ul>
+<li>全体サイズとしては3000文字が目安
+<li>タイトルは28文字以内
+<li>キーワードプランナーを使用
+</ul>
+<img/>
+<h2>問題提起</h2>
+<h2>解決策提起</h2>
+<h2>解決策根拠</h2>
+ -->
+<!--===============================================================================================================-->
+<h2>【前提】知識参考</h2>
+<ul>
+<li>http://blog.livedoor.jp/sisyou_lion/archives/65817609.html → rootを使用することで解決
+<pre class="brush: bash;">
+</pre>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>【整頓】未整頓情報</h2>
+<ul>
+<li>http://blog.livedoor.jp/sisyou_lion/archives/65817609.html → rootを使用することで解決
+<pre class="brush: bash;">
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>まず、元のクローンを行う</h2>
+<ul>
+<li>VirtualBoxパネルでクローン（20161013a_CentOS7_64bit_org → 20161013a_CentOS7_64bit_XXXXXXX）
+<li>以下のようにネットワークを設定（※ GUIで行う）
+  <ul>
+  <li>enpOs8
+    <ul>
+    <li>アドレス：192.168.56.133
+    <li>ネットマスク：24
+    <li>ゲートウェイ：192.168.56.1
+    <li>IP6はオフ
+    </ul>
+  </ul>
+<li>GUIから再起動したら、動作が超鈍重になる。に原因はわからないが、この状態でも、ホストOSから、ゲストOSへのログインはできたので、一応ネットワーク設定は正常にできたはず。
+<li>GUIだと遅すぎるので、TeraTermでログインして、『sudo shutdown now』を実装して一旦落とす
+<li>VirtualBoxパネルから、今度は、ヘッドレスモードで起動し、TeraTermでログインし正常にログインを確認
+<li>※ GUIからの再起動で何か問題があると思われるが一旦おいておく。
+<li>次に外に繋がっているかを確認『 ping -c 4 www.google.com 』 → 失敗
+<li>で、ログインして以下を実施した
+<pre class="brush: bash;">
+/etc/sysconfig/network-scripts/ifcfg-_有線～
+からGATEWAYの行を削除して、さらに/etc/sysconfig/network-scripts/ifcfg-onlyhostを削除して再スタート
+$ /etc/rc.d/init.d/network restart
+で、ここから一旦シャットダウンして、ヘッドレスで再起動し、以下で確認OK
+$ ping www.yahoo.co.jp
+</pre>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>PHP環境を整える</h2>
+<ul>
+<li>まずは、リポジトリの確認
+<pre class="brush: bash;">
+$ yum repolist all
+読み込んだプラグイン:fastestmirror, langpacks
+base                                                                                             | 3.6 kB  00:00:00
+extras                                                                                           | 3.4 kB  00:00:00
+updates                                                                                          | 3.4 kB  00:00:00
+(1/4): extras/7/x86_64/primary_db                                                                | 183 kB  00:00:00
+(2/4): updates/7/x86_64/primary_db                                                               | 1.2 MB  00:00:00
+(3/4): base/7/x86_64/group_gz                                                                    | 155 kB  00:00:00
+(4/4): base/7/x86_64/primary_db                                                                  | 5.6 MB  00:00:00
+Determining fastest mirrors
+ * base: ftp.iij.ad.jp
+ * extras: ftp.iij.ad.jp
+ * updates: ftp.iij.ad.jp
+リポジトリー ID                                       リポジトリー名                                         状態
+C7.0.1406-base/x86_64                                 CentOS-7.0.1406 - Base                                 無効
+C7.0.1406-centosplus/x86_64                           CentOS-7.0.1406 - CentOSPlus                           無効
+C7.0.1406-extras/x86_64                               CentOS-7.0.1406 - Extras                               無効
+C7.0.1406-fasttrack/x86_64                            CentOS-7.0.1406 - CentOSPlus                           無効
+C7.0.1406-updates/x86_64                              CentOS-7.0.1406 - Updates                              無効
+C7.1.1503-base/x86_64                                 CentOS-7.1.1503 - Base                                 無効
+C7.1.1503-centosplus/x86_64                           CentOS-7.1.1503 - CentOSPlus                           無効
+C7.1.1503-extras/x86_64                               CentOS-7.1.1503 - Extras                               無効
+C7.1.1503-fasttrack/x86_64                            CentOS-7.1.1503 - CentOSPlus                           無効
+C7.1.1503-updates/x86_64                              CentOS-7.1.1503 - Updates                              無効
+base/7/x86_64                                         CentOS-7 - Base                                        有効: 9,363
+base-debuginfo/x86_64                                 CentOS-7 - Debuginfo                                   無効
+base-source/7                                         CentOS-7 - Base Sources                                無効
+c7-media                                              CentOS-7 - Media                                       無効
+centosplus/7/x86_64                                   CentOS-7 - Plus                                        無効
+centosplus-source/7                                   CentOS-7 - Plus Sources                                無効
+cr/7/x86_64                                           CentOS-7 - cr                                          無効
+extras/7/x86_64                                       CentOS-7 - Extras                                      有効:   435
+extras-source/7                                       CentOS-7 - Extras Sources                              無効
+fasttrack/7/x86_64                                    CentOS-7 - fasttrack                                   無効
+updates/7/x86_64                                      CentOS-7 - Updates                                     有効:   393
+updates-source/7                                      CentOS-7 - Updates Sources                             無効
+repolist: 10,191
+</pre>
+
+<li><font color="red">『remi』が足りないので、以下を実施したが何か足りないようだ</font>
+<pre class="brush: bash;">
+$ sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+http://rpms.famillecollet.com/enterprise/remi-release-6.rpm を取得中
+警告: /var/tmp/rpm-tmp.I0P4Nd: ヘッダー V4 DSA/SHA1 Signature、鍵 ID 00f97f56: NOKEY
+エラー: 依存性の欠如:
+        epel-release = 6 は remi-release-6.8-1.el6.remi.noarch に必要とされています
+</pre>
+
+<li>で以下を実施（参考：http://qiita.com/hotta/items/a94e27aa34649b7fa1b0）
+<pre class="brush: bash;">
+$ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+警告: /var/tmp/rpm-tmp.R7IJtj: ヘッダー V3 RSA/SHA256 Signature、鍵 ID 352c64e5: NOKEY
+準備しています...              ################################# [100%]
+更新中 / インストール中...
+   1:epel-release-7-8                 ################################# [100%]
+</pre>
+
+<li>すると今度はうまく入った
+<pre class="brush: bash;">
+$ sudo rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+警告: /var/tmp/rpm-tmp.uXTXTm: ヘッダー V4 DSA/SHA1 Signature、鍵 ID 00f97f56: NOKEY
+準備しています...              ################################# [100%]
+更新中 / インストール中...
+   1:remi-release-7.2-1.el7.remi      ################################# [100%]
+</pre>
+
+
+<li>で、再びパッケージのリポジトリを確認
+<pre class="brush: bash;">
+$ yum repolist all
+読み込んだプラグイン:fastestmirror, langpacks
+epel/x86_64/metalink                                                                             | 6.1 kB  00:00:00
+epel                                                                                             | 4.3 kB  00:00:00
+remi-safe                                                                                        | 2.9 kB  00:00:00
+(1/4): epel/x86_64/group_gz                                                                      | 170 kB  00:00:00
+(2/4): epel/x86_64/updateinfo                                                                    | 692 kB  00:00:00
+epel/x86_64/primary_db         FAILED                                                 ]  37 kB/s | 907 kB  00:02:17 ETA
+http://epel.excellmedia.net/7/x86_64/repodata/77c4c0d435b2704224d3f304a0989fee0910f5b7eae9e383b6daabae0e5d9079-primary.sqlite.xz: [Errno 14] HTTP Error 404 - Not Found
+他のミラーを試します。
+To address this issue please refer to the below knowledge base article
+
+https://access.redhat.com/articles/1320623
+
+If above article doesn't help to resolve this issue please create a bug on https://bugs.centos.org/
+
+(3/4): epel/x86_64/primary_db                                                                    | 4.4 MB  00:00:01
+(4/4): remi-safe/primary_db                                                                      | 584 kB  00:00:03
+Loading mirror speeds from cached hostfile
+ * base: ftp.iij.ad.jp
+ * epel: ftp.riken.jp
+ * extras: ftp.iij.ad.jp
+ * remi-safe: mirror.innosol.asia
+ * updates: ftp.iij.ad.jp
+リポジトリー ID                  リポジトリー名                                                             状態
+C7.0.1406-base/x86_64            CentOS-7.0.1406 - Base                                                     無効
+C7.0.1406-centosplus/x86_64      CentOS-7.0.1406 - CentOSPlus                                               無効
+C7.0.1406-extras/x86_64          CentOS-7.0.1406 - Extras                                                   無効
+C7.0.1406-fasttrack/x86_64       CentOS-7.0.1406 - CentOSPlus                                               無効
+C7.0.1406-updates/x86_64         CentOS-7.0.1406 - Updates                                                  無効
+C7.1.1503-base/x86_64            CentOS-7.1.1503 - Base                                                     無効
+C7.1.1503-centosplus/x86_64      CentOS-7.1.1503 - CentOSPlus                                               無効
+C7.1.1503-extras/x86_64          CentOS-7.1.1503 - Extras                                                   無効
+C7.1.1503-fasttrack/x86_64       CentOS-7.1.1503 - CentOSPlus                                               無効
+C7.1.1503-updates/x86_64         CentOS-7.1.1503 - Updates                                                  無効
+base/7/x86_64                    CentOS-7 - Base                                                            有効:  9,363
+base-debuginfo/x86_64            CentOS-7 - Debuginfo                                                       無効
+base-source/7                    CentOS-7 - Base Sources                                                    無効
+c7-media                         CentOS-7 - Media                                                           無効
+centosplus/7/x86_64              CentOS-7 - Plus                                                            無効
+centosplus-source/7              CentOS-7 - Plus Sources                                                    無効
+cr/7/x86_64                      CentOS-7 - cr                                                              無効
+epel/x86_64                      Extra Packages for Enterprise Linux 7 - x86_64                             有効: 10,931
+epel-debuginfo/x86_64            Extra Packages for Enterprise Linux 7 - x86_64 - Debug                     無効
+epel-source/x86_64               Extra Packages for Enterprise Linux 7 - x86_64 - Source                    無効
+epel-testing/x86_64              Extra Packages for Enterprise Linux 7 - Testing - x86_64                   無効
+epel-testing-debuginfo/x86_64    Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Debug           無効
+epel-testing-source/x86_64       Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Source          無効
+extras/7/x86_64                  CentOS-7 - Extras                                                          有効:    435
+extras-source/7                  CentOS-7 - Extras Sources                                                  無効
+fasttrack/7/x86_64               CentOS-7 - fasttrack                                                       無効
+remi                             Remi's RPM repository for Enterprise Linux 7 - x86_64                      無効
+remi-debuginfo/x86_64            Remi's RPM repository for Enterprise Linux 7 - x86_64 - debuginfo          無効
+remi-php55                       Remi's PHP 5.5 RPM repository for Enterprise Linux 7 - x86_64              無効
+remi-php55-debuginfo/x86_64      Remi's PHP 5.5 RPM repository for Enterprise Linux 7 - x86_64 - debuginfo  無効
+remi-php56                       Remi's PHP 5.6 RPM repository for Enterprise Linux 7 - x86_64              無効
+remi-php56-debuginfo/x86_64      Remi's PHP 5.6 RPM repository for Enterprise Linux 7 - x86_64 - debuginfo  無効
+remi-php70                       Remi's PHP 7.0 RPM repository for Enterprise Linux 7 - x86_64              無効
+remi-php70-debuginfo/x86_64      Remi's PHP 7.0 RPM repository for Enterprise Linux 7 - x86_64 - debuginfo  無効
+remi-php70-test                  Remi's PHP 7.0 test RPM repository for Enterprise Linux 7 - x86_64         無効
+remi-php70-test-debuginfo/x86_64 Remi's PHP 7.0 test RPM repository for Enterprise Linux 7 - x86_64 - debug 無効
+remi-php71                       Remi's PHP 7.1 RPM repository for Enterprise Linux 7 - x86_64              無効
+remi-php71-debuginfo/x86_64      Remi's PHP 7.1 RPM repository for Enterprise Linux 7 - x86_64 - debuginfo  無効
+remi-php71-test                  Remi's PHP 7.1 test RPM repository for Enterprise Linux 7 - x86_64         無効
+remi-php71-test-debuginfo/x86_64 Remi's PHP 7.1 test RPM repository for Enterprise Linux 7 - x86_64 - debug 無効
+remi-safe                        Safe Remi's RPM repository for Enterprise Linux 7 - x86_64                 有効:  1,232
+remi-test                        Remi's test RPM repository for Enterprise Linux 7 - x86_64                 無効
+remi-test-debuginfo/x86_64       Remi's test RPM repository for Enterprise Linux 7 - x86_64 - debuginfo     無効
+updates/7/x86_64                 CentOS-7 - Updates                                                         有効:    393
+updates-source/7                 CentOS-7 - Updates Sources                                                 無効
+repolist: 22,354
+</pre>
+
+<li>既存のPHPを削除しておく。以下では、特にインストールされていなかった例
+<pre class="brush: bash;">
+$ sudo yum remove php-*
+読み込んだプラグイン:fastestmirror, langpacks
+引数に一致しません: php-*
+削除対象とマークされたパッケージはありません。
+</pre>
+
+<li>PHP5.6 をインストール。問題なかったので詳細は割愛。
+<pre class="brush: bash;">
+$ sudo yum install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-pdo php-gd php-mysql php-pgsql php-cli php-common php-pear php-xml php-mcrypt php-xmlrpc
+　：
+完了しました!
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>MySQL5.6を用意</h2>
+<ul>
+<li>リポジトリ追加
+<pre class="brush: bash;">
+$ sudo rpm -ivh http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm を取得中
+準備しています...              ################################# [100%]
+更新中 / インストール中...
+   1:mysql-community-release-el6-5    ################################# [100%]
+</pre>
+
+<li>インストールされるバージョンを確認
+<pre class="brush: bash;">
+$ sudo vi  /etc/yum.repos.d/mysql-community.repo
+</pre>
+<pre class="brush: bash;">
+# Enable to use MySQL 5.6
+[mysql56-community]
+name=MySQL 5.6 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/$basearch/
+enabled=1  # ← ここが１になっているものがインストールされる
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+</pre>
+
+<li>インストール
+<pre class="brush: bash;">
+$ sudo yum install -y mysql-community-server
+$ mysqld --version  # mysql server のバージョンを確認
+mysqld --version
+mysqld  Ver 5.6.35 for Linux on x86_64 (MySQL Community Server (GPL))
+$ mysql --version   # mysql client のバージョンを確認
+mysql  Ver 14.14 Distrib 5.6.35, for Linux (x86_64) using  EditLine wrapper
+</pre>
+
+<li>必要に応じて設定を変更
+<pre class="brush: bash;">
+$ sudo cp /etc/my.cnf /etc/my.cnf.org
+$ sudo vim /etc/my.cnf
+#--------------------------
+# ※適宜設定して保存
+#--------------------------
+$ sudo /etc/init.d/mysqld restart
+</pre>
+
+
+<li>起動する場合
+<pre class="brush: bash;">
+$ sudo systemctl start mysqld.service
+</pre>
+
+
+<li>初期パスワードの設定
+<pre class="brush: bash;">
+# 一度リスタートする
+$ sudo systemctl restart mysqld.service
+
+# パスワード設定
+$ sudo /usr/bin/mysqladmin -u root password 'new-password'
+
+# ※再度変更が必要な場合
+$ sudo  /usr/bin/mysqladmin -u root -p password 'new-password' old-password
+</pre>
+
+
+<li>初期パスワードの設定
+<pre class="brush: bash;">
+# 現在のDB確認
+> SELECT database();
+
+# DB切り替え
+> use (※database名);
+</pre>
+
+<!--===============================================================================================================-->
+<h2>phpのcomposer</h2>
+<ul>
+<li>composerのインストーラ準備
+<pre class="brush: bash;">
+$ curl -sS https://getcomposer.org/installer | php
+All settings correct for using Composer
+Downloading...
+
+Composer (version 1.2.4) successfully installed to: /home/20161013a/works/tools/php/composer.phar
+Use it: php composer.phar
+</pre>
+
+<li>composerのセット
+<pre class="brush: bash;">
+$ sudo mv composer.phar /usr/local/bin/composer
+</pre>
+
+<li>composerの動作確認
+<pre class="brush: bash;">
+$ composer
+</pre>
+</ul>
+
+
+
+
+
+<!--===============================================================================================================-->
+<h2>apache</h2>
+参考（但しOSバージョンは、7に置きかえるのが必要な部分がある）：http://panyanyanda.seesaa.net/article/422731118.html
+Apache2.4をRPMからインストールしていると、PHPがyumでインストール出来ない
+一応普通にインストールする必要があると思うので、こちらでやってみる → http://weblabo.oscasierra.net/apache-installing-apache24-yum-centos7-1/
+<ul>
+<li>提供されている Apache httpd 2.4 を確認する
+<pre class="brush: bash;">
+$ yum info httpd
+読み込んだプラグイン:fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: ftp.iij.ad.jp
+ * epel: ftp.riken.jp
+ * extras: ftp.iij.ad.jp
+ * remi-safe: mirror.innosol.asia
+ * updates: ftp.iij.ad.jp
+インストール済みパッケージ
+名前                : httpd
+アーキテクチャー    : x86_64
+バージョン          : 2.4.6
+リリース            : 45.el7.centos
+容量                : 9.4 M
+リポジトリー        : installed
+提供元リポジトリー  : base
+要約                : Apache HTTP Server
+URL                 : http://httpd.apache.org/
+ライセンス          : ASL 2.0
+説明                : The Apache HTTP Server is a powerful, efficient, and extensible
+                    : web server.
+</pre>
+
+<li>Apache httpd 2.4 をインストールする
+<pre class="brush: bash;">
+$ sudo yum -y install httpd
+</pre>
+
+<li>バージョン確認
+<pre class="brush: bash;">
+$ sudo httpd -version
+Server version: Apache/2.4.6 (CentOS)
+Server built:   Nov 14 2016 18:04:44
+</pre>
+
+<li>自動起動の設定をする
+<pre class="brush: bash;">
+$ sudo systemctl enable httpd.service
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+</pre>
+
+<li>起動
+<pre class="brush: bash;">
+# 起動
+$ sudo systemctl start httpd.service
+# 起動確認
+$ sudo systemctl status httpd.service
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since 月 2016-12-19 14:10:14 JST; 26s ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+ Main PID: 23668 (httpd)
+   Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
+   CGroup: /system.slice/httpd.service
+           tq23668 /usr/sbin/httpd -DFOREGROUND
+           tq23674 /usr/sbin/httpd -DFOREGROUND
+           tq23675 /usr/sbin/httpd -DFOREGROUND
+           tq23676 /usr/sbin/httpd -DFOREGROUND
+           tq23677 /usr/sbin/httpd -DFOREGROUND
+           mq23678 /usr/sbin/httpd -DFOREGROUND
+
+12月 19 14:10:13 localhost.localdomain systemd[1]: Starting The Apache HTTP Server...
+12月 19 14:10:14 localhost.localdomain httpd[23668]: AH00558: httpd: Could not reliably determine the server's f...sage
+12月 19 14:10:14 localhost.localdomain systemd[1]: Started The Apache HTTP Server.
+Hint: Some lines were ellipsized, use -l to show in full.
+</pre>
+
+<li>停止する場合は以下のようにする
+<pre class="brush: bash;">
+$ sudo systemctl stop httpd.service
+</pre>
+
+<li>ファイアウォールの設定調整をする
+<pre class="brush: bash;">
+# 一時的無効
+$ sudo systemctl stop firewalld
+
+# 有効に戻す
+$ sudo systemctl start firewalld
+
+# ttpd (80番ポート)への通信を許可する
+$ sudo firewall-cmd --add-service=http --zone=public
+success
+[20161013a@localhost php]$ sudo firewall-cmd --add-service=http --zone=public --permanent
+success
+
+# 作動しているか確認
+$ sudo systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: active (running) since 月 2016-12-19 14:14:47 JST; 1min 31s ago
+ Main PID: 23980 (firewalld)
+   CGroup: /system.slice/firewalld.service
+           mq23980 /usr/bin/python -Es /usr/sbin/firewalld --nofork --nopid
+
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...ame.
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...ame.
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+12月 19 14:14:48 localhost.localdomain firewalld[23980]: 2016-12-19 14:14:48 ERROR: COMMAND_FAILED: '/sbin/iptab...n?).
+Hint: Some lines were ellipsized, use -l to show in full.
+</pre>
+
+<li>さてアクセスしてみる
+<pre class="brush: bash;">
+http://192.168.56.XXX/
+</pre>
+
+
+<li><strong class="bigfont_underline"></strong>
+<pre class="brush: bash;">
+# 根本の権限設定を変更し、
+$ sudo chmod 755 /home/USERNAME
+
+# httpdを再起動しないと「403」となる
+$ sudo systemctl start httpd.service
+</pre>
+
+
+<li><strong class="bigfont_underline">アクセス先を/home/USERNAMEの下に変える場合</strong>
+<pre class="brush: bash;">
+# 根本の権限設定を変更し、
+$ sudo chmod 755 /home/USERNAME
+
+# httpdを再起動しないと「403」となる
+$ sudo systemctl start httpd.service
+</pre>
+
+
+<!--===============================================================================================================-->
+<h2>apacheのルートにphp情報を置いてアクセス</h2>
+<ul>
+<li>まず、ドキュメントルートの確認
+<pre class="brush: bash;">
+$ sudo cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.org
+$ sudo vim /etc/httpd/conf/httpd.conf
+</pre>
+<pre class="brush: bash;">
+  :
+DocumentRoot "/var/www/html"
+  :
+</pre>
+
+<li>phpinfoをおく
+<pre class="brush: bash;">
+$ sudo vim /var/www/html/info.php
+</pre>
+<pre class="brush: php;">
+<?php
+phpinfo();
+?>
+</pre>
+
+<li>アクセスしてみよう
+<pre class="brush: bash;">
+http://192.168.56.XXX/info.php
+</pre>
+
+<li>ここから、apcheの設定を変えてみる
+<pre class="brush: bash;">
+$ sudo cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.org
+$ sudo vim /etc/httpd/conf/httpd.conf
+</pre>
+<pre class="brush: bash;">
+  :
+DocumentRoot "/var/www/html"
+  :
+</pre>
+
+
+
+<li><strong class="bigfont_underline">アクセス先を/home/USERNAMEの下に変える場合</strong>
+<pre class="brush: bash;">
+# 根本の権限設定を変更し、
+$ sudo chmod 755 /home/USERNAME
+
+# httpdを再起動しないと「403」となる
+$ sudo systemctl restart httpd.service
+</pre>
+
+</ul>
+
+
+
+<!--===============================================================================================================-->
+<h2>SVN設定</h2>
+<ul>
+<li>インストール
+<pre class="brush: bash;">
+$ sudo yum install subversion
+</pre>
+</ul>
+
+
+
+
+<!--===============================================================================================================-->
+<h2>PHPStorm</h2>
+<ul>
+<li>
+<pre class="brush: bash;">
+</pre>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>小見出し</h2>
+<ul>
+<li>
+<pre class="brush: bash;">
+</pre>
+</ul>
+
+
+
+
+<!--===============================================================================================================-->
+<h2>まとめ</h2>
+結論
+<!--===============================================================================================================-->
+<h2>CTA</h2>
+広告とか。。。
+</body>
+</html>
