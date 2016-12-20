@@ -39,7 +39,10 @@
 <ul>
 <li><a href="#c001tab000" onclick="ChangeTab('c001tab000'); return false;">アーキテクチャ</a>
 <li><a href="#c001tab001" onclick="ChangeTab('c001tab001'); return false;">業務フロー</a>
-<li><a href="#c001tab002" onclick="ChangeTab('c001tab002'); return false;">　</a>
+<li><a href="#c001tab002" onclick="ChangeTab('c001tab002'); return false;">インフラ勉強(take1)</a>
+<li><a href="#c001tab003" onclick="ChangeTab('c001tab003'); return false;">　</a>
+<li><a href="#c001tab004" onclick="ChangeTab('c001tab004'); return false;">　</a>
+<li><a href="#c001tab005" onclick="ChangeTab('c001tab005'); return false;">　</a>
 </ul>
 </div><!-- <div id="category001"> -->
 <div id="category002">
@@ -94,6 +97,9 @@
 <div id="c001tab000"><iframe src="./pages/c001/c001tab000.html" height="1999px"></iframe></div>
 <div id="c001tab001"><iframe src="./pages/c001/c001tab001.html" height="1999px"></iframe></div>
 <div id="c001tab002"><iframe src="./pages/c001/c001tab002.html" height="1999px"></iframe></div>
+<div id="c001tab003"><iframe src="./pages/c001/c001tab003.html" height="1999px"></iframe></div>
+<div id="c001tab004"><iframe src="./pages/c001/c001tab004.html" height="1999px"></iframe></div>
+<div id="c001tab005"><iframe src="./pages/c001/c001tab005.html" height="1999px"></iframe></div>
 </div><!-- <div id="category001"> -->
 <!--------------------------------------------------------------------------->
 <!-- カテゴリ単位  -->
@@ -152,6 +158,9 @@ function ChangeTab(tabname) {
 	   document.getElementById('c001tab000').style.display = 'none';
 	   document.getElementById('c001tab001').style.display = 'none';
 	   document.getElementById('c001tab002').style.display = 'none';
+	   document.getElementById('c001tab003').style.display = 'none';
+	   document.getElementById('c001tab004').style.display = 'none';
+	   document.getElementById('c001tab005').style.display = 'none';
 	   // カテゴリ単位
 	   document.getElementById('c002tab000').style.display = 'none';
 	   document.getElementById('c002tab001').style.display = 'none';
@@ -190,9 +199,9 @@ function ChangeCategory(categoryname) {
 	   document.getElementById(categoryname).style.display = 'block';
 }
 //デフォルトのカテゴリを選択
-ChangeCategory('category003');
+ChangeCategory('category001');
 //デフォルトのタブを選択
-ChangeTab('c003tab010');
+ChangeTab('c001tab002');
 </script>
 <!-- ------------------------------------------------------------------------------- -->
 </body>
