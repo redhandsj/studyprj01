@@ -8,7 +8,7 @@
 <!-- ------------------------------------------------------------------------------- -->
 </head>
 <body>
-最終更新日付：2016/12/19（月）
+最終更新日付：2016/12/22（木）
 <h1>VirtualBox内のCentOS7.2にapacheとMySQLをインストールしてLaravelの開発環境を作成した</h1>
 <!--
 <ul>
@@ -36,7 +36,28 @@
 <li>http://blog.livedoor.jp/sisyou_lion/archives/65817609.html → rootを使用することで解決
 <pre class="brush: bash;">
 </pre>
+<li>rpmパッケージの確認
+<pre class="brush: bash;">
+rpm -qa | grep -i (パッケージ名)
+</pre>
+<li>apacheのログの場所
+<pre class="brush: bash;">
+$ sudo vim /etc/httpd/conf/httpd.conf
+</pre>
+<pre class="brush: bash;">
+ :
+ServerRoot "/etc/httpd"
+ :
+ErrorLog "logs/error_log"
+ :
+  CustomLog "logs/access_log" combined
+</pre>
+<li>
+<pre class="brush: bash;">
+$ sudo vim /etc/httpd/conf/httpd.conf
+</pre>
 </ul>
+
 
 <!--===============================================================================================================-->
 <h2>まず、元のクローンを行う</h2>
@@ -542,7 +563,88 @@ $ sudo yum install subversion
 </ul>
 
 
+<!--===============================================================================================================-->
+<h2>.htaccessの有効化</h2>
+<ul>
+<li>以下を設定
+<pre class="brush: bash;">
+sudo vim /etc/httpd/conf/httpd.conf
+</pre>
+<pre class="brush: bash;">
+diff /etc/httpd/conf/httpd.conf.org /etc/httpd/conf/httpd.conf
+151c151
+<     AllowOverride None
+---
+>     AllowOverride All
+</pre>
+<li>apache再起動
+<pre class="brush: bash;">
+$ sudo systemctl restart httpd.service
+</pre>
+</ul>
 
+<!--===============================================================================================================-->
+<h2>SELinuxの無効化</h2>
+【参考】http://totech.hateblo.jp/entry/2015/04/05/223714
+<ul>
+<li>即座に無効化
+<pre class="brush: bash;">
+$ sudo setenforce 0
+</pre>
+<li>恒久的に無効化
+<pre class="brush: bash;">
+$ sudo cp /etc/sysconfig/selinux /etc/sysconfig/selinux.org
+$ sudo vim /etc/sysconfig/selinux
+</pre>
+<pre class="brush: bash;">
+  :
+SELINUX=disabled
+  :
+</pre>
+<li>※意味はこんな感じ
+	<ul>
+	<li>SELINUX=enforcing : SELinux有効
+	<li>SELINUX=permissive : SELinuxは無効だが、ポリシー違反があった際に警告が出力される
+	<li>SELINUX=disabled : SELinux無効
+	</ul>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>問題情報</h2>
+
+<h3>問題１</h3>
+<ul>
+<li>エラー内容
+<pre class="brush: bash;">
+[Wed Dec 21 11:49:30.433604 2016] [:error] [pid 6848] [client 192.168.56.1:53474] PHP Fatal error:  Uncaught exception 'UnexpectedValueException' with message 'The stream or file "/var/www/html/src/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied' in /var/www/html/src/bootstrap/cache/compiled.php:14157\nStack trace:\n#0 /var/www/html/src/bootstrap/cache/compiled.php(14087): Monolog\\Handler\\StreamHandler->write(Array)\n#1 /var/www/html/src/bootstrap/cache/compiled.php(13847): Monolog\\Handler\\AbstractProcessingHandler->handle(Array)\n#2 /var/www/html/src/bootstrap/cache/compiled.php(13945): Monolog\\Logger->addRecord(400, Object(UnexpectedValueException), Array)\n#3 /var/www/html/src/bootstrap/cache/compiled.php(13640): Monolog\\Logger->error(Object(UnexpectedValueException), Array)\n#4 /var/www/html/src/bootstrap/cache/compiled.php(13611): Illuminate\\Log\\Writer->writeLog('error', Object(UnexpectedValueException), Array)\n#5 /var/www/html/src/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(71): Illuminate\\Log\\Writer->error(Object(UnexpectedValueException in /var/www/html/src/bootstrap/cache/compiled.php on line 14157
+[Wed Dec 21 11:49:30.434027 2016] [:error] [pid 6848] [client 192.168.56.1:53474] PHP Fatal error:  Uncaught exception 'UnexpectedValueException' with message 'The stream or file "/var/www/html/src/storage/logs/laravel.log" could not be opened: failed to open stream: Permission denied' in /var/www/html/src/bootstrap/cache/compiled.php:14157\nStack trace:\n#0 /var/www/html/src/bootstrap/cache/compiled.php(14087): Monolog\\Handler\\StreamHandler->write(Array)\n#1 /var/www/html/src/bootstrap/cache/compiled.php(13847): Monolog\\Handler\\AbstractProcessingHandler->handle(Array)\n#2 /var/www/html/src/bootstrap/cache/compiled.php(13945): Monolog\\Logger->addRecord(400, Object(Symfony\\Component\\Debug\\Exception\\FatalErrorException), Array)\n#3 /var/www/html/src/bootstrap/cache/compiled.php(13640): Monolog\\Logger->error(Object(Symfony\\Component\\Debug\\Exception\\FatalErrorException), Array)\n#4 /var/www/html/src/bootstrap/cache/compiled.php(13611): Illuminate\\Log\\Writer->writeLog('error', Object(Symfony\\Component\\Debug\\Exception\\FatalErrorException), Array)\n#5 /var/www/html/src/vendor/laravel/framework/src/Illuminate/Foundation/E in /var/www/html/src/bootstrap/cache/compiled.php on line 14157
+</pre>
+<li>以下で解決
+<pre class="brush: bash;">
+$ sudo chmod 777 -R /var/www/html/src/storage
+$ sudo chmod 777 -R /var/www/html/src/bootstrap/cache
+$ sudo systemctl restart httpd.service
+</pre>
+</ul>
+
+<h3>問題２</h3>
+<ul>
+<li>エラー内容
+<pre class="brush: bash;">
+RewriteRule: bad flag delimiters
+</pre>
+<li>以下で解決
+<pre class="brush: bash;">
+sudo vim .htaccess
+</pre>
+<pre class="brush: bash;">
+RewriteRule　.* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}
+
+  ↓（修正）
+
+RewriteRule　.* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</pre>
+</ul>
 
 <!--===============================================================================================================-->
 <h2>PHPStorm</h2>
@@ -551,19 +653,6 @@ $ sudo yum install subversion
 <pre class="brush: bash;">
 </pre>
 </ul>
-
-
-<!--===============================================================================================================-->
-<h2>小見出し</h2>
-<ul>
-<li>
-<pre class="brush: bash;">
-</pre>
-</ul>
-
-
-
-
 <!--===============================================================================================================-->
 <h2>まとめ</h2>
 結論
