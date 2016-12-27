@@ -12,16 +12,12 @@
 <h1>Vagrantいじり</h1>
 
 <!--===============================================================================================================-->
-<h2>未整頓</h2>
+<h2>情報収集</h2>
 <ul>
-<li>Vagrantの基本
+<li>Vagrant入門
 <pre class="brush: xml;">
-http://qiita.com/kidach1/items/e63c1607705178aa257c
+http://weblabo.oscasierra.net/vagrant/
 </pre>
-<li>
-<pre class="brush: xml;">
-</pre>
-
 <li>
 <pre class="brush: xml;">
 </pre>
@@ -46,10 +42,102 @@ http://qiita.com/kidach1/items/e63c1607705178aa257c
 </ul>
 
 <!--===============================================================================================================-->
-<h2>小見出し</h2>
+<h2>インストール</h2>
+<ul>
+<li>ダウンロード
+<pre class="brush: xml;">
+https://www.vagrantup.com/downloads.html
+</pre>
+<li>vagrant_X.X.x.msi の実行 → マシン再起動が必要
+<li>コマンドで確認
+<pre class="brush: bash;">
+> vagrant -v
+Vagrant X.X.X
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>仮想マシーンを操作してみよう</h2>
+<h3>事前準備</h3>
+<ul>
+<li>VirtualBoxがインストールされている事
+</ul>
+
+<h3>Boxを取得する</h3>
+<ul>
+<li>Boxの追加
+<pre class="brush: ps;">
+# フォーマット ※{name}は任意
+> vagrant box add {name} {url}
+# 具体例
+> vagrant box add centOS63_32 http://tom.davidson.me.uk/dev/vagrant/centos63-32.box
+</pre>
+<li>リスト確認
+<pre class="brush: ps;">
+> vagrant box list
+</pre>
+</ul>
+
+<h3>仮想マシンの初期化</h3>
+<ul>
+<li>適当なフォルダを作成し、移動
+<pre class="brush: ps;">
+> md centOS63_32
+> cd centOS63_32
+</pre>
+<li>新たな仮想マシンを作成
+<pre class="brush: ps;">
+# フォーマット ※{name}は任意
+> vagrant init {name}
+
+# 具体例 → Vagrantfileが作成される
+> vagrant init centOS63_32
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+</pre>
+</ul>
+
+<h3>仮想マシンの設定</h3>
+<ul>
+<li>Vagrantfileの編集
+<pre class="brush: ps;">
+# Create a private network, which allows host-only access to the machine
+# using a specific IP.
+# 単純にコメントを外すと 192.168.33.10 のIPアドレスが仮想マシンに割り当てられます。
+config.vm.network :private_network, ip: "192.168.33.10"
+</pre>
+</ul>
+
+<h3>仮想マシンの起動</h3>
+<ul>
+<li>起動
+<pre class="brush: ps;">
+> vagrant up
+</pre>
+<li>停止
+<pre class="brush: ps;">
+> vagrant halt
+</pre>
+</ul>
+
+<h3>仮想マシンへのSSH接続</h3>
+<ul>
+<li>192.168.33.10:22 で接続可能。以下はデフォルトのユーザ名：PW
+<pre class="brush: ps;">
+ユーザー名：vagrant
+パスワード：vagrant
+</pre>
+</ul>
+
+
+<!--===============================================================================================================-->
+<h2>vagrant-vbguest プラグインのインストール</h2>
 <ul>
 <li>
-<pre class="brush: bash;">
+<pre class="brush: ps;">
+> vagrant plugin install vagrant-vbguest
 </pre>
 </ul>
 
@@ -62,26 +150,81 @@ http://qiita.com/kidach1/items/e63c1607705178aa257c
 </ul>
 
 <!--===============================================================================================================-->
-<h2>小見出し</h2>
+<h2>デフォルトで作成されるVagrantfile の例</h2>
 <ul>
-<li>
-<pre class="brush: bash;">
-</pre>
-</ul>
+<li>中身はrubyのコード
+<pre class="brush: ruby;">
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
-<!--===============================================================================================================-->
-<h2>小見出し</h2>
-<ul>
-<li>
-<pre class="brush: bash;">
-</pre>
-</ul>
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
 
-<!--===============================================================================================================-->
-<h2>小見出し</h2>
-<ul>
-<li>
-<pre class="brush: bash;">
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+  config.vm.box = "centOS63_32"
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.33.10"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network "public_network"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  # config.vm.synced_folder "../data", "/vagrant_data"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  # config.vm.provider "virtualbox" do |vb|
+  #   # Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+  #   # Customize the amount of memory on the VM:
+  #   vb.memory = "1024"
+  # end
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
+  # such as FTP and Heroku are also available. See the documentation at
+  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
+  # config.push.define "atlas" do |push|
+  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
+  # end
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   apt-get update
+  #   apt-get install -y apache2
+  # SHELL
+end
 </pre>
 </ul>
 
