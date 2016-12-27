@@ -1,5 +1,5 @@
 /**
- *
+ * 【一覧】http://www.hp-stylelink.com/news/2013/08/20130828.php
  */
 document.write('\
 <link rel="stylesheet" href="../../../../css/magArt.css">\
@@ -9,8 +9,9 @@ document.write('\
 <script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>\
 <script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushBash.js"></script>\
 <script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushSql.js"></script>\
-		<script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushPlain.js"></script>\
+<script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushPlain.js"></script>\
 		<script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushPhp.js"></script>\
-<link type="text/css" rel="stylesheet" href="../../../../libs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>\
+		<script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushXml.js"></script>\
+<link type="text/css" rel="stylesheet" href="../../../../libs/syntaxhighlighter_3.0.83/styles/shCoreMidnight.css"/>\
 <script type="text/javascript">SyntaxHighlighter.all();</script>\
 ');
