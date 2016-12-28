@@ -9,16 +9,7 @@
 </head>
 <body>
 <h1>CentOS6.5 Jenkins設定</h1>
-<!--
-<ul>
-<li>全体サイズとしては3000文字が目安
-<li>タイトルは28文字以内
-<li>キーワードプランナーを使用
-</ul>
-<h2>問題提起</h2>
-<h2>解決策提起</h2>
-<h2>解決策根拠</h2>
- -->
+<div id="toc"></div>
 <ul>
 <li> 前提として、CentOS6.5 の構築後の作業
 <li> 参考はこちら
@@ -67,7 +58,7 @@ $ sudo /sbin/chkconfig jenkins on
 </ul>
 
 <!--===============================================================================================================-->
-<h2>Jenkins設定</h2>
+<h2>Jenkins初期設定</h2>
 <ul>
 <li>warファイル入れ替え
   <ul>
@@ -102,6 +93,68 @@ $ sudo /sbin/chkconfig jenkins on
 </ul>
 
 <!--===============================================================================================================-->
+<h2>jenkinsのパッケージ構成</h2>
+<ul>
+<li>ホームディレクトリ
+<pre class="brush: bash;">
+/var/lib/jenkins
+</pre>
+<li>
+<pre class="brush: bash;">
+/var/lib/jenkins
+</pre>
+</ul>
+
+<!--===============================================================================================================-->
+<h2>jenkinsトラブルバスターズ</h2>
+<ul>
+<li>【症状】以下のような感じ
+<pre class="brush: bash;">
+# /etc/init.d/jenkins status
+jenkins dead but pid file exists（死んでいるけどプロセスファイルはあるよ）
+</pre>
+<li>【原因】javaが古い
+<pre class="brush: bash;">
+# java -version
+java version "1.7.0_55"
+OpenJDK Runtime Environment (rhel-2.4.7.1.el6_5-x86_64 u55-b13)
+OpenJDK 64-Bit Server VM (build 24.51-b03, mixed mode)
+</pre>
+<li>javaを最新にしよう
+<pre class="brush: bash;">
+# ものがあるかを確認
+# yum search java | grep 1.8.0-openjdk
+
+# インストール
+# yum install java-1.8.0-openjdk
+
+# 切り替え
+# alternatives --config java
+
+There are 3 programs which provide 'java'.
+
+  Selection    Command
+-----------------------------------------------
+ + 1           /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java
+   2           /usr/lib/jvm/jre-1.6.0-openjdk.x86_64/bin/java
+*  3           /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
+
+Enter to keep the current selection[+], or type selection number: 3 ← #※ 3 を入力してリターン
+
+# 確認
+# java -version
+openjdk version "1.8.0_111"
+OpenJDK Runtime Environment (build 1.8.0_111-b15)
+OpenJDK 64-Bit Server VM (build 25.111-b15, mixed mode)
+</pre>
+<li>でjenkins再起動
+<pre class="brush: bash;">
+# /etc/init.d/jenkins restart
+</pre>
+<li>だめでした。。。。
+</ul>
+
+<!--===============================================================================================================-->
 <h2>未整頓メモ</h2>
 <ul>
 <li>認証情報
@@ -124,6 +177,12 @@ $ sudo /sbin/chkconfig jenkins on
   <li>gitサーバをスレーブの１つとする
   <li>sshで接続
   </ul>
+
+<li>使い方
+<pre class="brush: xml;">
+http://qiita.com/opengl-8080/items/a1ca02673c6ab86d173c
+</pre>
+
 </ul>
 
 

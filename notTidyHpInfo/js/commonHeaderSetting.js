@@ -16,4 +16,6 @@ document.write('\
 <script type="text/javascript" src="../../../../libs/syntaxhighlighter_3.0.83/scripts/shBrushRuby.js"></script>\
 <link type="text/css" rel="stylesheet" href="../../../../libs/syntaxhighlighter_3.0.83/styles/shCoreMidnight.css"/>\
 <script type="text/javascript">SyntaxHighlighter.all();</script>\
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>\
+<script type="text/javascript" src="../../../../js/makeIndexInPage.js"></script>\
 ');

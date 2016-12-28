@@ -10,6 +10,7 @@
 <body>
 最終更新日付：2016/12/26（月）
 <h1>Vagrantいじり</h1>
+<div id="toc"></div>
 
 <!--===============================================================================================================-->
 <h2>情報収集</h2>
@@ -18,26 +19,13 @@
 <pre class="brush: xml;">
 http://weblabo.oscasierra.net/vagrant/
 </pre>
+<li>結局わかりやすいらしい
+<pre class="brush: xml;">
+https://www.vagrantup.com/
+</pre>
 <li>
 <pre class="brush: xml;">
 </pre>
-
-<li>
-<pre class="brush: xml;">
-</pre>
-
-<li>
-<pre class="brush: xml;">
-</pre>
-
-<li>
-<pre class="brush: xml;">
-</pre>
-
-<li>
-<pre class="brush: xml;">
-</pre>
-
 
 </ul>
 
@@ -119,6 +107,19 @@ config.vm.network :private_network, ip: "192.168.33.10"
 <li>停止
 <pre class="brush: ps;">
 > vagrant halt
+</pre>
+<li>削除
+<pre class="brush: ps;">
+# 設定ファイルは残るが、upで設定ファイルの状態で再度作り直せる
+# Boxが消えるわけではない
+> vagrant destroy
+    default: Are you sure you want to destroy the 'default' VM? [y/N] y
+==> default: Destroying VM and associated drives...
+</pre>
+<li>Box削除
+<pre class="brush: ps;">
+# Boxが消えるわけではない
+> vagrant box remove {name}
 </pre>
 </ul>
 
