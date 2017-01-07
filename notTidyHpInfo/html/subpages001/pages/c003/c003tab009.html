@@ -8,25 +8,34 @@
 <!-- ------------------------------------------------------------------------------- -->
 </head>
 <body>
-最終更新日付：2016/11/28（月）
+最終更新日付：2016/12/31（火）
 <h1>CentOS7.0にMySQLを装備</h1>
 <div id="toc"></div>
 
 <!--===============================================================================================================-->
 <h2>参考</h2>
 <ul>
-<li>http://qiita.com/ksugawara61/items/336ffab798e05cae4afc
-<li>http://www.mk-mode.com/octopress/2015/12/16/centos-mysql-57-installation-by-yum/
+<li>
+<pre class="brush: 	xml;" >
+http://qiita.com/ksugawara61/items/336ffab798e05cae4afc
+</pre>
+<li>
+<pre class="brush: 	xml;" >
+http://www.mk-mode.com/octopress/2015/12/16/centos-mysql-57-installation-by-yum/
+</pre>
 </ul>
 
 <!--===============================================================================================================-->
 <h2>パスワード変更時にひっかかる</h2>
 <ul>
-<li>https://yoku0825.blogspot.jp/2015/08/mysql-578rpmvalidatepassword.html
+<li>以下のメッセージで引っかかる
 <pre class="brush: 	bash;" >
 Your password does not satisfy the current policy requirements
 </pre>
 <li>デフォルトでは8文字以上、英大文字小文字数字記号の4種類を含む必要がある。
+<pre class="brush: 	xml;" >
+https://yoku0825.blogspot.jp/2015/08/mysql-578rpmvalidatepassword.html
+</pre>
 </ul>
 
 <!--===============================================================================================================-->
@@ -34,9 +43,9 @@ Your password does not satisfy the current policy requirements
 <ul>
 <li>ポート開放が必要
 <pre class="brush: 	bash;" >
-$	sudo firewall-cmd --add-port=3306/tcp
-$	sudo firewall-cmd --reload
-$	sudo firewall-cmd --add-port=3306/tcp
+$ sudo firewall-cmd --add-port=3306/tcp
+$ sudo firewall-cmd --reload
+$ sudo firewall-cmd --add-port=3306/tcp
 </pre>
 </ul>
 
@@ -45,23 +54,62 @@ $	sudo firewall-cmd --add-port=3306/tcp
 <ul>
 <li>DB作成
 <pre class="brush: 	sql;" >
->	create database selp2_db;
->	show databases;
+> create database selp2_db;
+> show databases;
 </pre>
 <li>ユーザ作成
 <pre class="brush: 	sql;" >
->	create user 'selp2'@'%' identified by 'selp2@K3';
->	select host, user from mysql.user;
+> create user 'selp2'@'%' identified by 'selp2@K3';
+> select host, user from mysql.user;
 </pre>
 <li>権限付与
 <pre class="brush: 	sql;" >
->	grant all privileges on selp2_db.* to 'selp2'@'%';
+> grant all privileges on selp2_db.* to 'selp2'@'%';
 </pre>
 <li>ログイン
 <pre class="brush: 	bash;" >
 $ mysql -u selp2 -p selp2_db
 </pre>
 </ul>
+
+
+<!--===============================================================================================================-->
+<h2>STRICT_TRANS_TABLES削除</h2>
+<ul>
+<li>設定ファイルを編集
+<pre class="brush: 	bash;" >
+sudo cp /etc/my.cnf /etc/my.cnf.org
+sudo vim /etc/my.cnf
+</pre>
+<pre class="brush: 	bash;" >
+sql-mode="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+  ↓
+sql-mode="ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+</pre>
+<li> 再起動
+<pre class="brush: 	bash;" >
+$ sudo service mysqld restart
+</pre>
+<li> 確認
+<pre class="brush: 	sql;" >
+> SHOW GLOBAL VARIABLES LIKE 'sql_mode';
+</pre>
+</ul>
+
+
+
+<!--===============================================================================================================-->
+<h2>小技</h2>
+<ul>
+<li>
+<pre class="brush: 	sql;" >
+</pre>
+<li> my.cnf ファイルの場所を調べる
+<pre class="brush: 	bash;" >
+$ mysql --help | grep my.cnf
+</pre>
+</ul>
+
 
 
 <!--===============================================================================================================-->
