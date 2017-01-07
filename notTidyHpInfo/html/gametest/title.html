@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>エンジニアクエスト</title>
+<script type="text/javascript" src="./jsons/data1.json"></script>
+<script type="text/javascript" src="./jsons/data_mondai001.json"></script>
+<script type="text/javascript">
+//var mydata = JSON.stringify(data1);
+//alert(mydata);
+window.onload = function() {
+	var mydata = JSON.stringify(data_mondai001, function(key, value) {
+	if (key === '') return value;
+
+    var elem = document.getElementById("test");
+	elem.innerHTML = elem.innerHTML + "<h2>" + value + "</h2>";
+	});
+}
+</script>
+</head>
+<body>
+<div id="test"></div>
+</body>
+</html>
