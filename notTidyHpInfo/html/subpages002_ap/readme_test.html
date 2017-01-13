@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>応用情報技術者試験</title>
+<!-- ------------------------------------------------------------------------------- -->
+<link rel="stylesheet" href="../../css/magArt.css">
+<!-- syntaxhighlighter_3.0.83 -->
+<script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="../../libs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<!-- 目次作成用ロジック -->
+<script type="text/javascript" src="./jsons/idx.json"></script>
+<script type="text/javascript">
+// http://qiita.com/kouh/items/dfc14d25ccb4e50afe89
+window.onload = function() {
+	var mydata = JSON.stringify(idx, function(key, value) {
+		if (key === '') return value;
+		var header_dtl = document.getElementById("header_dtl");
+		var nav_dtl = document.getElementById("nav_dtl");
+		// head
+		for(k1 in value){
+			// リンク要素作成
+			var e1 = document.createElement('a');
+			e1.innerHTML = value[k1].title;  // ★
+			e1.href = '#category' + k1;
+			e1.setAttribute('onclick', "ChangeCategory('category" + k1 + "'); return false;");
+			// 作成した要素を追加
+			header_dtl.appendChild(e1);
+			header_dtl.innerHTML = header_dtl.innerHTML + "　";
+
+			// nav
+			for(k2 in value[k1]){
+				// div要素
+				var e2 = document.createElement('div');
+				e2.id = 'category' + k1;
+				// ul要素作成
+				var e3 = document.createElement('ul');
+				// li要素作成
+				var e4 = document.createElement('li');
+				// B要素作成
+				var e5 = document.createElement('B');
+				e5.innerHTML = value[k1][k2].title; // ★
+				// 要素追加( <li><B>...</B></li> )
+				e4.appendChild(e5);
+				// 要素追加( <ul><li><B>...</B></li></ul> )
+				e3.appendChild(e4);
+				// 要素追加( <div id="category000"><ul><li><B>...</B></li></ul></div> )
+				e2.appendChild(e3);
+				// tab
+				//for(k3 in value[k1][k2]){
+				//}
+			}
+		}
+	});
+}
+
+
+
+</script>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+<!-- ヘッダ開始 -->
+<div id="header">
+<h1>応用情報技術者試験</h1>
+<a href="#category000" onclick="ChangeCategory('category000'); return false;">はじめに</a>
+<div id="header_dtl"></div>
+ </div>
+<!-- ヘッダ終了 -->
+<!-- ナビゲーション開始 -->
+<div id="nav">
+<div id="category000">
+<ul>
+<li><a href="#c000tab000" onclick="ChangeTab('c000tab000'); return false;"></a>
+</ul>
+</div><!-- <div id="category000"> -->
+
+<div id="nav_dtl"></div>
+
+</div><!-- <div id="nav"> -->
+<!-- ナビゲーション終了 -->
+<!-- メインカラム開始 -->
+<div id="content">
+<!--------------------------------------------------------------------------->
+<!-- カテゴリ単位  -->
+<!--------------------------------------------------------------------------->
+<div id="category000">
+<div id="c000tab000"><iframe src="./pages/c000tab000.html" height="1999px"></iframe></div>
+<div id="c000tab001"><iframe src="./pages/c000tab001.html" height="1999px"></iframe></div>
+<div id="c000tab002"><iframe src="./pages/c000tab002.html" height="1999px"></iframe></div>
+<div id="c000tab003"><iframe src="./pages/c000tab003.html" height="1999px"></iframe></div>
+</div><!-- <div id="category000"> -->
+<!--------------------------------------------------------------------------->
+<!-- カテゴリ単位  -->
+<!--------------------------------------------------------------------------->
+<div id="category001">
+<div id="c001tab000"><iframe src="./pages/c001tab000.html" height="6999px"></iframe></div>
+<div id="c001tab001"><iframe src="./pages/c001tab001.html" height="1999px"></iframe></div>
+<div id="c001tab002"><iframe src="./pages/c001tab002.html" height="1999px"></iframe></div>
+</div><!-- <div id="category001"> -->
+<!--------------------------------------------------------------------------->
+<!-- カテゴリ単位  -->
+<!--------------------------------------------------------------------------->
+<div id="category002">
+<div id="c002tab000"><iframe src="./pages/c002tab000.html" height="1999px"></iframe></div>
+<div id="c002tab001"><iframe src="./pages/c002tab001.html" height="1999px"></iframe></div>
+<div id="c002tab002"><iframe src="./pages/c002tab002.html" height="1999px"></iframe></div>
+</div><!-- <div id="category002"> -->
+<!--------------------------------------------------------------------------->
+<!-- カテゴリ単位  -->
+<!--------------------------------------------------------------------------->
+<div id="category003">
+<div id="c003tab000"><iframe src="./pages/c003tab000.html" height="1999px"></iframe></div>
+<div id="c003tab001"><iframe src="./pages/c003tab001.html" height="1999px"></iframe></div>
+<div id="c003tab002"><iframe src="./pages/c003tab002.html" height="1999px"></iframe></div>
+</div><!-- <div id="category003"> -->
+<!--------------------------------------------------------------------------->
+</div><!-- <div id="content"> -->
+<!-- メインカラム終了 -->
+<!-- フッタ開始 -->
+<div id="footer">
+［フッタ］
+</div>
+<!-- フッタ終了 -->
+</div>
+<!-- コンテナ終了 -->
+<!-- ------------------------------------------------------------------------------- -->
+</body>
+</html>
