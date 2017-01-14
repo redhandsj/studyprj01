@@ -60,11 +60,16 @@ window.onload = function() {
 				for(k3 in value[k1][k2]){
 					// オブジェクトではない場合は無視する
 					if(!(value[k1][k2][k3] instanceof Object)) continue;
-					// リンク要素作成
-					var e111 = document.createElement('a');
+					// リンク or 文字列要素作成
+					var e111 = null;
+					if(value[k1][k2][k3].ex){
+						e111 = document.createElement('a');
+						e111.href = '#c' + k1 + 'tab' + k3;
+						e111.setAttribute('onclick', "ChangeTab('c" + k1 + "tab" + k3 + "'); return false;");
+					}else{
+						e111 = document.createElement('u');
+					}
 					e111.innerHTML = value[k1][k2][k3].title;  // ★
-					e111.href = '#c' + k1 + 'tab' + k3;
-					e111.setAttribute('onclick', "ChangeTab('c" + k1 + "tab" + k3 + "'); return false;");
 					// li要素作成
 					var e112 = document.createElement('li');
 					// 要素追加( <li><a>...</a></li> )
@@ -78,11 +83,13 @@ window.onload = function() {
 
 					// フレーム作成
 					// リンク要素作成
-					var e114 = document.createElement('iframe');
-					e114.setAttribute('src', "./pages/c" + k1 + "tab" + k3 + ".html");
-					e114.height = "6999px";
-					// 要素追加( <div><iframe>...</iframe></div> )
-					e113.appendChild(e114);
+					if(value[k1][k2][k3].ex){
+						var e1111 = document.createElement('iframe');
+						e1111.setAttribute('src', "./pages/c" + k1 + "tab" + k3 + ".html");
+						e1111.height = "6999px";
+						// 要素追加( <div><iframe>...</iframe></div> )
+						e113.appendChild(e1111);
+					}
 					// 要素追加( <div><div><iframe>...</iframe></div></div> )
 					e3.appendChild(e113);
 				}
