@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>応用情報技術者試験</title>
+<!-- ------------------------------------------------------------------------------- -->
+<link rel="stylesheet" href="../../css/magArt.css">
+<!-- syntaxhighlighter_3.0.83 -->
+<script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="../../libs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<!-- 目次作成用ロジック -->
+<script type="text/javascript" src="./jsons/idx.json"></script>
+<script type="text/javascript">
+/**
+ * JSONからページを設定
+ * http://qiita.com/kouh/items/dfc14d25ccb4e50afe39
+ */
+window.onload = function() {
+	var mydata = JSON.stringify(idx, function(key, value) {
+		if (key === '') return value;
+		var header_dtl = document.getElementById("header_dtl");
+		var nav_dtl = document.getElementById("nav_dtl");
+		var content_dtl = document.getElementById("content_dtl");
+		// head
+		for(k1 in value){
+			// リンク要素作成
+			var e1 = document.createElement('a');
+			e1.innerHTML = value[k1].title;  // ★
+			e1.href = '#category' + k1;
+			e1.setAttribute('onclick', "ChangeCategory('category" + k1 + "'); return false;");
+			// 作成した要素を追加
+			header_dtl.appendChild(e1);
+			header_dtl.innerHTML = header_dtl.innerHTML + "　";
+			// div要素
+			var e2 = document.createElement('div');
+			e2.id = 'category' + k1;
+
+			// カテゴリdiv作成（フレーム用）
+			var e3 = document.createElement('div');
+			e3.id = 'category' + k1;
+
+			// nav
+			for(k2 in value[k1]){
+				// オブジェクトではない場合は無視する
+				if(!(value[k1][k2] instanceof Object)) continue;
+				// ul要素作成
+				var e11 = document.createElement('ul');
+				// li要素作成
+				var e12 = document.createElement('li');
+				// B要素作成
+				var e13 = document.createElement('B');
+				e13.innerHTML = value[k1][k2].title; // ★
+				// 要素追加( <ul><B>...</B></ul> )
+				e11.appendChild(e13);
+				// 要素追加( <ul><li><B>...</B></li></ul> )
+				//e11.appendChild(e12);
+				// tab
+				for(k3 in value[k1][k2]){
+					// オブジェクトではない場合は無視する
+					if(!(value[k1][k2][k3] instanceof Object)) continue;
+					// リンク or 文字列要素作成
+					var e111 = null;
+					if(value[k1][k2][k3].ex){
+						e111 = document.createElement('a');
+						e111.href = '#c' + k1 + 'tab' + k3;
+						e111.setAttribute('onclick', "ChangeTab('c" + k1 + "tab" + k3 + "'); return false;");
+					}else{
+						e111 = document.createElement('u');
+					}
+					e111.innerHTML = value[k1][k2][k3].title;  // ★
+					// li要素作成
+					var e112 = document.createElement('li');
+					// 要素追加( <li><a>...</a></li> )
+					e112.appendChild(e111);
+					// 要素追加( <ul><li><a>...</a></li></ul> )
+					e11.appendChild(e112);
+
+					// カテゴリdiv作成（フレーム用）
+					var e113 = document.createElement('div');
+					e113.id = 'c' + k1 + 'tab' + k3;
+
+					// フレーム作成
+					// リンク要素作成
+					if(value[k1][k2][k3].ex){
+						var e1111 = document.createElement('iframe');
+						e1111.setAttribute('src', "./pages/c" + k1 + "tab" + k3 + ".html");
+						e1111.height = "6999px";
+						// 要素追加( <div><iframe>...</iframe></div> )
+						e113.appendChild(e1111);
+					}
+					// 要素追加( <div><div><iframe>...</iframe></div></div> )
+					e3.appendChild(e113);
+				}
+				// 要素追加( <div id="category000"><ul><li><B>...</B></li></ul></div> )
+				e2.appendChild(e11);
+				// 要素追加( <content_dtl><div><iframe>...</iframe></div></content_dtl> )
+				content_dtl.appendChild(e3);
+			}
+			nav_dtl.appendChild(e2);
+		}
+	});
+	//デフォルトのカテゴリを選択
+	ChangeCategory('category000');
+	//デフォルトのタブを選択
+	ChangeTab('c000tab000');
+}
+/**
+ *カテゴリ入れ替え
+ */
+function ChangeCategory(categoryname) {
+	var mydata = JSON.stringify(idx, function(key, value) {
+		if (key === '') return value;
+		// 全部消す
+		document.getElementById('category000').style.display = 'none';
+		for(k1 in value){
+			document.getElementById('category' + k1).style.display = 'none';
+		}
+		// 指定箇所のみ表示
+		document.getElementById(categoryname).style.display = 'block';
+	});
+}
+/**
+ * タブ入れ替え
+ */
+function ChangeTab(tabname) {
+	var mydata = JSON.stringify(idx, function(key, value) {
+		if (key === '') return value;
+		// 全部消す
+		document.getElementById('c000tab000').style.display = 'none';
+		for(k1 in value){
+			for(k2 in value[k1]){
+				// オブジェクトではない場合は無視する
+				if(!(value[k1][k2] instanceof Object)) continue;
+				for(k3 in value[k1][k2]){
+					// オブジェクトではない場合は無視する
+					if(!(value[k1][k2][k3] instanceof Object)) continue;
+					document.getElementById('c' + k1 + 'tab' + k3).style.display = 'none';
+				}
+			}
+		}
+		// 指定箇所のみ表示
+		document.getElementById(tabname).style.display = 'block';
+	});
+}
+</script>
+<!-- ------------------------------------------------------------------------------- -->
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+<!-- ヘッダ開始 -->
+<div id="header">
+<h1>応用情報技術者試験</h1>
+<!-- メニュー定義 -->
+<ul id="dropmenu">
+  <li><a href="#">メニュー1</a>
+    <ul>
+      <li><a href="#">子メニュー</a>
+        <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a>
+            <ul>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+            </ul>
+          </li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+      <li><a href="#">子メニュー</a>
+        <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+      <li><a href="#">子メニュー</a>
+         <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a>
+            <ul>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+            </ul>
+          </li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+      <li><a href="#">子メニュー</a>
+        <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <!-- ==================================================================================================== -->
+  <li><a href="#">メニュー2</a>
+    <ul>
+      <li><a href="#">子メニュー</a>
+        <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a>
+            <ul>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+            </ul>
+          </li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+      <li><a href="#">子メニュー</a>
+        <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+      <li><a href="#">子メニュー</a>
+         <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a>
+            <ul>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニュー</a></li>
+            </ul>
+          </li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+      <li><a href="#">子メニュー</a>
+        <ul>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+          <li><a href="#">孫メニュー</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+</ul>
+
+
+<a href="#category000" onclick="ChangeCategory('category000'); return false;">はじめに</a>
+<div id="header_dtl"></div>
+ </div>
+<!-- ヘッダ終了 -->
+<!-- ------------------------------------------------------------------------------- -->
+<!-- ナビゲーション開始 -->
+<!--  -->
+<div id="nav">
+<div id="category000">
+<ul>
+<li><a href="#c000tab000" onclick="ChangeTab('c000tab000'); return false;"></a>
+</ul>
+</div><!-- <div id="category000"> -->
+<div id="nav_dtl"></div>
+</div><!-- <div id="nav"> -->
+
+<!-- ナビゲーション終了 -->
+<!-- ------------------------------------------------------------------------------- -->
+<!-- メインカラム開始 -->
+<div id="content">
+<div id="category000">
+<div id="c000tab000"><iframe src="./pages/c000/c000tab000.html" height="1999px"></iframe></div>
+</div><!-- <div id="category000"> -->
+<div id="content_dtl"></div>
+</div><!-- <div id="content"> -->
+<!-- メインカラム終了 -->
+<!-- ------------------------------------------------------------------------------- -->
+<!-- フッタ開始 -->
+<div id="footer">
+［フッタ］
+</div>
+<!-- フッタ終了 -->
+</div>
+<!-- コンテナ終了 -->
+<!-- ------------------------------------------------------------------------------- -->
+</body>
+</html>
