@@ -3,13 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="./dd.css">
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- IE8以下でもメディアクエリを有効にする -->
+<!--[if lt IE 9]>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="./dd.css">
+<script type="text/javascript">
+$(function(){
+  var menu = $('#slide_menu'), // スライドインするメニューを指定
+       /*menuBtn = $('#button'), // メニューボタンを指定*/
+       body = $(document.body),
+       menuWidth = menu.outerWidth();
+  // メニューボタンをクリックした時の動き
+  //menuBtn.on('click', function(){
+  $('#panel-btn').click(function(){
+	  // body に open クラスを付与する
+    body.toggleClass('open');
+    if(body.hasClass('open')){
+      // open クラスが body についていたらメニューをスライドインする
+      body.animate({'left' : menuWidth }, 300);
+      menu.animate({'left' : 0 }, 300);
+    } else {
+      // open クラスが body についていなかったらスライドアウトする
+      menu.animate({'left' : -menuWidth }, 300);
+      body.animate({'left' : 0 }, 300);
+    }
+  });
+});
+</script>
 </head>
 <body>
 <!-- メニュー定義 -->
-<div class="container">
-<div id="nav">
+
+<!-- スライドメニュー部分-->
+<nav id="slide_menu">
 <ul id="dropmenu">
+  <li><a href="#">HOME</a></li>
   <li><a href="#">メニュー1</a>
     <ul>
       <li><a href="#">子メニュー</a>
@@ -17,7 +49,7 @@
           <li><a href="#">孫メニュー</a></li>
           <li><a href="#">孫メニュー</a>
             <ul>
-              <li><a href="#">ひ孫メニュー</a></li>
+              <li><a href="#">ひ孫メニューひ孫メニューひ孫メニューひ孫メニューひ孫メニューひ孫メニュー</a></li>
               <li><a href="#">ひ孫メニュー</a></li>
               <li><a href="#">ひ孫メニュー</a></li>
               <li><a href="#">ひ孫メニュー</a></li>
@@ -112,7 +144,21 @@
     </ul>
   </li>
 </ul>
-</div>
-</div>
+<!--
+    <ul>
+        <li><a href="#">menu1</a></li>
+        <li><a href="#">menu2</a></li>
+        <li><a href="#">menu3</a></li>
+        <li><a href="#">menu4</a></li>
+        <li><a href="#">menu5</a></li>
+    </ul>
+ -->
+</nav>
+
+<!--メニューを出すボタン-->
+<a href="#" id="panel-btn"><span id="panel-btn-icon"></span></a>
+
+<!-- <button id="button"><i class="fa fa-bars"></i> Menu</button> -->
+<!-- <a id="button"><i class="fa fa-bars"></i> Menu</a> -->
 </body>
 </html>

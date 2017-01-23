@@ -1,0 +1,185 @@
+@CHARSET "UTF-8";
+/********************************************************************************************************************/
+/* --- 全体の背景・テキスト --- */
+body {
+margin: 0;
+padding: 0;
+background-color: #000000; /* ページの背景色 */
+color: #00C000; /* 全体の文字色 */
+font-size: 80%; /* 全体の文字サイズ */
+height:100%;
+line-height: 200%; /* 行の高さ */
+    position: relative;
+    left: 0;
+    overflow-x: hidden;
+}
+/********************************************************************************************************************/
+/*
+ * サイドメニュー
+ */
+#slide_menu{
+    position: fixed;
+    top: 0;
+    left: -135px;
+    width: 135px;
+    height: 100%;
+    /*background: #E87272; 色*/
+    background: gray;
+}
+/********************************************************************************************************************/
+/*
+ * 親メニュー
+ */
+#dropmenu {
+  list-style-type: none;
+  width: 670px; /* 全体の長さ（ここ以外は、%で表す） */
+  margin: 30px auto 0px;
+  padding: 0;
+}
+#dropmenu li {
+  position: relative;
+  width: 20%;
+  /*float: left;  横並びにする*/
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+#dropmenu li a {
+  display: block;
+  margin: 0;
+  padding: 16px 0;
+  background: #8a9b0f;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+}
+/********************************************************************************************************************/
+/*
+ * 子以下メニュー
+ */
+#dropmenu li ul {
+  list-style: none;
+  position: absolute;
+  z-index: 100;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#dropmenu li ul li {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  color: #fff;
+  transition: .2s;
+}
+#dropmenu li ul li a {
+  padding: 13px 15px;
+  background: #7c8c0e;
+  text-align: left;
+  font-size: 12px;
+  font-weight: normal;
+}
+/********************************************************************************************************************/
+/* 動作 */
+#dropmenu > li:hover > a {  background: #7c8c0e } /**/
+#dropmenu > li:hover li:hover > a {  background: #6e7c0c }
+#dropmenu li:hover > ul > li {
+  overflow: visible;
+  height: 38px;
+}
+#dropmenu li ul li ul {
+  top: 0;
+  left: 100%;
+}
+/*
+#dropmenu li:last-child ul li ul {
+  left: -100%;
+  width: 100%;
+}
+*/
+#dropmenu li ul li ul li a {  background: #616d0b }
+#dropmenu li:hover ul li ul li:hover > a {  background: #535d09 }
+#dropmenu li ul li ul:before {
+  position: absolute;
+  content: "";
+  top: 13px;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-left-color: #454e08;
+}
+/*
+#dropmenu li:last-child ul li ul:before {
+  position: absolute;
+  content: "";
+  top: 13px;
+  left: 200%;
+  margin-left: -20px;
+  border: 5px solid transparent;
+  border-right-color: #454e08;
+}
+*/
+/********************************************************************************************************************/
+/*
+ * メニューボタン
+ */
+#panel-btn{
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 20px 0 10px;
+  border-radius: 50%;
+  background: #fff;
+}
+#panel-btn:hover{
+  background: #fafafa;
+}
+#panel-btn-icon{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  margin: -1px 0 0 -7px;
+  background: #2196F3;
+  transition: .2s;
+}
+#panel-btn-icon:before, #panel-btn-icon:after{
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 14px;
+  height: 2px;
+  background: #2196F3;
+  transition: .3s;
+}
+#panel-btn-icon:before{
+  margin-top: -6px;
+}
+#panel-btn-icon:after{
+  margin-top: 4px;
+}
+#panel-btn .close{
+  background: transparent;
+}
+#panel-btn .close:before, #panel-btn .close:after{
+  margin-top: 0;
+}
+#panel-btn .close:before{
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+#panel-btn .close:after{
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+/********************************************************************************************************************/

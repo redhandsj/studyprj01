@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- IE8以下でもメディアクエリを有効にする -->
+<!--[if lt IE 9]>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="./dd.css">
+<script type="text/javascript">
+$(function(){
+  $("#toggle").click(function(){
+    $("#menu").slideToggle();
+    return false;
+  });
+  $(window).resize(function(){
+    var win = $(window).width();
+    var p = 480;
+    if(win > p){
+      $("#menu").show();
+    }
+  });
+});
+</script>
+</head>
+<body>
+<!-- メニュー定義 -->
+<div id="menu-box">
+  <div id="toggle"><a href="#">menu</a></div>
+  <ul id="menu" class="">
+    <li><a href="#">html</a></li>
+    <li><a href="#">css</a></li>
+    <li><a href="#">javascript</a></li>
+    <li><a href="#">php</a></li>
+    <li><a href="#">CGI</a></li>
+    <li><a href="#">Python</a></li>
+    <li><a href="#">Ruby</a></li>
+    <li><a href="#">java</a></li>
+  </ul>
+</div>
+<div class="main">メインコンテンツ</div>
+</body>
+</html>
