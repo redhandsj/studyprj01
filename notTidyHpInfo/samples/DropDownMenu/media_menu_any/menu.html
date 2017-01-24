@@ -36,8 +36,29 @@ $(function(){
 </script>
 </head>
 <body>
-<!-- メニュー定義 -->
+<!-- コンテナ開始 -->
+<div id="container">
+<!--***************************************************************************************************************-->
+<!-- ヘッダ開始 -->
+<header>
+<!-- メニューボタン／サイト内検索ボックス／検索ボタン -->
+<div class="boxContainer">
+  <div class="box1">
+    <a href="#" id="panel-btn"><span id="panel-btn-icon"></span></a>
+  </div>
+  <div class="box2">
+    <input name="keywords2" id="keywords2" value="" type="text" placeholder="サイト内検索..."/>
+  </div>
+  <div class="box3">
+    <input type="image" src="./btn2.gif" alt="検索" name="searchBtn2" id="searchBtn2" />
+  </div>
+</div><!-- <div class="boxContainer"> -->
 
+
+
+</header>
+<!--***************************************************************************************************************-->
+<!-- メニュー定義 -->
 <!-- スライドメニュー部分-->
 <nav id="slide_menu">
 <ul id="dropmenu">
@@ -144,21 +165,27 @@ $(function(){
     </ul>
   </li>
 </ul>
-<!--
-    <ul>
-        <li><a href="#">menu1</a></li>
-        <li><a href="#">menu2</a></li>
-        <li><a href="#">menu3</a></li>
-        <li><a href="#">menu4</a></li>
-        <li><a href="#">menu5</a></li>
-    </ul>
- -->
 </nav>
+<!--***************************************************************************************************************-->
+<!-- メインカラム開始 -->
+<div id="content">
+<div id="category000">
+<div id="c000tab000"><iframe src="./pages/c000/c000tab000.html" height="1999px"></iframe></div>
+</div><!-- <div id="category000"> -->
+<div id="content_dtl"></div>
+</div><!-- <div id="content"> -->
+<!-- メインカラム終了 -->
+<!--***************************************************************************************************************-->
+<!-- フッタ開始 -->
+<footer id="footer">
+［フッタ］
+</footer>
+<!-- フッタ終了 -->
+<!--***************************************************************************************************************-->
+</div><!-- <div id="container"> -->
 
-<!--メニューを出すボタン-->
-<a href="#" id="panel-btn"><span id="panel-btn-icon"></span></a>
 
-<!-- <button id="button"><i class="fa fa-bars"></i> Menu</button> -->
-<!-- <a id="button"><i class="fa fa-bars"></i> Menu</a> -->
+
+
 </body>
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../css/common.css">
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- IE8以下でもメディアクエリを有効にする -->
+<!--[if lt IE 9]>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<script type="text/javascript">
+</script>
+<!-- ちしきメニュー目次 -->
+<script type="text/javascript" src="../data/001ap.json"></script>
+<!-- のうはうメニュー目次 -->
+<script type="text/javascript" src="../data/002kh.json"></script>
+<!-- 目次作成用ロジック -->
+<script type="text/javascript" src="../js/changeTab.js"></script>
+<script type="text/javascript" src="../js/jsonToMenu.js"></script>
+<script type="text/javascript" src="../js/slideMenu.js"></script>
+<script type="text/javascript">
+/**
+ * JSONからページを設定
+ */
+window.onload = function() {
+	/* ちしき*/
+	var aps = JSON.stringify(ap, function(key, value) {
+		if (key === '') return value;
+		var nav_dtl = document.getElementById("ap_dtl");
+		var content_dtl = document.getElementById("content_ap_dtl");
+		JsonToMenu(nav_dtl,content_dtl,ap,key,value,"../html/001ap/",'apc','tab');
+	});
+	/* のうはう */
+	var khs = JSON.stringify(kh, function(key, value) {
+		if (key === '') return value;
+		var nav_dtl = document.getElementById("kh_dtl");
+		var content_dtl = document.getElementById("content_kh_dtl");
+		JsonToMenu(nav_dtl,content_dtl,kh,key,value,"../html/002kh/",'khc','tab');
+	});
+	//デフォルトのタブを選択（HOME）
+	ChangeTab('c000tab000');
+}
+</script>
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+<!--***************************************************************************************************************-->
+<!-- ヘッダ開始 -->
+<header>
+<!-- メニューボタン／サイト内検索ボックス／検索ボタン -->
+<div class="boxContainer">
+  <div class="box1">
+    <a href="#" id="panel-btn"><span id="panel-btn-icon"></span></a>
+  </div>
+  <div class="box2">
+    <input name="keywords2" id="keywords2" value="" type="text" placeholder="サイト内検索..."/>
+  </div>
+  <div class="box3">
+    <input type="image" src="../images/btn2.gif" alt="検索" name="searchBtn2" id="searchBtn2" />
+  </div>
+</div><!-- <div class="boxContainer"> -->
+<div id="hometitle">
+<span>補足やサブタイトル。。。。</span>
+	<b>ページサンプル</b>
+</div><!-- 僕のアカシックレコード -->
+</header>
+<!--***************************************************************************************************************-->
+<!-- メニュー定義 -->
+<!-- スライドメニュー部分-->
+<nav id="slide_menu">
+<ul id="dropmenu">
+<li><a href="#c000tab000" onclick="ChangeTab('c000tab000'); return false;">HOME</a></li>
+<li><a href="#">知識</a><ul id="ap_dtl"></ul></li>
+<li><a href="#">ノウハウ</a><ul id="kh_dtl"></ul></li>
+</ul>
+</nav>
+<!--***************************************************************************************************************-->
+<!-- メインカラム開始 -->
+<div id="content">
+<div id="category000">
+<div id="c000tab000"><iframe src="../html/home/home.html" height="1999px"></iframe></div>
+</div><!-- <div id="category000"> -->
+<div id="content_ap_dtl"></div><!-- ちしきメニュー目次 -->
+<div id="content_kh_dtl"></div><!-- のうはうメニュー目次 -->
+</div><!-- <div id="content"> -->
+<!-- メインカラム終了 -->
+<!--***************************************************************************************************************-->
+<!-- フッタ開始 -->
+<footer id="footer">
+［フッタ］
+</footer>
+<!-- フッタ終了 -->
+<!--***************************************************************************************************************-->
+</div><!-- <div id="container"> -->
+
+
+
+
+</body>
+</html>

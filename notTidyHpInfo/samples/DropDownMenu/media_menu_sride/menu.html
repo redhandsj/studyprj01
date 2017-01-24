@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="./dd.css">
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- IE8以下でもメディアクエリを有効にする -->
+<!--[if lt IE 9]>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="./dd.css">
+<script type="text/javascript">
+$(function(){
+  var menu = $('#slide_menu'), // スライドインするメニューを指定
+       /*menuBtn = $('#button'), // メニューボタンを指定*/
+       body = $(document.body),
+       menuWidth = menu.outerWidth();
+  // メニューボタンをクリックした時の動き
+  //menuBtn.on('click', function(){
+  $('#panel-btn').click(function(){
+	  // body に open クラスを付与する
+    body.toggleClass('open');
+    if(body.hasClass('open')){
+      // open クラスが body についていたらメニューをスライドインする
+      body.animate({'left' : menuWidth }, 300);
+      menu.animate({'left' : 0 }, 300);
+    } else {
+      // open クラスが body についていなかったらスライドアウトする
+      menu.animate({'left' : -menuWidth }, 300);
+      body.animate({'left' : 0 }, 300);
+    }
+  });
+});
+</script>
+<!-- 目次作成用ロジック -->
+<script type="text/javascript" src="./idx.json"></script>
+<script type="text/javascript">
+/**
+ * JSONからページを設定
+ * http://qiita.com/kouh/items/dfc14d25ccb4e50afe39
+ */
+window.onload = function() {
+	var mydata = JSON.stringify(idx, function(key, value) {
+		if (key === '') return value;
+		var menu_dtl = document.getElementById("menu_dtl");
+		var content_dtl = document.getElementById("content_dtl");
+
+		// head
+		for(k1 in value){
+			// リンク要素作成
+			var e1 = document.createElement('a');
+			e1.href = '#';
+			e1.innerHTML = value[k1].title;  // ★
+			// div要素
+			var e2 = document.createElement('li');
+			e2.appendChild(e1);
+
+			// ul要素作成
+			var e3 = document.createElement('ul');
+
+			// カテゴリdiv作成（フレーム用）
+			var e4 = document.createElement('div');
+			e4.id = 'category' + k1;
+
+			// ２階層目
+			for(k2 in value[k1]){
+				// オブジェクトではない場合は無視する
+				if(!(value[k1][k2] instanceof Object)) continue;
+				// li要素作成
+				var e11 = document.createElement('li');
+				// B要素作成
+				var e12 = document.createElement('a');
+				e12.href = '#';
+				e12.innerHTML = value[k1][k2].title; // ★
+
+				// ul要素作成
+				var e13 = document.createElement('ul');
+
+				// tab
+				for(k3 in value[k1][k2]){
+					// オブジェクトではない場合は無視する
+					if(!(value[k1][k2][k3] instanceof Object)) continue;
+					// li要素作成
+					var e111 = document.createElement('li');
+
+					// リンク or 文字列要素作成
+					var e112 = null;
+					if(value[k1][k2][k3].ex){
+						e112 = document.createElement('a');
+						e112.href = '#c' + k1 + 'tab' + k3;
+						e112.setAttribute('onclick', "ChangeTab('c" + k1 + "tab" + k3 + "'); return false;");
+					}else{
+						e112 = document.createElement('a');
+						e112.href = '#';
+					}
+					e112.innerHTML = value[k1][k2][k3].title;  // ★
+					// 要素追加( <ul><li><a>...</a></li></ul> )
+					e111.appendChild(e112);
+					// 要素追加( <ul><li><a>...</a></li></ul> )
+					e13.appendChild(e111);
+
+					// カテゴリdiv作成（フレーム用）
+					var e113 = document.createElement('div');
+					e113.id = 'c' + k1 + 'tab' + k3;
+
+					// フレーム作成
+					// リンク要素作成
+					if(value[k1][k2][k3].ex){
+						var e1111 = document.createElement('iframe');
+						e1111.setAttribute('src', "./pages/c" + k1 + "tab" + k3 + ".html");
+						e1111.height = "6999px";
+						// 要素追加( <div><iframe>...</iframe></div> )
+						e113.appendChild(e1111);
+					}
+					// 要素追加( <div><div><iframe>...</iframe></div></div> )
+					e4.appendChild(e113);
+				}
+				// 要素追加( <ul><li><a>...</a></li></ul> )
+				e11.appendChild(e12);
+				// 要素追加( <ul><li><a>...</a></li></ul> )
+				e11.appendChild(e13);
+				// 要素追加( <ul><li><a>...</a></li></ul> )
+				e3.appendChild(e11);
+			}
+			// 要素追加( <li><ul><li><a>...</a></li></ul></li> )
+			e2.appendChild(e3);
+			// 作成した要素を追加
+			menu_dtl.appendChild(e2);
+			// 要素追加( <content_dtl><div><iframe>...</iframe></div></content_dtl> )
+			content_dtl.appendChild(e4);
+		}
+	});
+	//デフォルトのタブを選択
+	//ChangeTab('c000tab000');
+}
+/**
+ * タブ入れ替え
+ */
+function ChangeTab(tabname) {
+	var mydata = JSON.stringify(idx, function(key, value) {
+		if (key === '') return value;
+		// 全部消す
+		document.getElementById('c000tab000').style.display = 'none';
+		for(k1 in value){
+			for(k2 in value[k1]){
+				// オブジェクトではない場合は無視する
+				if(!(value[k1][k2] instanceof Object)) continue;
+				for(k3 in value[k1][k2]){
+					// オブジェクトではない場合は無視する
+					if(!(value[k1][k2][k3] instanceof Object)) continue;
+					document.getElementById('c' + k1 + 'tab' + k3).style.display = 'none';
+				}
+			}
+		}
+		// 指定箇所のみ表示
+		document.getElementById(tabname).style.display = 'block';
+	});
+}
+</script>
+</head>
+<body>
+<!-- コンテナ開始 -->
+<div id="container">
+<!--***************************************************************************************************************-->
+<!-- ヘッダ開始 -->
+<header>
+<!-- メニューボタン／サイト内検索ボックス／検索ボタン -->
+<div class="boxContainer">
+  <div class="box1">
+    <a href="#" id="panel-btn"><span id="panel-btn-icon"></span></a>
+  </div>
+  <div class="box2">
+    <input name="keywords2" id="keywords2" value="" type="text" placeholder="サイト内検索..."/>
+  </div>
+  <div class="box3">
+    <input type="image" src="./btn2.gif" alt="検索" name="searchBtn2" id="searchBtn2" />
+  </div>
+</div><!-- <div class="boxContainer"> -->
+<h1>×××</h1><!-- 僕のアカシックレコード -->
+</header>
+<!--***************************************************************************************************************-->
+<!-- メニュー定義 -->
+<!-- スライドメニュー部分-->
+<nav id="slide_menu">
+<ul id="dropmenu">
+<li><a href="#">HOME</a></li>
+<li><a href="#">ちしき</a><ul id="menu_dtl"></ul></li>
+</ul>
+</nav>
+<!--***************************************************************************************************************-->
+<!-- メインカラム開始 -->
+<div id="content">
+<div id="category000">
+<div id="c000tab000"><iframe src="./00_blog_sample.html" height="1999px"></iframe></div>
+</div><!-- <div id="category000"> -->
+<div id="content_dtl"></div>
+</div><!-- <div id="content"> -->
+<!-- メインカラム終了 -->
+<!--***************************************************************************************************************-->
+<!-- フッタ開始 -->
+<footer id="footer">
+［フッタ］
+</footer>
+<!-- フッタ終了 -->
+<!--***************************************************************************************************************-->
+</div><!-- <div id="container"> -->
+
+
+
+
+</body>
+</html>
