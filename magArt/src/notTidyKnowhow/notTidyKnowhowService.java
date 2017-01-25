@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.Vector;
@@ -403,6 +404,23 @@ public class notTidyKnowhowService {
         System.out.println(date.toString());
 	}
 
+ 	//=======================================================================
+   	/**
+   	 * List14 Java8のnullチェック
+   	 */
+   	private void list14(){
+   		String field = "",msg="";
+		Optional<String> fieldChk = Optional.ofNullable(field);
+		Optional<String> msgChk = Optional.ofNullable(msg);
+		// fieldとmsgがnullでない場合のみ実行
+		fieldChk.ifPresent(str1 -> msgChk.ifPresent(str2 -> {
+			System.out.println("nullじゃない");
+		}));
+		System.out.println("処理完了");
+		return;
+	}
+
+
 	//=======================================================================
 	/**
 	 * 各処理
@@ -433,6 +451,8 @@ public class notTidyKnowhowService {
 		// 日付の比較
 		//this.list12();
 		// 日付単純なフォーマット
-		this.list13();
+		//this.list13();
+		// Java8のnullチェック
+		this.list14();
 	}
 }

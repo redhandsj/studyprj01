@@ -1,8 +1,12 @@
 /**
  * 透明にしながら折りたたむ
  */
-jQuery( function() {
-    jQuery( '#animate-title' ) . click( function() {
-        jQuery( '#animate-block' ) . animate( { height: 'toggle', opacity: 'toggle' }, 'slow' );
-    } );
-} );
+$( function() {
+//  $( '#animate-title' ) . click( function() {
+//    $( '#animate-block' ) . animate( { height: 'toggle', opacity: 'toggle' }, 'slow' );
+//  });
+  $( "[id^=animate-title]" ) . click( function() {
+	 // alert('#animate-block' + $(this).attr("id").slice(-2));
+    $( '#animate-block' + $(this).attr("id").slice(-2)) . animate( { height: 'toggle', opacity: 'toggle' }, 'slow' );
+  });
+});

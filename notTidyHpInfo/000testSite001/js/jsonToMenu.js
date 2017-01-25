@@ -1,10 +1,17 @@
 /**
  * JSONからメニューを作成
  */
-function JsonToMenu(menu_dtl,content_dtl,json,key,value,folder,category,tab) {
+function JsonToMenu(menu_dtl,content_dtl,key,value) {
 
 	// head
+	var folder = null;
 	for(k1 in value){
+		// オブジェクトではない場合はフォルダ名だけ取得する
+		if(!(value[k1] instanceof Object)){
+			folder = value[k1];
+			continue;
+		}
+
 		// リンク要素作成
 		var e1 = document.createElement('a');
 		e1.href = '#';
@@ -15,10 +22,6 @@ function JsonToMenu(menu_dtl,content_dtl,json,key,value,folder,category,tab) {
 
 		// ul要素作成
 		var e3 = document.createElement('ul');
-
-		// カテゴリdiv作成（フレーム用）
-		var e4 = document.createElement('div');
-		e4.id = category + k1;
 
 		// ２階層目
 		for(k2 in value[k1]){
@@ -34,7 +37,7 @@ function JsonToMenu(menu_dtl,content_dtl,json,key,value,folder,category,tab) {
 			// ul要素作成
 			var e13 = document.createElement('ul');
 
-			// tab
+			// ３階層目
 			for(k3 in value[k1][k2]){
 				// オブジェクトではない場合は無視する
 				if(!(value[k1][k2][k3] instanceof Object)) continue;
@@ -45,11 +48,10 @@ function JsonToMenu(menu_dtl,content_dtl,json,key,value,folder,category,tab) {
 				var e112 = null;
 				if(value[k1][k2][k3].ex){
 					e112 = document.createElement('a');
-					e112.href = '#' + category + k1 + tab + k3;
-					e112.setAttribute('onclick', "ChangeTab('" + category + k1 + tab + k3 + "'); return false;");
+					e112.href = '#' + value[k1][k2][k3].id;
+					e112.setAttribute('onclick', "ChangeTab('" + value[k1][k2][k3].id + "'); return false;");
 				}else{
 					e112 = document.createElement('a');
-					e112.href = '#' + category + k1 + tab + k3;
 				}
 				e112.innerHTML = value[k1][k2][k3].title;  // ★
 				// 要素追加( <ul><li><a>...</a></li></ul> )
@@ -57,21 +59,21 @@ function JsonToMenu(menu_dtl,content_dtl,json,key,value,folder,category,tab) {
 				// 要素追加( <ul><li><a>...</a></li></ul> )
 				e13.appendChild(e111);
 
-				// カテゴリdiv作成（フレーム用）
-				var e113 = document.createElement('div');
-				e113.id = category + k1 + tab + k3;
-
 				// フレーム作成
 				// リンク要素作成
 				if(value[k1][k2][k3].ex){
-					var e1111 = document.createElement('iframe');
-					e1111.setAttribute('src', folder + category + k1 + tab + k3 + ".html");
-					e1111.height = "6999px";
+					// カテゴリdiv作成（フレーム用）
+					var e1111 = document.createElement('div');
+					e1111.id = value[k1][k2][k3].id;
+
+					var e1112 = document.createElement('iframe');
+					e1112.setAttribute('src', folder + value[k1][k2][k3].id + ".html");
+					e1112.height = value[k1][k2][k3].ht;
 					// 要素追加( <div><iframe>...</iframe></div> )
-					e113.appendChild(e1111);
+					e1111.appendChild(e1112);
+					// 要素追加( <content_dtl><div><iframe>...</iframe></div></content_dtl> )
+					content_dtl.appendChild(e1111);
 				}
-				// 要素追加( <div><div><iframe>...</iframe></div></div> )
-				e4.appendChild(e113);
 			}
 			// 要素追加( <ul><li><a>...</a></li></ul> )
 			e11.appendChild(e12);
@@ -84,9 +86,5 @@ function JsonToMenu(menu_dtl,content_dtl,json,key,value,folder,category,tab) {
 		e2.appendChild(e3);
 		// 作成した要素を追加
 		menu_dtl.appendChild(e2);
-		// 要素追加( <content_dtl><div><iframe>...</iframe></div></content_dtl> )
-		content_dtl.appendChild(e4);
 	}
-
-
 }
