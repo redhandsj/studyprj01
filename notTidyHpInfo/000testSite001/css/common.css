@@ -28,6 +28,7 @@ margin: 0 auto; /* センタリング */
 background-color: #000000; /* メインカラムの背景色 */
 border-left: 1px #c0c0c0 solid; /* 左の境界線 */
 border-right: 1px #c0c0c0 solid; /* 右の境界線 */
+overflow: hidden;
 }
 /********************************************************************************************************************/
 /* --- ヘッダ --- */
@@ -228,7 +229,7 @@ ul {
     top: 0;
     left: -135px;
     width: 135px;
-    height: 100%;
+    height: 200%;
     /*overflow:auto;*/
     /*background: #E87272; 色*/
     background: gray;

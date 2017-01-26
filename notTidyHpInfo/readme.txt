@@ -17,16 +17,25 @@
      - http://himaratsu.hatenablog.com/entry/github/hosting
      - http://qiita.com/tiwu_official/items/d7fb6c493ed5eb9ee4fc
 
+
+
 ★ メニュー
  - (〇)スマホの場合は縦に並ぶ
  - (〇)スマホの場合は↓に伸びる
  - (〇)jsonからサイドメニュー作成
  - (〇)Jsonにフォルダ位置・ファイル名を書いてそれを参照するようにする。
- - ナビの上にメニューをJPGかなんかで表示
-
+ - (〇)ナビの上にメニューをJPGかなんかで表示
 
  - アコーディオンメニュー（検討）
    - http://weboook.blog22.fc2.com/blog-entry-361.html
+
+
+★ 最新ページ一覧
+ - navに追加できないか？
+ - 一旦、javascriptで調整して、ダメなら、javaでジェネレータ作成を検討。
+
+
+★ 人気ページ一覧
 
 ★ サイト内検索
  - google機能
@@ -44,6 +53,10 @@
  - アイコン作成
 
 ★ 表示系
+ - (〇)JavaScriptで最終更新日を取得
+   - https://allabout.co.jp/gm/gc/23835/
+     → 対応済み
+
  - (〇)複数項目閉じ
    → 対応済み
 
@@ -68,6 +81,9 @@
  - RSS
 
  - 携帯を横画面にした場合のメニューの表示
+   - navの長さが伸びない、なぜ？
+
+
 
  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  - 再読み込み時の元画面の表示
@@ -99,6 +115,16 @@
 ★　khc001tab002.html 【DB】【MySQL】権限の追加と確認
  - http://qiita.com/pinohara/items/481c95dc4c8c2568bf8d
 
+★ khc001tab002.html 【DB】【MySQL】A5からの接続
+ - http://blogs.yahoo.co.jp/xnmxb976/32277215.html
+   ■ファイアーウォールの設定
+    サーバはCentOS7のため下記のコマンドを使用
+    # firewall-cmd --permanent --add-port=3306/tcp
+    # firewall-cmd --reload
+    # firewall-cmd --list-all
+   ■外部からのDB、テーブルへのアクセス許可
+    > grant all privileges on (DB).(テーブル) to (ユーザID)@"192.168.3.%" identified by '(パスワード)' with grant option;
+    > grant all privileges on homestead.* to homestead@"192.168.56.1" identified by 'homestead' with grant option;
 
 
 

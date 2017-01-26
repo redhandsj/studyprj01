@@ -19,4 +19,5 @@ document.write('\
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>\
 <script type="text/javascript" src="../../js/makeIndexInPage.js"></script>\
 <script type="text/javascript" src="../../js/animationBlock.js"></script>\
+<script type="text/javascript" src="../../js/lastModified.js"></script>\
 ');
