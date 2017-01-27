@@ -1,0 +1,20 @@
+var kh =
+{
+  "head" :{
+    "category" : 'のうはう',
+    "folder" : '../html/002kh/',
+    "001" : {
+      title : "DB",
+      "001" : {
+        title : "MySQL",
+        "001" : { title : "rootﾊﾟｽﾜｰﾄﾞを忘れた時の対処" , ex : true, id : "khc001tab001" , ht : "2999px"  },
+        "002" : { title : "権限の追加と確認" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "002" : {
+        title : "Oracle",
+        "001" : { title : "何かのうはう" , ex : false, id : "" , ht : "2999px"  },
+      }
+    },
+ },
+}
+;

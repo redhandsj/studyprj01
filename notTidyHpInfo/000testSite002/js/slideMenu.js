@@ -40,3 +40,10 @@ $(function(){
 	 }
   });*/
 });
+/**
+ * サイドメニューの強制スクロール
+ */
+$(window).on("scroll", function(){
+    $("#slide_menu").css("top", -$(window).scrollTop());
+});
+
