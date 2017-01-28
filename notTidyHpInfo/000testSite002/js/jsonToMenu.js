@@ -29,7 +29,7 @@ function JsonToMenu(menu_dtl,content_dtl,key,value) {
 			if(!(value[k1][k2] instanceof Object)) continue;
 			// li要素作成
 			var e11 = document.createElement('li');
-			// B要素作成
+			// A要素作成
 			var e12 = document.createElement('a');
 			e12.href = '#';
 			e12.innerHTML = value[k1][k2].title; // ★

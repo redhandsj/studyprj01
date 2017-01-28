@@ -4,13 +4,20 @@
 function ChangeTab(tabname) {
 	// 全部消す
 	document.getElementById('c000tab000').style.display = 'none';
-	// ちしき
+	// パン屑のデフォルトを設定
+	document.getElementById('breadScraps').innerHTML = 'HOME';
+	// 辞書
 	var aps = JSON.stringify(ap, function(key, value) {
 		if (key === '') return value;
 		ChangeTabSub(key,value,tabname);
 	});
-	// のうはう
+	// ノウハウ
 	var khs = JSON.stringify(kh, function(key, value) {
+		if (key === '') return value;
+		ChangeTabSub(key,value,tabname);
+	});
+	// 辞書
+	var khs = JSON.stringify(dc, function(key, value) {
 		if (key === '') return value;
 		ChangeTabSub(key,value,tabname);
 	});

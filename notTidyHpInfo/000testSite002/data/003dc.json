@@ -1,0 +1,110 @@
+var dc =
+{
+  "head" :{
+    "category" : '辞書',
+    "folder" : '../html/003dc/',
+    "001" : {
+      title : "あ行",
+      "001" : {
+        title : "あ",
+        "001" : { title : "あああ" , ex : false, id : "dcc001tab001" , ht : "2999px"  },
+      },
+      "002" : {
+        title : "い",
+        "001" : { title : "いいい" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "003" : {
+        title : "う",
+        "001" : { title : "ううう" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "004" : {
+        title : "え",
+        "001" : { title : "えええ" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "005" : {
+        title : "お",
+        "001" : { title : "おおお" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "002" : {
+      title : "か行",
+      "001" : {
+        title : "か",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "002" : {
+        title : "き",
+        "001" : { title : "ききき" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "003" : {
+        title : "く",
+        "001" : { title : "くくく" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "004" : {
+        title : "け",
+        "001" : { title : "けけけ" , ex : false, id : "" , ht : "2999px"  },
+      },
+      "005" : {
+        title : "こ",
+        "001" : { title : "こここ" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "003" : {
+      title : "さ行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "004" : {
+      title : "た行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "005" : {
+      title : "な行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "006" : {
+      title : "は行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "007" : {
+      title : "ま行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "008" : {
+      title : "や行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "009" : {
+      title : "ら行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "010" : {
+      title : "わ行",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+ },
+}
+;

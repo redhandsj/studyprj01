@@ -12,14 +12,19 @@
 <![endif]-->
 <script type="text/javascript">
 </script>
-<!-- ちしきメニュー目次 -->
+<!-- 知識 -->
 <script type="text/javascript" src="../data/001ap.json"></script>
-<!-- のうはうメニュー目次 -->
+<!-- ノウハウ -->
 <script type="text/javascript" src="../data/002kh.json"></script>
+<!-- 辞書 -->
+<script type="text/javascript" src="../data/003dc.json"></script>
+<!-- ★新着情報作成 -->
+<script type="text/javascript" src="../data/000new.json"></script>
 <!-- 目次作成用ロジック -->
 <script type="text/javascript" src="../js/changeTab.js"></script>
 <script type="text/javascript" src="../js/jsonToMenu.js"></script>
 <script type="text/javascript" src="../js/slideMenu.js"></script>
+<script type="text/javascript" src="../js/makeNewList.js"></script>
 <script type="text/javascript" src="../js/windowOnload.js"></script>
 </head>
 <body>
@@ -51,32 +56,17 @@
 <li><a href="#c000tab000" onclick="ChangeTab('c000tab000'); return false;">HOME</a></li>
 <li><a href="#">知識</a><ul id="ap_dtl"></ul></li>
 <li><a href="#">ノウハウ</a><ul id="kh_dtl"></ul></li>
-<li><a href="#">辞書(仮設)</a><ul id="dc_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">ゲーム(仮設)</a><ul id="gm_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">雑記(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
-<li><a href="#">テスト(仮設)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
+<li><a href="#">辞書</a><ul id="dc_dtl"></ul></li><!-- 仮設 -->
+<li><a href="#">雑記(工事中)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
+<li><a href="#">テスト(工事中)</a><ul id="tt_dtl"></ul></li><!-- 仮設 -->
+<li><a href="#">ゲーム(工事中)</a><ul id="gm_dtl"></ul></li><!-- 仮設 -->
 </ul>
+<!-- 新着情報 -->
+<h3>新着情報</h3>
+<div id="new_list"></div>
+<!-- カレンダー -->
+<h3>カレンダー</h3>
+<script type="text/javascript" src="../libs/calendar/cal.js"></script>
 </nav>
 <!--***************************************************************************************************************-->
 <!-- メインカラム開始 -->
@@ -84,15 +74,15 @@
 <div id="category000">
 <div id="c000tab000"><iframe src="../html/home/home.html" height="1999px"></iframe></div>
 </div><!-- <div id="category000"> -->
-<div id="content_ap_dtl"></div><!-- ちしきメニュー目次 -->
-<div id="content_kh_dtl"></div><!-- のうはうメニュー目次 -->
+<div id="content_ap_dtl"></div><!-- 知識 -->
+<div id="content_kh_dtl"></div><!-- のうはう -->
+<div id="content_dc_dtl"></div><!-- 辞書 -->
 </div><!-- <div id="content"> -->
 <!-- メインカラム終了 -->
 <!--***************************************************************************************************************-->
 <!-- フッタ開始 -->
 <footer id="footer">
 　　From 2017/01/27
-<script type="text/javascript" src="../libs/calendar/cal.js"></script>
 </footer>
 <!-- フッタ終了 -->
 <!--***************************************************************************************************************-->

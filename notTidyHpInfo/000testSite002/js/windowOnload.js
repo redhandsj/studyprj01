@@ -19,6 +19,19 @@ window.onload = function() {
 		var content_dtl = document.getElementById("content_kh_dtl");
 		JsonToMenu(nav_dtl,content_dtl,key,value);
 	});
+	/* 辞書 */
+	var khs = JSON.stringify(dc, function(key, value) {
+		if (key === '') return value;
+		var nav_dtl = document.getElementById("dc_dtl");
+		var content_dtl = document.getElementById("content_dc_dtl");
+		JsonToMenu(nav_dtl,content_dtl,key,value);
+	});
+	/* ★新着情報リスト作成 */
+	var khs = JSON.stringify(newlist, function(key, value) {
+		if (key === '') return value;
+		var nav_dtl = document.getElementById("new_list");
+		makeNewList(nav_dtl,key,value);
+	});
 	//デフォルトのタブを選択（HOME）
 	var np = window.sessionStorage.getItem(['nowpage']);
 	//alert(np);

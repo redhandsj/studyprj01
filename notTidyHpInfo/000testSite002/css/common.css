@@ -211,7 +211,7 @@ ul {
  * メニュー文字列
  */
 #menuString {
-	width: 135px;
+	width: 158px;
 	display: table-cell;
 	vertical-align: top;
 }
@@ -222,9 +222,9 @@ ul {
 #slide_menu{
     position: fixed;
     top: 0;
-    left: -135px;
-    width: 135px;
-    height: 1000px;
+    left: -158px;
+    width: 158px;
+    height: 10000px;
     background: gray;
 
 }
@@ -234,7 +234,7 @@ ul {
  */
 #dropmenu {
   list-style-type: none;
-  width: 670px; /* 全体の長さ（ここ以外は、%で表す） */
+  width: 790px; /* 全体の長さ（ここ以外は、%で表す） */
   margin: 0px auto 0px;
   padding: 0 0 0 0; /* [上][右][下][左] */
 }
@@ -267,13 +267,13 @@ ul {
   z-index: 100;
   top: 100%;
   left: 0;
-  width: 100%;
+  width: 95%;
   margin: 0;
   padding: 0;
 }
 #dropmenu li ul li {
   overflow: hidden;
-  width: 100%;
+  width: 95%;
   height: 0;
   color: #fff;
   transition: .2s;

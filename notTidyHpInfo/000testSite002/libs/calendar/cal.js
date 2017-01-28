@@ -43,7 +43,7 @@ function output_calendar(ly,lm) {
 	if ((cy%4 == 0 && cy%100 != 0) || (cy%400 == 0)) {lday[1]++;} //閏年
 
 	//カレンダー表示
-	cal += "<table border='2'>";
+	cal += "<table border='1'>";
 	cal += "<tr><th colspan='7'>";
 	//前年ボタン
 	//cal += "<input type='button' value='《' onClick='change_month(-12)'>";
