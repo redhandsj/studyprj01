@@ -58,7 +58,7 @@ function JsonToMenu(menu_dtl,content_dtl,key,value) {
 				e111.appendChild(e112);
 				// 要素追加( <ul><li><a>...</a></li></ul> )
 				e13.appendChild(e111);
-
+/*
 				// フレーム作成
 				// リンク要素作成
 				if(value[k1][k2][k3].ex){
@@ -68,12 +68,14 @@ function JsonToMenu(menu_dtl,content_dtl,key,value) {
 
 					var e1112 = document.createElement('iframe');
 					e1112.setAttribute('src', folder + value[k1][k2][k3].id + ".html");
+					e1112.name = value[k1][k2][k3].id;
 					e1112.height = value[k1][k2][k3].ht;
 					// 要素追加( <div><iframe>...</iframe></div> )
 					e1111.appendChild(e1112);
 					// 要素追加( <content_dtl><div><iframe>...</iframe></div></content_dtl> )
 					content_dtl.appendChild(e1111);
 				}
+*/
 			}
 			// 要素追加( <ul><li><a>...</a></li></ul> )
 			e11.appendChild(e12);

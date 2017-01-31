@@ -32,14 +32,15 @@ window.onload = function() {
 		var nav_dtl = document.getElementById("new_list");
 		makeNewList(nav_dtl,key,value);
 	});
-	//デフォルトのタブを選択（HOME）
-	var np = window.sessionStorage.getItem(['nowpage']);
-	//alert(np);
-	if(np == null){
+
+	// デフォルトはホーム
+	var page = 'c000tab000';
+	if(location.hash) {
+		// URL#※ここにページが指定している場合、採用
+		page = location.hash.substring(1);
 		// セッションに値がない場合はホームを表示
-		ChangeTab('c000tab000');
-	}else{
-		// セッションに値がある場合は使用
-		ChangeTab(np);
 	}
+	ChangeTab(page);
+
+
 }

@@ -7,7 +7,7 @@ var ap =
       title : "第1章 基礎知識",
       "001" : {
         title : "1.1　数値変換とﾃﾞｰﾀ表現",
-        "001" : { title : "r進法" , ex : true , id : "apc001tab001" , ht : "1999px" },
+        "001" : { title : "r進法" , ex : true , id : "apc001tab001" , ht : "3000px" },
         "002" : { title : "正の整数の表現" , ex : false , id : "" , ht : "2999px"  },
         "003" : { title : "負数の表現" , ex : false , id : "" , ht : "2999px"    },
         "004" : { title : "あふれ(ｵｰﾊﾞｰﾌﾛｰ)" , ex : false , id : "" , ht : "2999px"  },
