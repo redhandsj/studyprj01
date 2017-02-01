@@ -1,9 +1,9 @@
 /**
  * 【一覧】http://www.hp-stylelink.com/news/2013/08/20130828.php
+ * <!-- <style type="text/css"><!-- body {overflow:hidden;} //--></style> -->\
  */
 document.write('\
 <link rel="stylesheet" href="../../css/common.css">\
-<style type="text/css"><!-- body {overflow:hidden;} //--></style>\
 <!-- syntaxhighlighter_3.0.83 -->\
 <script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>\
 <script type="text/javascript" src="../../libs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>\
