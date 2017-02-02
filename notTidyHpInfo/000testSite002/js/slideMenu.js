@@ -15,10 +15,12 @@ $(function(){
       // open クラスが body についていたらメニューをスライドインする
       body.animate({'left' : menuWidth }, 300);
       menu.animate({'left' : 0 }, 300);
+      $('#content_dtl').css({ position:'relative',zIndex:998 })
     }else {
       // open クラスが body についていなかったらスライドアウトする
       menu.animate({'left' : -menuWidth }, 300);
       body.animate({'left' : 0 }, 300);
+      $('#content_dtl').css({ position:'relative',zIndex:1000 })
     }
   });
 

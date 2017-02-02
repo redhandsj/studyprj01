@@ -1,13 +1,15 @@
 var ap =
 {
   "head" :{
-    "category" : 'ちしき',
+    "category" : '応用情報処理',
     "folder" : '../html/001ap/',
     "001" : {
-      title : "第1章 基礎知識",
+      title : "基礎知識",
       "001" : {
-        title : "1.1　数値変換とﾃﾞｰﾀ表現",
-        "001" : { title : "r進法" , ex : true , id : "apc001tab001" , ht : "3000px" },
+        title : "数値変換とﾃﾞｰﾀ表現",
+        /* 1.1.1 r進法 */
+        "001_001" : { title : "r進数" , ex : true , id : "ap001_001_001" , ht : "3000px" },
+        /* 1.1.2 正の整数の表現 */
         "002" : { title : "正の整数の表現" , ex : false , id : "" , ht : "2999px"  },
         "003" : { title : "負数の表現" , ex : false , id : "" , ht : "2999px"    },
         "004" : { title : "あふれ(ｵｰﾊﾞｰﾌﾛｰ)" , ex : false , id : "" , ht : "2999px"  },
@@ -16,7 +18,7 @@ var ap =
         "007" : { title : "誤差" , ex : false , id : "" , ht : "2999px"  },
       },
       "002" : {
-        title : "1.2　集合と論理",
+        title : "集合と論理",
         "001" : { title : "集合論理" , ex : false , id : "" , ht : "2999px"  },
         "002" : { title : "論理演算" , ex : false , id : "" , ht : "2999px"  },
         "003" : { title : "命題と論理" , ex : false , id : "" , ht : "2999px"  },
@@ -24,89 +26,74 @@ var ap =
       }
     },
     "002" : {
-      title : "第2章 ｱﾙｺﾞﾘｽﾞﾑとﾌﾟﾛｸﾞﾗﾐﾝｸﾞ",
+      title : "ｱﾙｺﾞﾘｽﾞﾑとﾌﾟﾛｸﾞﾗﾐﾝｸﾞ",
       "001" : {
         title : "2.1　",
         "001" : { title : "2.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "003" : {
-      title : "第3章 ﾊｰﾄﾞｳｪｱとｺﾝﾋﾟｭｰﾀ構成要素",
+      title : "ﾊｰﾄﾞｳｪｱとｺﾝﾋﾟｭｰﾀ構成要素",
       "001" : {
         title : "3.1　",
         "001" : { title : "3.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "004" : {
-      title : "第4章 ｼｽﾃﾑ構成要素",
+      title : "ｼｽﾃﾑ構成要素",
       "001" : {
         title : "4.1　",
         "001" : { title : "4.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "005" : {
-      title : "第5章 ｿﾌﾄｳｪｱ",
+      title : "ｿﾌﾄｳｪｱ",
       "001" : {
         title : "5.1　",
         "001" : { title : "5.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "006" : {
-      title : "第6章 ﾃﾞｰﾀﾍﾞｰｽ",
+      title : "ﾃﾞｰﾀﾍﾞｰｽ",
       "001" : {
         title : "6.1　",
         "001" : { title : "6.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "007" : {
-      title : "第7章 ﾈｯﾄﾜｰｸ",
+      title : "ﾈｯﾄﾜｰｸ",
       "001" : {
         title : "7.1　",
         "001" : { title : "7.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "008" : {
-      title : "第8章 ｾｷｭﾘﾃｨ",
+      title : "ｾｷｭﾘﾃｨ",
       "001" : {
         title : "8.1　",
         "001" : { title : "8.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "009" : {
-      title : "第9章 ｼｽﾃﾑ開発技術",
+      title : "ｼｽﾃﾑ開発技術",
       "001" : {
         title : "9.1　",
         "001" : { title : "9.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "010" : {
-      title : "第10章 ﾏﾈｼﾞﾒﾝﾄ",
+      title : "ﾏﾈｼﾞﾒﾝﾄ",
       "001" : {
         title : "10.1　",
         "001" : { title : "10.1.1　" , ex : false , id : "" , ht : "2999px"  },
       }
     },
     "011" : {
-      title : "第11章 ｽﾄﾗﾃｼﾞ",
+      title : "ｽﾄﾗﾃｼﾞ",
       "001" : {
         title : "11.1　",
         "001" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "002" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "003" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "004" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "005" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "006" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "007" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "008" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "009" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "010" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "011" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "012" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "013" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "014" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "015" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" },
-        "016" : { title : "テスト"  , ex : false , id : "" , ht : "2999px" }
-      }
+     }
     },
   },
 }

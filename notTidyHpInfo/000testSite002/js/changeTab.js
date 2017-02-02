@@ -37,11 +37,33 @@ function ChangeTab(tabname) {
 		// ここまでとれてなかったらデフォルトを格納
 		replace_page = "../html/home/home.html";
 	}
+
 	// 指定箇所のみ表示
 	content_dtl.contentWindow.location.replace(replace_page);
+	// 最前面にする
+	//content_dtl.style.position = "relative";
+	//content_dtl.style.zIndex = "1000";
+
+	//position: relative;
+	//z-index: 9999;
 
 	// URLに「#」をつける
 	location.hash=tabname;
+
+	// クリックイベント
+	//var clickMe = document.getElementById("panel-btn");
+	//if( /*@cc_on ! @*/ false )
+	//{
+	//  // IEの場合
+	//  clickMe.fireEvent("onclick"); //これでclickイベントが発火する
+	//}
+	//else
+	//{
+	//  // それ以外の場合
+	//  var event = document.createEvent( "MouseEvents" ); // イベントオブジェクトを作成
+	//  event.initEvent("click", false, true); // イベントの内容を設定
+	//  clickMe.dispatchEvent(event); // イベントを発火させる
+	//}
 
 	//if((window.sessionStorage !== null)) {
 	//    // セッションストレージが使える
