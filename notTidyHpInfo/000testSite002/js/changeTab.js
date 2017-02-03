@@ -41,14 +41,18 @@ function ChangeTab(tabname) {
 	// 指定箇所のみ表示
 	content_dtl.contentWindow.location.replace(replace_page);
 	// 最前面にする
-	//content_dtl.style.position = "relative";
-	//content_dtl.style.zIndex = "1000";
+	content_dtl.style.position = "relative";
+	content_dtl.style.zIndex = "998";
 
 	//position: relative;
 	//z-index: 9999;
 
 	// URLに「#」をつける
 	location.hash=tabname;
+
+	// パネルボタンのhrefを書き換えて、URLが変わらないようにする
+	var panel_btn = document.getElementById('panel-btn');
+	panel_btn.hash = tabname;
 
 	// クリックイベント
 	//var clickMe = document.getElementById("panel-btn");
