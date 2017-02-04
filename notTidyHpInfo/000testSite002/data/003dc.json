@@ -3,6 +3,7 @@ var dc =
   "head" :{
     "category" : '辞書',
     "folder" : '../html/003dc/',
+    /* 日本語 */
     "001" : {
       title : "あ行",
       "001" : {
@@ -103,6 +104,28 @@ var dc =
       "001" : {
         title : "ワード",
         "001" : { title : "かかか" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    /* アルファベット */
+    "011" : {
+      title : "Ａ",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "AAAA" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "012" : {
+      title : "Ｂ",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "AAAA" , ex : false, id : "" , ht : "2999px"  },
+      },
+    },
+    "013" : {
+      title : "Ｃ",
+      "001" : {
+        title : "ワード",
+        "001" : { title : "AAAA" , ex : false, id : "" , ht : "2999px"  },
       },
     },
  },
