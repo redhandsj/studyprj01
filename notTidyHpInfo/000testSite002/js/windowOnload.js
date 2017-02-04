@@ -1,7 +1,4 @@
 /**
- * ページの最終更新日を表示する
- */
-/**
  * JSONからページを設定
  */
 window.onload = function() {
@@ -40,7 +37,5 @@ window.onload = function() {
 		page = location.hash.substring(1);
 		// セッションに値がない場合はホームを表示
 	}
-	ChangeTab(page);
-
-
+	ChangeTab(page,'1000');
 }

@@ -11,14 +11,10 @@
 <!--[if lt IE 9]>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <![endif]-->
-<script type="text/javascript">
-</script>
-<!-- 知識 -->
-<script type="text/javascript" src="../data/001ap.json"></script>
-<!-- ノウハウ -->
-<script type="text/javascript" src="../data/002kh.json"></script>
-<!-- 辞書 -->
-<script type="text/javascript" src="../data/003dc.json"></script>
+<!-- 目次データ -->
+<script type="text/javascript" src="../data/001ap.json"></script><!-- 知識 -->
+<script type="text/javascript" src="../data/002kh.json"></script><!-- ノウハウ -->
+<script type="text/javascript" src="../data/003dc.json"></script><!-- 辞書 -->
 <!-- ★★★新着情報作成★★★ -->
 <script type="text/javascript" src="../data/000new.json"></script>
 <!-- 目次作成用ロジック -->
@@ -40,7 +36,7 @@
     <a href="#" id="panel-btn"><span id="panel-btn-icon"></span></a>
   </div>
   <div class="box4">
-    <a href="#c000tab000" onclick="ChangeTab('c000tab000'); return false;"><img alt="ホーム画面へ" src="../images/home/home.gif" id="homeImg" ></a>
+    <a href="#c000tab000" onclick="ChangeTab('c000tab000','1000'); return false;"><img alt="ホーム画面へ" src="../images/home/home.gif" id="homeImg" ></a>
   </div>
   <div class="box2">
     <input name="keywords2" id="keywords2" value="" type="text" placeholder="サイト内検索（実装予定です。）..."/>
@@ -57,10 +53,11 @@
 <nav id="slide_menu">
 <img id="menuString" src="../images/home/menu.gif" />
 <ul id="dropmenu">
-<li><a href="#c000tab000" onclick="ChangeTab('c000tab000'); return false;">HOME</a></li>
+<li><a href="#c000tab000" onclick="ChangeTab('c000tab000','998'); return false;">HOME</a></li>
 <li><a href="#">知識</a><ul id="ap_dtl"></ul></li>
 <li><a href="#">ノウハウ</a><ul id="kh_dtl"></ul></li>
 <li><a href="#">辞書</a><ul id="dc_dtl"></ul></li><!-- 仮設 -->
+<li><a href="#sitemap" onclick="ChangeTab('sitemap','998'); return false;">サイトマップ</a></li>
 <li><a href="#">雑記(工事中)</a><ul id="et_dtl"></ul></li><!-- 仮設 -->
 <li><a href="#">テスト(工事中)</a><ul id="tt_dtl"></ul></li><!-- 仮設 -->
 <li><a href="#">ゲーム(工事中)</a><ul id="gm_dtl"></ul></li><!-- 仮設 -->

@@ -1,7 +1,7 @@
 /**
  * タブ入れ替え
  */
-function ChangeTab(tabname) {
+function ChangeTab(tabname,z) {
 	// 全部消す
 	//document.getElementById('c000tab000').style.display = 'none';
 	// 該当が存在しない場合は、HOMEを表示
@@ -34,6 +34,13 @@ function ChangeTab(tabname) {
 		});
 	}
 	if(replace_page==null){
+		// 取れてなければ
+		// サイトマップ
+		if(tabname==='sitemap'){
+			replace_page = "../html/home/sitemap.html";
+		}
+	}
+	if(replace_page==null){
 		// ここまでとれてなかったらデフォルトを格納
 		replace_page = "../html/home/home.html";
 	}
@@ -42,7 +49,7 @@ function ChangeTab(tabname) {
 	content_dtl.contentWindow.location.replace(replace_page);
 	// 最前面にする
 	content_dtl.style.position = "relative";
-	content_dtl.style.zIndex = "998";
+	content_dtl.style.zIndex = z;
 
 	//position: relative;
 	//z-index: 9999;
@@ -53,6 +60,10 @@ function ChangeTab(tabname) {
 	// パネルボタンのhrefを書き換えて、URLが変わらないようにする
 	var panel_btn = document.getElementById('panel-btn');
 	panel_btn.hash = tabname;
+
+	// 隠しメニューの初期化
+	$( "[id^=animate-block]" ).hide();
+	//alert("ssssssssssss");
 
 	// クリックイベント
 	//var clickMe = document.getElementById("panel-btn");
