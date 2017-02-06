@@ -3,7 +3,7 @@
  */
 function ChangeTab(tabname,z) {
 	// 全部消す
-	//document.getElementById('c000tab000').style.display = 'none';
+	//document.getElementById('home').style.display = 'none';
 	// 該当が存在しない場合は、HOMEを表示
 	var content_dtl = document.getElementById('content_dtl');
 	content_dtl.setAttribute('src', "../html/home/home.html");

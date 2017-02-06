@@ -31,7 +31,7 @@ window.onload = function() {
 	});
 
 	// デフォルトはホーム
-	var page = 'c000tab000';
+	var page = 'home';
 	if(location.hash) {
 		// URL#※ここにページが指定している場合、採用
 		page = location.hash.substring(1);

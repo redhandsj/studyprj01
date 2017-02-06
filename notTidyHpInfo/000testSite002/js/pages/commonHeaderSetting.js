@@ -18,13 +18,13 @@ document.write('\
 <script type="text/javascript">SyntaxHighlighter.all();</script>\
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>\
 <!-- データ -->\
-<script type="text/javascript" src="../../data/001ap.json"></script><!-- 知識 -->\
-<script type="text/javascript" src="../../data/002kh.json"></script><!-- ノウハウ -->\
-<script type="text/javascript" src="../../data/003dc.json"></script><!-- 辞書 -->\
+<script type="text/javascript" src="../../data/001dc.json"></script><!-- 辞書 -->\
+<script type="text/javascript" src="../../data/100ap.json"></script><!-- 応用情報処理 -->\
+<script type="text/javascript" src="../../data/900kh.json"></script><!-- キュレーショ（情報収集） -->\
 <!-- 各処理 -->\
-<script type="text/javascript" src="../../js/makeIndexInPage.js"></script>\
-<script type="text/javascript" src="../../js/animationBlock.js"></script>\
-<script type="text/javascript" src="../../js/lastModified.js"></script>\
-<SCRIPT type="text/javascript" src="../../js/makeFrameLinks.js"></SCRIPT>\
-<SCRIPT type="text/javascript" src="../../js/changeTabInFrame.js"></SCRIPT>\
+<script type="text/javascript" src="../../js/pages/makeIndexInPage.js"></script>\
+<script type="text/javascript" src="../../js/pages/animationBlock.js"></script>\
+<script type="text/javascript" src="../../js/pages/lastModified.js"></script>\
+<SCRIPT type="text/javascript" src="../../js/pages/makeFrameLinks.js"></SCRIPT>\
+<SCRIPT type="text/javascript" src="../../js/pages/changeTabInFrame.js"></SCRIPT>\
 ');

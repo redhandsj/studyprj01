@@ -2,7 +2,7 @@ var ap =
 {
   "head" :{
     "category" : '応用情報処理',
-    "folder" : '../html/001ap/',
+    "folder" : '../html/100ap/',
     "001" : {
       title : "基礎知識",
       "001" : {

@@ -2,13 +2,13 @@ var dc =
 {
   "head" :{
     "category" : '辞書',
-    "folder" : '../html/003dc/',
+    "folder" : '../html/001dc/',
     /* 日本語 */
     "001" : {
       title : "あ行",
       "001" : {
         title : "あ",
-        "001" : { title : "あああ" , ex : false, id : "dcc001tab001" , ht : "2999px"  },
+        "001" : { title : "あああ" , ex : false, id : "dc001_001_001_001" , ht : "2999px"  },
       },
       "002" : {
         title : "い",

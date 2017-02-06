@@ -2,12 +2,12 @@ var kh =
 {
   "head" :{
     "category" : 'のうはう',
-    "folder" : '../html/002kh/',
+    "folder" : '../html/900kh/',
     "001" : {
       title : "DB",
       "001" : {
         title : "MySQL",
-        "001" : { title : "rootﾊﾟｽﾜｰﾄﾞを忘れた時の対処" , ex : false, id : "khc001tab001" , ht : "2999px"  },
+        "001" : { title : "rootﾊﾟｽﾜｰﾄﾞを忘れた時の対処" , ex : false, id : "kh001_001_001_001" , ht : "2999px"  },
         "002" : { title : "権限の追加と確認" , ex : false, id : "" , ht : "2999px"  },
       },
       "002" : {

@@ -1,9 +1,9 @@
 var newlist =
 {
   "head" :{
-    "003" : { date : "2016年2月4日" ,  title : "r進数の変換作成" , ex : true , id : "ap001_001_002"},
-    "002" : { date : "2016年2月2日" ,  title : "r進数作成" , ex : true , id : "ap001_001_001"},
-    "001" : { date : "2016年2月1日" ,  title : "ベース公開" , ex : true , id : "c000tab000"},
+    "003" : { date : "2016年2月4日" ,  title : "r進数の変換作成" , ex : true , id : "ap001_001_002_001"},
+    "002" : { date : "2016年2月2日" ,  title : "r進数作成" , ex : true , id : "ap001_001_001_001"},
+    "001" : { date : "2016年2月1日" ,  title : "ベース公開" , ex : true , id : "home"},
   },
 }
 ;
